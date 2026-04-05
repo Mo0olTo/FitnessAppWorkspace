@@ -182,7 +182,7 @@
   }
 </style>
 
-<main class="main">
+<main class="main container">
   <div class="content">
     <div class="left-side">
       <svg
@@ -230,8 +230,9 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+      <h1 class="text">Hello, {{ title() }}</h1>
+      <p class="text">Congratulations! Your app is running. 🎉</p>
+      <button (click)="toggle()">{{theme() === 'dark' ? 'Switch to light mode' : 'switch to dark mode'}}</button>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
