@@ -1,8 +1,10 @@
-import { Component, input, signal, Self } from '@angular/core';
+import { Component, input, signal, Self, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ValidationMsg } from '../validation-msg/validation-msg';
+import { ICONS } from '../../../styles/icons';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
@@ -13,22 +15,28 @@ import { ValidationMsg } from '../validation-msg/validation-msg';
   styleUrl: './reusable-input.scss',
 })
 export class ReusableInputComponent {
-  type        = input<'text' | 'email' | 'password'>('text');
-  icon        = input('');
+  type        = input<'text' | 'mail' | 'password'>('text');
+  icon        = input<'user' | 'mail' | 'password' | 'eye' | null>(null);;
   passIcon    = input('icons/eye.png');
   label       = input('');
   placeholder = input('');
   customClass = input('');
 
   showPassword = signal(false);
-  value        = signal<any>('');
+  value        = signal<any>(''); 
+
+  
 
   private _onChange: (val: any) => void = () => {};
   private _onTouched: () => void = () => {};
 
-  constructor(@Self() public controlDir: NgControl) {
+
+  constructor(@Self() public controlDir: NgControl , private sanitizer: DomSanitizer) {
     this.controlDir.valueAccessor = this;
-  }
+  } 
+
+
+
 
   writeValue(val: any): void {
     this.value.set(val ?? '');
@@ -59,4 +67,25 @@ export class ReusableInputComponent {
   togglePassword(): void {
     this.showPassword.update(v => !v);
   }
+
+
+
+  iconSvg = computed((): SafeHtml | null => {
+    const name = this.icon();
+    const svg = name ? ICONS[name] : null;
+  
+    return svg
+      ? this.sanitizer.bypassSecurityTrustHtml(svg)
+      : null;
+  });  
+
+  eyeSvg = computed((): SafeHtml => {
+    const iconName = this.showPassword() ? 'eyeOff' : 'eye';
+    const svg = ICONS[iconName];
+  
+    return this.sanitizer.bypassSecurityTrustHtml(svg);
+  });
+
+
+  
 }
