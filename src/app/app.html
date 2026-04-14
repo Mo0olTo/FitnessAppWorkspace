@@ -1,4 +1,46 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
-<p-button label="Check" />
+<section class="bg-[var(--color-bg)]">
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
+  <br>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-1/2">
+  
+    <app-reusable-input
+      formControlName="firstName"
+      label="First Name"
+      placeholder="First Name"
+      type="text"
+      icon="/icons/user.png"
+    />
+  
+    <app-reusable-input
+      formControlName="lastName"
+      label="Last Name"
+      placeholder="Last Name"
+      type="text"
+      icon="/icons/user.png"
+    />
+  
+    <app-reusable-input
+      formControlName="email"
+      label="Email"
+      placeholder="Email"
+      type="email"
+      icon="/icons/mail.png"
+    />
+  
+    <app-reusable-input
+      formControlName="password"
+      label="Password"
+      placeholder="Password"
+      type="password"
+      icon="/icons/lock.png"
+    />
+  
+    <button type="submit" [disabled]="form.invalid">Register</button>
+  
+  </form>
+  
+  <p-button label="Check" />
+  <button (click)="toggle()" class="bg-gray-500"> Dark mode</button>
+</section>
