@@ -1,0 +1,26 @@
+.custom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px 20px;
+  padding-right: 45px;
+  border-radius: 50px;
+  font-weight: bold;
+
+  .icon-wrapper {
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    background-color: red;
+    border: 2.12px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
