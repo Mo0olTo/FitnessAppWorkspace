@@ -1,9 +1,11 @@
 .container {
-  background: var(--color-bg);
-  
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-
-.text{
-    color:var(--color-main-text);
+.text {
+  color: var(--color-main-text);
 }

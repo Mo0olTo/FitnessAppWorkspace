@@ -1,0 +1,11 @@
+@import '../../../app.scss';
+.nav {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 16px;
+  font-style: bold;
+}
+
+.active-link {
+  color: var(--color-primary);
+}
