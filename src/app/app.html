@@ -1,1 +1,23 @@
 <router-outlet></router-outlet>
+
+<app-knob
+[(value)]="progress"
+></app-knob>
+
+<app-form-title 
+title="Tell us about yourself!"
+subTitle="w need to know your gender"
+[reverse]="false"
+></app-form-title> 
+
+<app-form-title 
+title="welcome back"
+subTitle="hi there"
+[reverse]="true"></app-form-title>
+<br>
+<div class="flex justify-center items-center">
+<app-form-button
+[btnTitle]="'next'"
+[disabled]="true"
+></app-form-button>
+</div>

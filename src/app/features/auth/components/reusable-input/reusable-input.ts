@@ -1,9 +1,9 @@
-import { Component, input, signal, Self, computed, inject } from '@angular/core';
+import { Component, input, signal, Self, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ValidationMsg } from '../validation-msg/validation-msg';
-import { ICONS } from '../../../styles/icons';
+import { ICONS } from '../../../../styles/icons';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
