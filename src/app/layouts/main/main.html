@@ -1,3 +1,20 @@
-<app-nav></app-nav>
-<router-outlet />
-<app-footer></app-footer>
+<div
+  class="main relative w-full min-h-screen bg-cover bg-center bg-no-repeat"
+  style="background-image: url('/images/bg.png')"
+>
+  <div
+    class="absolute inset-0 w-full h-full"
+    style="
+      background-color: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(86.1px);
+      -webkit-backdrop-filter: blur(86.1pxs);
+    "
+  >
+    <div class="relative z-10">
+      <app-nav></app-nav>
+      <div class="container mx-auto px-6">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+</div>
