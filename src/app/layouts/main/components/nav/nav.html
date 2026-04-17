@@ -73,7 +73,7 @@
 
   @if (isMenuOpen()) {
     <div
-      class="absolute top-0 left-4 w-64 bg-[var(--color-bg)] p-6 rounded-lg shadow-2xl z-50 animate-in fade-in slide-in-from-left-5 duration-300"
+      class="md:hidden absolute top-0 left-4 w-64 bg-[var(--color-main-text)] p-6 rounded-lg shadow-2xl z-50 animate-in fade-in slide-in-from-left-5 duration-300"
     >
       <div class="mb-8 border-b border-gray-700 pb-4">
         <img ngSrc="/images/logo.png" width="80" height="40" alt="Logo" class="w-20 h-auto" />
@@ -81,18 +81,27 @@
 
       <ul class="flex flex-col gap-5 mb-8">
         <li>
-          <a routerLink="home" (click)="isMenuOpen.set(false)" class="text-white nav text-lg block"
+          <a
+            routerLink="home"
+            [routerLinkActive]="'active-link'"
+            (click)="isMenuOpen.set(false)"
+            class="text-white nav text-lg block"
             >Home</a
           >
         </li>
         <li>
-          <a routerLink="about" (click)="isMenuOpen.set(false)" class="text-white nav text-lg block"
+          <a
+            routerLink="about"
+            [routerLinkActive]="'active-link'"
+            (click)="isMenuOpen.set(false)"
+            class="text-white nav text-lg block"
             >About</a
           >
         </li>
         <li>
           <a
             routerLink="classes"
+            [routerLinkActive]="'active-link'"
             (click)="isMenuOpen.set(false)"
             class="text-white nav text-lg block"
             >Classes</a
@@ -101,6 +110,7 @@
         <li>
           <a
             routerLink="healthy"
+            [routerLinkActive]="'active-link'"
             (click)="isMenuOpen.set(false)"
             class="text-white nav text-lg block"
             >Healthy</a
