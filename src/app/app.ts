@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Darkmode } from './core/services/darkmode/darkmode';
 
 import { ButtonModule } from 'primeng/button';
+import { Main } from './layouts/main/main';
 @Component({
   selector: 'app-root',
   imports: [ButtonModule, RouterOutlet],
@@ -11,11 +12,4 @@ import { ButtonModule } from 'primeng/button';
 })
 export class App {
   protected readonly title = signal('FitnessApp');
-  private readonly darkmode = inject(Darkmode);
-
-  theme = this.darkmode.currentTheme;
-
-  toggle() {
-    this.darkmode.toggleTheme();
-  }
 }

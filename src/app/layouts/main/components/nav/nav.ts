@@ -5,7 +5,7 @@ import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-nav',
-  imports: [CustomButton, RouterLinkActive, RouterLink, NgOptimizedImage],
+  imports: [CustomButton, RouterLinkActive, RouterLink, NgOptimizedImage, RouterLink],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })

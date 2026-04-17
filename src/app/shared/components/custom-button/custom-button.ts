@@ -1,8 +1,9 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-custom-button',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './custom-button.html',
   styleUrl: './custom-button.scss',
 })
@@ -13,4 +14,5 @@ export class CustomButton {
   color = input<string>('');
   colorBtn = input<string>('');
   width = input<string>('');
+  router = input<string>('');
 }
