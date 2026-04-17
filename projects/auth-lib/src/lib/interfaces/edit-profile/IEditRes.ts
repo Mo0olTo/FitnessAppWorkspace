@@ -1,5 +1,3 @@
-import { Addresses, Wishlist } from "../sign-up/ISignUpRes";
-
 export interface IEditRes {
   message: string;
   user: User;
@@ -10,13 +8,15 @@ interface User {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
   gender: string;
-  phone: string;
+  age: number;
+  weight: number;
+  height: number;
+  activityLevel: string;
+  goal: string;
   photo: string;
-  role: string;
-  wishlist:   Wishlist[];
-  addresses:  Addresses[];
   createdAt: string;
-  passwordChangedAt: string;
+  passwordResetCode?: string;
+  passwordResetExpires?: string;
+  resetCodeVerified?: boolean;
 }
