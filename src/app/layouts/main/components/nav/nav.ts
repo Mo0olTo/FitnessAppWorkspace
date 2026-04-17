@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CustomButton } from '../../../../shared/components/custom-button/custom-button';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
@@ -9,4 +9,9 @@ import { NgOptimizedImage } from '@angular/common';
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })
-export class Nav {}
+export class Nav {
+  isMenuOpen = signal(false);
+  toggleMenu() {
+    this.isMenuOpen.update((prev) => !prev);
+  }
+}
