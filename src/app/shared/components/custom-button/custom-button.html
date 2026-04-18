@@ -4,12 +4,14 @@
   [style.color]="'var(' + colorBtn() + ')'"
   [style.width]="width()"
   [style.border]="border()"
-  [routerLink]="router()"
+  (click)="onBtnClick()"
   class="custom-btn cursor-pointer"
 >
   <span class="label">{{ title() }}</span>
 
-  <span class="icon-wrapper">
-    <i class="pi pi-arrow-up-right text-white"></i>
-  </span>
+  @if (icon()) {
+    <span class="icon-wrapper">
+      <i [class]="icon() + ' text-white'"></i>
+    </span>
+  }
 </button>

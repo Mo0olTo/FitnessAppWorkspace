@@ -1,16 +1,16 @@
 <div
-  class="main relative w-full min-h-screen bg-cover bg-center bg-no-repeat"
+  class="main relative w-full min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
   style="background-image: url('/images/bg.png')"
 >
   <div
-    class="absolute inset-0 w-full h-full"
+    class="w-full min-h-screen flex flex-col"
     style="
       background-color: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(40.1px);
       -webkit-backdrop-filter: blur(40.1px);
     "
   >
-    <div class="relative z-10">
+    <div class="relative z-10 w-full">
       <app-nav></app-nav>
       <div class="container mx-auto px-6">
         <router-outlet />

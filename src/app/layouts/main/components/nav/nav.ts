@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { routes } from './../../../../app.routes';
+import { Component, inject, signal } from '@angular/core';
 import { CustomButton } from '../../../../shared/components/custom-button/custom-button';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -10,8 +11,20 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './nav.scss',
 })
 export class Nav {
+  private readonly _routes = inject(Router);
+  isLoggedIn = signal(true);
   isMenuOpen = signal(false);
   toggleMenu() {
     this.isMenuOpen.update((prev) => !prev);
+  }
+
+  goToProfile() {
+    this._routes.navigate(['/profile']);
+  }
+  goToLogin() {
+    this._routes.navigate(['/login']);
+  }
+  goToRegister() {
+    this._routes.navigate(['/register']);
   }
 }

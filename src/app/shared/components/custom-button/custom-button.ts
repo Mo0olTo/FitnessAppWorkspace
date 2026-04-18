@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -14,5 +14,9 @@ export class CustomButton {
   color = input<string>('');
   colorBtn = input<string>('');
   width = input<string>('');
-  router = input<string>('');
+  icon = input<string>('');
+  btnClick = output<void>();
+  onBtnClick() {
+    this.btnClick.emit();
+  }
 }
