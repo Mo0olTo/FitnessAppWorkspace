@@ -1,21 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Darkmode } from './core/services/darkmode/darkmode';
-
-import { ButtonModule } from 'primeng/button';
+import { Component } from '@angular/core';
+import { RouterOutlet } from "@angular/router";
 @Component({
   selector: 'app-root',
-  imports: [ButtonModule],
+  imports: [ RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('FitnessApp');
-  private readonly darkmode=inject(Darkmode)
-   
-  theme= this.darkmode.currentTheme
-
-  toggle() {
-    this.darkmode.toggleTheme();
-  }
+ 
 }

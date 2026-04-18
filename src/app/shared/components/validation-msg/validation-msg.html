@@ -1,0 +1,30 @@
+@if ((control().touched || control().dirty) && control().errors) {
+    <div class="mt-1">
+  
+      @if (control().errors?.['required']) {
+        <p-message severity="error" icon="pi pi-times-circle">
+          {{ label() }} is required
+        </p-message>
+      }
+  
+      @if (control().errors?.['email']) {
+        <p-message severity="error" icon="pi pi-times-circle">
+          {{ label() }} must be a valid email
+        </p-message>
+      }
+  
+      @if (control().errors?.['minlength']) {
+        <p-message severity="error" icon="pi pi-times-circle">
+          {{ label() }} must be at least
+          {{ control().errors?.['minlength'].requiredLength }} characters
+        </p-message>
+      }
+  
+      @if (type() === 'password' && control().errors?.['pattern']) {
+        <p-message severity="error" icon="pi pi-times-circle">
+          Password must contain uppercase letter and special character
+        </p-message>
+      } 
+  
+    </div>
+  }
