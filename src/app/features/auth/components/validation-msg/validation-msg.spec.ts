@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ValidationMsg } from './validation-msg';
+import { FormControl } from '@angular/forms';
 
 describe('ValidationMsg', () => {
   let component: ValidationMsg;
@@ -14,6 +15,9 @@ describe('ValidationMsg', () => {
 
     fixture = TestBed.createComponent(ValidationMsg);
     component = fixture.componentInstance;
+    
+    fixture.componentRef.setInput('control', new FormControl());
+
     fixture.detectChanges();
   });
 

@@ -1,6 +1,8 @@
 <router-outlet></router-outlet>
 
-<app-knob
+<div class="bg-[var(--color-bg)] w-full relative ">
+<div class="imgbg absolute inset-0 -z-10 blur-[40px]"></div>
+    <app-knob
 [(value)]="progress"
 ></app-knob>
 
@@ -15,9 +17,26 @@ title="welcome back"
 subTitle="hi there"
 [reverse]="true"></app-form-title>
 <br>
-<div class="flex justify-center items-center">
+<div class="flex flex-col justify-center items-center">
 <app-form-button
 [btnTitle]="'next'"
-[disabled]="true"
-></app-form-button>
+[disabled]="false"
+></app-form-button> 
+
+<br>
+<button class="w-1/4 bg-amber-400" (click)="toggle()">
+ Darkmood
+</button>
+</div>
+
+
+
+<br>
+
+<app-section-title 
+[sectionTitleImage]="'/images/WOrkouts.png'"
+sectionName="about us"
+logo="/images/Vector.png"
+[centeredName]='true'
+></app-section-title>
 </div>

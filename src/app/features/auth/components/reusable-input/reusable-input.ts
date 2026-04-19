@@ -14,7 +14,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './reusable-input.html',
   styleUrl: './reusable-input.scss',
 })
-export class ReusableInputComponent {
+export class ReusableInput {
   type        = input<'text' | 'mail' | 'password'>('text');
   icon        = input<'user' | 'mail' | 'password' | 'eye' | null>(null);;
   passIcon    = input('icons/eye.png');
