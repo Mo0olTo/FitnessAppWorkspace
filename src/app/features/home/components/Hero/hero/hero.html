@@ -1,70 +1,56 @@
-<section class="flex flex-col md:flex-row justify-between items-center p-2 w-full">
-  <div class="text max-w-100 lg:max-w-1/2">
-    <h1 class="font-bold text-3xl lg:text-5xl uppercase">
+<section class="flex flex-col lg:flex-row justify-between items-center p-4 w-full">
+  <!-- TEXT -->
+  <div class="max-w-md lg:max-w-xl">
+    <h1 class="font-bold text-3xl lg:text-5xl uppercase leading-tight">
       Your body can
-      <span class="text-[var(--color-primary)]"
-        >stand <br class="hidden lg:block" />
-        almost</span
-      >
+      <span class="block lg:inline text-[var(--color-primary)]"> stand almost </span>
       anything
     </h1>
     <p
-      class="relative mt-5 before-content-[''] before:absolute before:w-1 before:h-35 lg:before:h-17 before:bg-[var(--color-primary)] before:top-0 before:-left-5"
+      class="relative mt-5 pl-4 before:content-[''] before:absolute before:w-1 before:h-[120px] lg:before:h-[70px] before:bg-[var(--color-primary)] before:top-0 before:left-0"
     >
-      It's your mind that needs convincing. Push past your limits, stay <br />
-      committed, and watch as your body transform into powerhouse of <br />
-      strength and resilience. Start your journey today & truly capable of!
+      It's your mind that needs convincing. Push past your limits, stay committed, and watch as your
+      body transforms into a powerhouse of strength and resilience.
     </p>
-    <div
-      class="flex flex-col lg:flex-row justify-start items-start lg:justify-between lg:items-center mt-8"
-    >
-      <div class="">
+
+    <!-- STATS -->
+    <div class="flex gap-8 mt-8">
+      <div>
         <h2 class="font-bold text-2xl">1200+</h2>
         <p>Active Members</p>
       </div>
-      <div class="">
+      <div>
         <h2 class="font-bold text-2xl">12+</h2>
         <p>Certified Trainers</p>
       </div>
-      <div class="">
+      <div>
         <h2 class="font-bold text-2xl">20+</h2>
-        <p>Year Of Experience</p>
+        <p>Years Experience</p>
       </div>
     </div>
+
+    <!-- BUTTONS -->
+    <div class="flex gap-10 mt-6">
+      <app-custom-button
+        class="text-sm lg:text-base w-[140px] lg:w-[153px]"
+        title="Get Started"
+        customBg="--color-primary"
+        color="white"
+        icon="pi pi-arrow-up-right"
+      ></app-custom-button>
+
+      <app-custom-button
+        class="text-sm lg:text-base w-[190px]"
+        title="Explore More"
+        border="2px solid var(--color-primary)"
+        colorBtn="--color-primary"
+        icon="pi pi-arrow-up-right"
+      ></app-custom-button>
+    </div>
   </div>
-  <div class="flex flex-row gap-4 mt-8 w-full sm:w-auto">
-    <app-custom-button
-      width="151px"
-      title="Get Started"
-      customBg="--color-primary"
-      color="white"
-      icon="pi pi-arrow-up-right"
-    ></app-custom-button>
-    <app-custom-button
-      width="170px"
-      title="Explore More"
-      border="2px solid red"
-      colorBtn="--color-primary"
-      icon="pi pi-arrow-up-right"
-    ></app-custom-button>
-  </div>
-  <div class="image w-full lg:w-1/2 flex justify-center lg:justify-end">
-    <img src="/images/coach.png" class="w-75" alt="" />
+
+  <!-- IMAGE -->
+  <div class="w-full lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0">
+    <img src="/images/coach.png" class="w-full max-w-[350px]" alt="coach" />
   </div>
 </section>
-<!-- <div class="hidden md:flex gap-8">
-  <app-custom-button
-    width="151px"
-    title="Get Started"
-    customBg="--color-primary"
-    color="white"
-    icon="pi pi-arrow-up-right"
-  ></app-custom-button>
-  <app-custom-button
-    width="170px"
-    title="Explore More"
-    border="2px solid red"
-    colorBtn="--color-primary"
-    icon="pi pi-arrow-up-right"
-  ></app-custom-button>
-</div> -->
