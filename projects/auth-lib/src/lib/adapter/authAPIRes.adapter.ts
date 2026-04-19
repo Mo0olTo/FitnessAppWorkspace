@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { AdaptedSignInRes } from '../interfaces/adapter/AdaptedSignInRes';
+import { AdaptedSignUpRes } from '../interfaces/adapter/AdaptedSignUpRes';
+import { Adaptor } from '../interfaces/adapter/IAdabter';
 import { ISignInRes } from '../interfaces/sign-in/ISignInRes';
 import { ISignUpRes } from '../interfaces/sign-up/ISignUpRes';
-import { AdaptedSignUpRes } from '../interfaces/adapter/AdaptedSignUpRes';
-import { AdaptedSignInRes } from '../interfaces/adapter/AdaptedSignInRes';
-import { Adaptor } from '../interfaces/adapter/IAdabter';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,12 @@ export class AuthAPIResService implements Adaptor {
 
 
   // * ADAPTOR METHODS FOR SIGNUP RESPONSE
-  adaptSignUp(data:ISignUpRes):   AdaptedSignUpRes {
+  adaptSignUp(data: ISignUpRes): AdaptedSignUpRes {
     return {
-      message:data.message ,
+      message: data.message,
+      token: data.token,
+      userId: data.user._id,
       email: data.user.email,
-      role: data.user.role
     };
   }
 
@@ -25,7 +26,8 @@ export class AuthAPIResService implements Adaptor {
     return {
       message: data.message,
       token: data.token,
-      role: data.user.role
+      userId: data.user._id,
+      email: data.user.email,
     };
   }
 }

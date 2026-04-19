@@ -1,3 +1,3 @@
-export interface IUploadPhoto {
+export interface IUploadPhotoReq {
   photo: File;
 }
