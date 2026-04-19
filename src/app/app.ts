@@ -1,20 +1,15 @@
-import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Darkmode } from './core/services/darkmode/darkmode';
-
+import { Component } from '@angular/core';
+import { RouterOutlet } from "@angular/router";
+import { FormTitle } from "./features/auth/components/form-title/form-title";
+import { Knob } from "./features/auth/components/knob/knob";
+import { FormButton } from "./features/auth/components/form-button/form-button";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FormTitle, Knob, FormButton],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('FitnessApp');
-  private readonly darkmode=inject(Darkmode)
-   
-  theme= this.darkmode.currentTheme
-
-  toggle() {
-    this.darkmode.toggleTheme();
-  }
+ progress=1
+ isDisabled=true
 }

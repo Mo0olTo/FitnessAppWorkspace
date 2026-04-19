@@ -1,9 +1,10 @@
 :root{
-    --color-primary:#FF4100; 
+    --color-primary:#FF4100;  
     --color-main-text:#242424;
     --color-borders:#242424;
     --color-form:#242424;
-    --color-bg:#FFFFFFF2;
+    --color-bg: rgb(255 255 255 / 0.6);
+    --blur:66px;
 
 }
 
@@ -13,5 +14,6 @@
     --color-main-text:#FFFFFF;
     --color-borders:#D3D3D3;
     --color-form:#D3D3D3;
-    --color-bg:#3A3A3A;
+    --color-bg:rgb(36 36 36 / 0.6);
+    --blur:66px;
 }

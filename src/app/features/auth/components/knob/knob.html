@@ -1,0 +1,11 @@
+<div class="card flex justify-center">
+    <p-knob [(ngModel)]="value" 
+        (ngModelChange)="value.set($event)"
+        [strokeWidth]="5" 
+        [size]="100"
+        disabled="true"
+        [min]="min()" 
+        [max]="max()" 
+        [valueTemplate]="value() + '/' + max()"
+        class="!font-[800]" />
+</div>
