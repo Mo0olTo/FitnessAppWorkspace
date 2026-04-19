@@ -5,9 +5,10 @@ import { Knob } from "./features/auth/components/knob/knob";
 import { FormButton } from "./features/auth/components/form-button/form-button";
 
 import { ThemeFacade } from './core/Theme/theme.facade';
+import { SectionTitle } from "./shared/components/section-title/section-title";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormTitle, Knob, FormButton,],
+  imports: [RouterOutlet, FormTitle, Knob, FormButton, SectionTitle],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
