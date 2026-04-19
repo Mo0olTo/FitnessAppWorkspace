@@ -3,7 +3,8 @@
   --color-main-text: #242424;
   --color-borders: #242424;
   --color-form: #242424;
-  --color-bg: #fffffff2;
+  --color-bg: rgb(255 255 255 / 0.6);
+  --blur: 66px;
 }
 
 .dark {
@@ -11,5 +12,6 @@
   --color-main-text: #ffffff;
   --color-borders: #d3d3d3;
   --color-form: #d3d3d3;
-  --color-bg: #3a3a3a;
+  --color-bg: rgb(36 36 36 / 0.6);
+  --blur: 66px;
 }

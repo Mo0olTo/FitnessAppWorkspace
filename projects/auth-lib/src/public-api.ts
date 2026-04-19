@@ -12,18 +12,25 @@ export * from './lib/base/authAPI';
 export * from './lib/adapter/authAPIRes.adapter';
 
 //! Request Interfaces
+export * from './lib/interfaces/change-password/IChangePassReq';
+export * from './lib/interfaces/edit-profile/IEditReq';
 export * from './lib/interfaces/forget-password/IForgetReq';
 export * from './lib/interfaces/reset-password/IResetReq';
 export * from './lib/interfaces/sign-in/ISignInReq';
 export * from './lib/interfaces/sign-up/ISignUpReq';
+export * from './lib/interfaces/upload-photo/IPhotoReq';
 export * from './lib/interfaces/verify-code/IVerifyReq';
 
 //! Response Interfaces
+export * from './lib/interfaces/change-password/IChangePassRes';
+export * from './lib/interfaces/edit-profile/IEditRes';
 export * from './lib/interfaces/forget-password/IForgetRes';
 export * from './lib/interfaces/log-out/ILogOutRes';
+export type { IUser } from './lib/interfaces/logged-user/IUser';
 export * from './lib/interfaces/reset-password/IResetRes';
 export type { ISignInRes } from './lib/interfaces/sign-in/ISignInRes';
 export type { ISignUpRes } from './lib/interfaces/sign-up/ISignUpRes';
+export * from './lib/interfaces/upload-photo/IPhotoRes';
 export * from './lib/interfaces/verify-code/IVerifyRes';
 
 //! User Interface (export from sign-up to avoid conflicts)
@@ -31,9 +38,6 @@ export type { User } from './lib/interfaces/sign-up/ISignUpRes';
 
 //! Enums
 export * from './lib/enums/AuthEndPoints';
-
-//! Adapters
-export * from './lib/adapter/authAPIRes.adapter';
 
 //! Adapted Response Interfaces
 export * from './lib/interfaces/adapter/AdaptedSignInRes';

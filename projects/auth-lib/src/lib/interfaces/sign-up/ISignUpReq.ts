@@ -4,6 +4,10 @@ export interface ISignUpReq {
   email: string;
   password: string;
   rePassword: string;
-  phone: string;
   gender: string;
+  height: number;
+  weight: number;
+  age: number;
+  goal: string;
+  activityLevel: string;
 }

@@ -1,5 +1,3 @@
-import { Addresses, Wishlist } from "../sign-up/ISignUpRes";
-
 export interface IUser{
   message: string;
   user: User;
@@ -11,11 +9,11 @@ export interface User {
   lastName: string;
   email: string;
   gender: string;
-  phone: string;
+  age: number;
+  weight: number;
+  height: number;
+  activityLevel: string;
+  goal: string;
   photo: string;
-  role: string;
-  wishlist: Wishlist[];
-  addresses: Addresses[];
   createdAt: string;
-  passwordChangedAt: string;
 }
