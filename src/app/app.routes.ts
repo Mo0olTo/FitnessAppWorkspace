@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Auth } from './layouts/auth/auth';
 import { Main } from './layouts/main/main';
+import { authRoutes } from './routes/auth.routes';
 
 export const routes: Routes = [
   {
@@ -12,8 +13,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     component: Auth,
-    loadChildren: () =>
-      import('./routes/auth.routes').then((m) => m.authRoutes),
+    children: authRoutes,
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

@@ -2,10 +2,9 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Darkmode } from './core/services/darkmode/darkmode';
 
-import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-root',
-  imports: [ButtonModule],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
