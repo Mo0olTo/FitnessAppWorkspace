@@ -5,5 +5,6 @@
 :host ::ng-deep .p-knob-text {
     font-size: 30px; 
     font-weight: 700; 
-    transform: translateY(5px)
+    transform: translateY(5px);
+    fill: var(--color-main-text)!important;
   }

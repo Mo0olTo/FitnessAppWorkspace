@@ -44,3 +44,6 @@ Thumbs.db
 
 # Cursor
 .cursor/
+
+#css Tailwind IntilleSense
+src/styles.css
