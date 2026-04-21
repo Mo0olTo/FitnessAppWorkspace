@@ -1,5 +1,4 @@
-import { Component, input } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { Component, computed, input } from '@angular/core';
 import { Message } from 'primeng/message'
 
 @Component({
@@ -9,7 +8,12 @@ import { Message } from 'primeng/message'
   styleUrl: './validation-msg.scss',
 })
 export class ValidationMsg {
-  control = input.required<AbstractControl>();
-  label   = input('');
-  type    = input('');
+  errors = input<any>(null);
+  touched = input(false);
+  label = input('');
+  type = input('');
+
+  showErrors = computed(() => {
+    return this.touched() && this.errors();
+  });
 }
