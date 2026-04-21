@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { WhyUs } from "./components/why-us/why-us";
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [WhyUs],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
