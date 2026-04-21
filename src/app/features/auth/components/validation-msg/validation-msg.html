@@ -1,5 +1,5 @@
 @if ((control().touched || control().dirty) && control().errors) {
-    <div class="mt-1">
+    <section class="mt-1">
   
       @if (control().errors?.['required']) {
         <p-message severity="error" icon="pi pi-times-circle">
@@ -26,5 +26,5 @@
         </p-message>
       } 
   
-    </div>
+    </section>
   }
