@@ -16,10 +16,25 @@
             [reverse]="true"
             ></app-form-title>
             }
+            @if (formType() ==='forgetPass') {
+            <app-form-title
+            title="forget password"
+            ></app-form-title>
+            }
+            @if (formType() ==='newPass') {
+            <app-form-title
+            title="Creat new password"
+            ></app-form-title>
+            }
+            @if (formType() ==='otp') {
+            <app-form-title
+            title="otp code"
+            ></app-form-title>
+            }
             
     </div> 
     <!-- form Based on type  -->
-    <div class="min-h-[467px] w-[363px] lg:w-[486px] border-[2px] rounded-4xl border-[var(--color-borders)] flex flex-col justify-center items-center px-6 lg:px-12 py-4">
+    <div class="min-h-[237px] w-[363px] lg:w-[486px] border-[2px] rounded-4xl border-[var(--color-borders)] flex flex-col justify-center items-center px-6 lg:px-12 py-4">
 
         
         <!-- LOGIN -->
@@ -82,6 +97,66 @@
 
         </div>
         }
+
+        <!-- FORGET-PASSWORD -->
+        @if (formType() ==='forgetPass') {
+ 
+            <h1 class="font-extrabold text-2xl text-[var(--color-main-text)] capitalize mt-3 mb-2">
+                enter your email
+            </h1>
+
+            <div class="flex flex-col justify-center items-center gap-y-1">
+                <app-reusable-input
+                type="email"
+                icon="email"
+                placeholder="Email"
+                ></app-reusable-input>
+            </div>
+            
+        }
+
+        <!-- NEW_PASSWORD -->
+        @if (formType() ==='newPass') {
+ 
+            <h1 class="font-extrabold text-2xl text-center text-[var(--color-main-text)] capitalize mt-5 mb-2">
+                make sure its 8 characters or more
+            </h1>
+
+            <div class="flex flex-col justify-center items-center gap-y-2">
+                <app-reusable-input
+                type="email"
+                icon="email"
+                placeholder="Email"
+                ></app-reusable-input>
+
+                <app-reusable-input
+                type="password"
+                icon="password"
+                placeholder="Password"
+                ></app-reusable-input>
+            </div>
+            
+        }
+        <!-- OTP -->
+        @if (formType() ==='otp') {
+ 
+            <h1 class="font-extrabold text-2xl text-center text-[var(--color-main-text)] capitalize mt-5 mb-2">
+                Enter OTP and Check your email
+            </h1>
+
+            <div class="flex flex-col justify-center items-center gap-y-2">
+                <div class="card flex justify-center">
+                    <p-inputotp [(ngModel)]="value" [length]="4" class="!gap-x-10 !my-6">
+                        <ng-template #input let-token let-events="events">
+                            <input class="custom-otp-input" (keydown)="events.keydown($event)"
+                             (input)="events.input($event)" type="text" 
+                              [attr.value]="token" [maxLength]="7" />
+                        </ng-template>
+                    </p-inputotp>
+                </div>
+            </div>
+            
+        }
            
         @if (formType() === 'login') {
             <div class="text-[var(--color-primary)] font-bold text-[16px] flex justify-end items-center w-[311px] underline mt-3 mb-6">
@@ -93,7 +168,8 @@
         } 
 
         <!-- Or with after and before line -->
-        <div class="flex items-center gap-3 my-6">
+    @if (formType() === 'login' || formType() ==='register') {
+                <div class="flex items-center gap-3 my-6">
             <hr class="flex-1 w-[100px] h-[1px] border-[var(--color-borders)]" />
             <p class="text-[var(--color-main-text)] text-lg">or</p>
             <hr class="flex-1 w-[100px] h-[1px] border-[var(--color-borders)]" />
@@ -136,6 +212,7 @@
                   </a>
             </div> 
 
+    }
 
             <!-- button -->
             <div class="py-7">
@@ -147,6 +224,22 @@
                 }@if (formType()=== 'register') {
                     <app-form-button
                     btnTitle="register"
+                    ></app-form-button>
+                }
+                   
+                @if (formType() === 'forgetPass') {
+                    <app-form-button
+                    btnTitle="send OTP"
+                    ></app-form-button>
+        
+                }@if (formType()=== 'newPass') {
+                    <app-form-button
+                    btnTitle="Done"
+                    ></app-form-button>
+                }
+                @if (formType()=== 'otp') {
+                    <app-form-button
+                    btnTitle="confirm"
                     ></app-form-button>
                 }
                    
@@ -170,6 +263,13 @@
                                 [routerLink]="'/auth/login'"
                         >login</span>
                     </h1>
+                </div>
+    
+            }
+            @if (formType() === 'otp') {
+                <div class="text-[var(--color-main-text)] font-bold text-[18px] flex flex-col justify-center items-center w-[311px] mt-3 mb-6">
+                    <h1>Didn't recieve verification code ?</h1>
+                        <span class="text-[var(--color-primary)] underline cursor-pointer text-center"  >Resend Code?</span>
                 </div>
     
             }
