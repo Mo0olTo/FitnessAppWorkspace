@@ -1,5 +1,9 @@
-@import 'tailwindcss';
-@import './app/styles/theme.scss';
+@import "../src/app/styles/theme.scss";
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+
 
 @theme {
   --font-family-baloo: 'Baloo Thambi 2', cursive;

@@ -1,7 +1,8 @@
+import { API_URL, AuthLib, authAPI } from 'auth-lib';
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { API_URL, authAPI, AuthLib } from 'auth-lib';
+
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
