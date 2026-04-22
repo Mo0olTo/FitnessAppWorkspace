@@ -13,15 +13,10 @@ body {
   font-family: var(--font-family-baloo);
 }
 
-
-:root{
-  // knob styles 
-  --p-knob-value-background:var(--color-primary) !important;
-  --p-knob-text-color:var(--color-main-text) !important;
-  --p-transition-duration:0.5 !important;
-  --p-disabled-opacity:1 !important; 
-
-  // 
-
-
+:root {
+  /* PrimeNG / knob (depends on theme tokens above) */
+  --p-knob-value-background: var(--color-primary) !important;
+  --p-knob-text-color: var(--color-main-text) !important;
+  --p-transition-duration: 0.5 !important;
+  --p-disabled-opacity: 1 !important;
 }
