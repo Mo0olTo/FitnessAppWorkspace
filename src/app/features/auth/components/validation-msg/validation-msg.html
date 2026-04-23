@@ -1,6 +1,6 @@
 @if (touched() && errors()) {
 
-  <section class="mt-1">
+  <section class="mt-1 max-w-[320px] text-center">
 
     @if (errors()?.['required']) {
       <p-message severity="error">
@@ -21,7 +21,7 @@
       </p-message>
     }
 
-    @if (type() === 'password' && errors()?.['pattern']) {
+    @if (errors()?.['pattern']) {
       <p-message severity="error">
         Password must contain uppercase and special character
       </p-message>

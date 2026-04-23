@@ -45,19 +45,35 @@
                 login
             </h1>
 
-            <div class="flex flex-col justify-center items-center gap-y-2">
+            <div class="flex flex-col justify-center items-start gap-y-2">
                 <app-reusable-input
                 type="email"
                 icon="email"
                 placeholder="Email"
+                [value]="loginEmail()"
+                (valueChange)="loginEmailChange.emit($event)"
+                (blur)="fieldBlur.emit('email')"
                 ></app-reusable-input>
+                <app-validation-msg
+                [errors]="errors()?.email"
+                [touched]="touched()?.email ?? false"
+                label="Email"
+                ></app-validation-msg>
     
     
                 <app-reusable-input
                 type="password"
                 icon="password"
                 placeholder="Password"
+                [value]="loginPassword()"
+                (valueChange)="loginPasswordChange.emit($event)"
+                (blur)="fieldBlur.emit('password')"
                 ></app-reusable-input>
+                <app-validation-msg
+                [errors]="errors()?.password"
+                [touched]="touched()?.password ?? false"
+                label="Password"
+                ></app-validation-msg>
 
             </div>
             
@@ -75,25 +91,60 @@
             type="text"
             icon="user"
             placeholder="First Name"
+            [value]="firstName()"
+            (valueChange)="firstNameChange.emit($event)"
+            (blur)="fieldBlur.emit('firstName')"
             ></app-reusable-input>
+            <app-validation-msg
+            [errors]="errors()?.firstName"
+            [touched]="touched()?.firstName ?? false"
+            label="FirstName"
+            ></app-validation-msg>
+
             <app-reusable-input
             type="text"
             icon="user"
             placeholder="Last Name"
+            [value]="lastName()"
+            (valueChange)="lastNameChange.emit($event)"
+            (blur)="fieldBlur.emit('lastName')"
             ></app-reusable-input>
+            <app-validation-msg
+            [errors]="errors()?.lastName"
+            [touched]="touched()?.lastName ?? false"
+            label="LastName"
+            ></app-validation-msg>
+
+
             
             <app-reusable-input
             type="email"
             icon="email"
             placeholder="Email"
+            [value]="regEmail()"
+            (valueChange)="regEmailChange.emit($event)"
+            (blur)="fieldBlur.emit('email')"
             ></app-reusable-input>
+            <app-validation-msg
+            [errors]="errors()?.email"
+            [touched]="touched()?.email ?? false"
+            label="Email"
+            ></app-validation-msg>
 
 
             <app-reusable-input
             type="password"
             icon="password"
             placeholder="Password"
+            [value]="regPassword()"
+            (valueChange)="regPasswordChange.emit($event)"
+            (blur)="fieldBlur.emit('password')"
             ></app-reusable-input>
+            <app-validation-msg
+            [errors]="errors()?.password"
+            [touched]="touched()?.password ?? false"
+            label="Password"
+            ></app-validation-msg>
 
         </div>
         }
@@ -110,7 +161,15 @@
                 type="email"
                 icon="email"
                 placeholder="Email"
+                [value]="forgetEmail()"
+                (valueChange)="forgetEmailChange.emit($event)"
+                (blur)="fieldBlur.emit('email')"
                 ></app-reusable-input>
+                <app-validation-msg
+                [errors]="errors()?.email"
+                [touched]="touched()?.email ?? false"
+                label="Email"
+                ></app-validation-msg>
             </div>
             
         }
@@ -124,16 +183,32 @@
 
             <div class="flex flex-col justify-center items-center gap-y-2">
                 <app-reusable-input
-                type="email"
-                icon="email"
-                placeholder="Email"
+                type="password"
+                icon="password"
+                placeholder="password"
+                [value]="newPass()"
+                (valueChange)="newPassChange.emit($event)"
+                (blur)="fieldBlur.emit('password')"
                 ></app-reusable-input>
+                <app-validation-msg
+                [errors]="errors()?.password"
+                [touched]="touched()?.password ?? false"
+                label="Password"
+                ></app-validation-msg>
 
                 <app-reusable-input
                 type="password"
                 icon="password"
-                placeholder="Password"
+                placeholder="RePassword"
+                [value]="rePass()"
+                (valueChange)="rePassChange.emit($event)"
+                (blur)="fieldBlur.emit('rePassword')"
                 ></app-reusable-input>
+                <app-validation-msg
+                [errors]="errors()?.rePassword"
+                [touched]="touched()?.rePassword ?? false"
+                label="rePassword"
+                ></app-validation-msg>
             </div>
             
         }
@@ -146,7 +221,11 @@
 
             <div class="flex flex-col justify-center items-center gap-y-2">
                 <div class="card flex justify-center">
-                    <p-inputotp [(ngModel)]="value" [length]="4" class="!gap-x-10 !my-6">
+                    <p-inputotp [ngModel]="otpValue()"
+                                (ngModelChange)="otpValueChange.emit($event)"
+                                (blur)="fieldBlur.emit('otpValue')"
+                                [length]="4" class="!gap-x-10 !my-6">
+
                         <ng-template #input let-token let-events="events">
                             <input class="custom-otp-input" (keydown)="events.keydown($event)"
                              (input)="events.input($event)" type="text" 
@@ -158,6 +237,7 @@
             
         }
            
+        <!-- Forget Pass Link -->
         @if (formType() === 'login') {
             <div class="text-[var(--color-primary)] font-bold text-[16px] flex justify-end items-center w-[311px] underline mt-3 mb-6">
                 <h1 
@@ -214,38 +294,43 @@
 
     }
 
-            <!-- button -->
+            <!-- buttons -->
             <div class="py-7">
                 @if (formType() === 'login') {
                     <app-form-button
                     btnTitle="login"
+                    (click)="submit.emit()"
                     ></app-form-button>
         
                 }@if (formType()=== 'register') {
                     <app-form-button
                     btnTitle="register"
+                    (click)="submit.emit()"
                     ></app-form-button>
                 }
                    
                 @if (formType() === 'forgetPass') {
                     <app-form-button
                     btnTitle="send OTP"
+                    (click)="submit.emit()"
                     ></app-form-button>
         
                 }@if (formType()=== 'newPass') {
                     <app-form-button
                     btnTitle="Done"
+                    (click)="submit.emit()"
                     ></app-form-button>
                 }
                 @if (formType()=== 'otp') {
                     <app-form-button
                     btnTitle="confirm"
+                    (click)="submit.emit()"
                     ></app-form-button>
                 }
                    
             </div>
          
-
+            <!-- each form extra info for the user  -->
             @if (formType() === 'login') {
                 <div class="text-[var(--color-main-text)] font-bold text-[18px] flex justify-center items-center w-[311px] mt-3 mb-6">
                     <h1>Dont have an account yet ? 
@@ -256,6 +341,7 @@
                 </div>
     
             }
+
             @if (formType() === 'register') {
                 <div class="text-[var(--color-main-text)] font-bold text-[18px] flex justify-center items-center w-[311px] mt-3 mb-6">
                     <h1>Already Have an account !
@@ -266,6 +352,7 @@
                 </div>
     
             }
+
             @if (formType() === 'otp') {
                 <div class="text-[var(--color-main-text)] font-bold text-[18px] flex flex-col justify-center items-center w-[311px] mt-3 mb-6">
                     <h1>Didn't recieve verification code ?</h1>

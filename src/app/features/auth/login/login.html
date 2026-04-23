@@ -2,7 +2,20 @@
 
 
  <app-auth-form 
- formType="newPass"
+ formType="login"
+
+ [loginEmail]="email()"
+ (loginEmailChange)="email.set($event)"
+
+ [loginPassword]="password()"
+ (loginPasswordChange)="password.set($event)"
+
+ (fieldBlur)="onFieldBlur($event)"
+ 
+ [errors]="errors()"
+
+  [touched]="touched()"
+ (submit)="onSubmit()"
  >
- </app-auth-form>
+ </app-auth-form> 
 </div>
