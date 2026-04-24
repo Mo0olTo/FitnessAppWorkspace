@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, input, Input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-services-bar',
@@ -6,4 +6,16 @@ import { Component } from '@angular/core';
   templateUrl: './services-bar.html',
   styleUrl: './services-bar.scss',
 })
-export class ServicesBar {}
+export class ServicesBar {
+  items = signal<string[]>([
+    'Outdoor & Online Trainers',
+    'Personal Training',
+    'Live Classes',
+    'Personal Trainers',
+  ]);
+
+  duplicatedItems = computed(() => {
+    const data = this.items();
+    return [...data, ...data, ...data];
+  });
+}
