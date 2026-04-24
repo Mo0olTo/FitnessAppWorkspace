@@ -1,0 +1,38 @@
+.section{
+    font-family: 'Baloo Thambi 2', system-ui, sans-serif;
+}
+
+
+.circle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    
+    &::after {
+      content: ' ';
+      position: absolute;
+      bottom: -75px; // adjust to control gap from circle bottom
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 60px; // total height = 3 dashes + 2 gaps = 3*? + 2*20
+      z-index: 10;
+      background: repeating-linear-gradient(
+        to bottom,
+        #F3F3F424 0px,
+        #F3F3F424 10px,
+        transparent 10px,
+        transparent 30px
+      );
+    }
+
+    @media (max-width: 768px) {
+
+
+        &::after {
+           
+          height: 90px;
+          transform: translateY(30%);
+        }
+      }
+  }

@@ -1,19 +1,45 @@
-:root{
-    --color-primary:#FF4100;  
-    --color-main-text:#242424;
-    --color-borders:#242424;
-    --color-form:#242424;
-    --color-bg: rgb(255 255 255 / 0.6);
-    --blur:66px;
+:root {
+  --color-primary: #FF4100;
+  --color-main-text: #242424;
+  --color-borders: #242424;
+  --color-form: #242424;
+  --color-bg: rgba(255, 255, 255, 0.6);
+  --blur: 20px;
 
+  /* auth - light */
+  --auth-page-bg: #dcdcdc;
+  --auth-overlay: rgba(220, 220, 220, 0.65);
+  --auth-glow-left: rgba(255, 65, 0, 0.12);
+  --auth-glow-right: rgba(255, 255, 255, 0.55);
+  --auth-glow-bottom: rgba(255, 65, 0, 0.08);
+  --auth-center-divider: rgba(255, 65, 0, 0.80);
+  --auth-card-bg: rgba(255, 255, 255, 0.78);
+  --auth-card-border: rgba(0, 0, 0, 0.08);
+  --auth-card-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+  --auth-input-bg: rgba(255, 255, 255, 0.9);
+  --auth-input-border: rgba(0, 0, 0, 0.18);
+  --auth-separator: rgba(0, 0, 0, 0.12);
 }
 
+.dark {
+  --color-primary: #FF4100;
+  --color-main-text: #FFFFFF;
+  --color-borders: #D3D3D3;
+  --color-form: #D3D3D3;
+  --color-bg: rgba(36, 36, 36, 0.6);
+  --blur: 66px;
 
-.dark{
-    --color-primary:#FF4100; 
-    --color-main-text:#FFFFFF;
-    --color-borders:#D3D3D3;
-    --color-form:#D3D3D3;
-    --color-bg:rgb(36 36 36 / 0.6);
-    --blur:66px;
+  /* auth - dark */
+  --auth-page-bg: #0d0d0d;
+  --auth-overlay: rgba(0, 0, 0, 0.65);
+  --auth-glow-left: rgba(255, 65, 0, 0.25);
+  --auth-glow-right: rgba(255, 255, 255, 0.12);
+  --auth-glow-bottom: rgba(255, 65, 0, 0.15);
+  --auth-center-divider: rgba(255, 65, 0, 0.45);
+  --auth-card-bg: rgba(36, 36, 36, 0.6);
+  --auth-card-border: rgba(255, 255, 255, 0.12);
+  --auth-card-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+  --auth-input-bg: rgba(0, 0, 0, 0.35);
+  --auth-input-border: rgba(255, 255, 255, 0.18);
+  --auth-separator: rgba(255, 255, 255, 0.18);
 }
