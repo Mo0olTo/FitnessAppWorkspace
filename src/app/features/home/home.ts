@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { WhyUs } from "./components/why-us/why-us";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [WhyUs],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
