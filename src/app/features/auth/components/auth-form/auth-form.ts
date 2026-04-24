@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { ReusableInput } from "../reusable-input/reusable-input";
 import { FormButton } from "../form-button/form-button";
 import { RouterLink } from "@angular/router";
@@ -7,6 +7,8 @@ import { InputOtpModule } from 'primeng/inputotp';
 import { FormsModule } from '@angular/forms';
 import { AuthFormState } from '../../../../shared/models/authFormState';
 import { ValidationMsg } from "../validation-msg/validation-msg";
+import { FormType } from './models/formType';
+import { AUTH_FORM_CONFIG } from './auth-form-config/auth-form-config';
 
 @Component({
   selector: 'app-auth-form',
@@ -16,7 +18,11 @@ import { ValidationMsg } from "../validation-msg/validation-msg";
 })
 export class AuthForm {
 
-  formType=input<'login' |'register' | 'forgetPass'| 'otp' | 'newPass'>('login')
+
+  formType = input<FormType>('login');
+
+  formConfig = computed(() => AUTH_FORM_CONFIG[this.formType()]);
+
 
   // login Values 
   loginEmail=input<string>('')
@@ -61,6 +67,7 @@ export class AuthForm {
   // for Validation
   fieldBlur = output<keyof AuthFormState>(); 
 
+  // form state for errors and validation
   formState = input<AuthFormState>({
     firstName: '',
     lastName: '',
@@ -71,6 +78,17 @@ export class AuthForm {
   }); 
 
   errors = input<Partial<Record<keyof AuthFormState, any>>>({});
-  touched = input<Partial<Record<keyof AuthFormState, boolean>>>({});
+  touched = input<Partial<Record<keyof AuthFormState, boolean>>>({}); 
+
+
+  getValue(key: string) {
+    return (this as any)[key]();
+  }
+
+  emitValue(outputKey: string, value: string) {
+    (this as any)[outputKey].emit(value);
+  }
+
+  
 
 }

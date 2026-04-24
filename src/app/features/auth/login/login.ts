@@ -3,7 +3,7 @@ import { Component, computed,  signal } from '@angular/core';
 import { AuthForm } from "../components/auth-form/auth-form";
 
 import { PASS_PATTERN } from '../../../shared/validators/PASS-PATTERN';
-import { loginFormState } from './models/loginFormState';
+import { loginFormState } from './models/loginFormState'; 
 import { AuthFormState } from '../../../shared/models/authFormState';
 
 
@@ -61,14 +61,6 @@ export class Login {
         if (field === 'password') this.passwordTouched.set(true);
       }
 
-      patch(field: keyof loginFormState, value: string): void {
-        const map: Record<keyof loginFormState, () => void> = {
-
-          email:     () => this.email.set(value),
-          password:  () => this.password.set(value),
-        };
-        map[field]();
-      }
     
       markAllTouched(): void {
 
