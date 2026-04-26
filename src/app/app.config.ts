@@ -1,6 +1,6 @@
 import { API_URL, AuthLib, authAPI } from 'auth-lib';
-import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 
@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { environment } from '../environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,9 +24,12 @@ export const appConfig: ApplicationConfig = {
       provide: authAPI,
       useExisting: AuthLib,
     },
-    provideHttpClient(),
+    
+    provideHttpClient(withFetch()),
     provideRouter(routes), provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
+    importProvidersFrom(CookieService),
+    
     providePrimeNG({
       theme: {
         preset: Aura,
