@@ -1,4 +1,4 @@
-import { Component, inject} from '@angular/core';
+import { Component, inject, signal} from '@angular/core';
 import { RouterOutlet } from "@angular/router";
 import { ThemeFacade } from './core/Theme/theme.facade';
 
@@ -12,8 +12,11 @@ import { ThemeFacade } from './core/Theme/theme.facade';
 export class App {
   
   private readonly themefacede=inject(ThemeFacade)
+  isDark = signal(true);
+
 
     toggle(){
-    this.themefacede.toggleTheme()
+      this.isDark.update(v => !v);
+      this.themefacede.toggleTheme()
     }
 }
