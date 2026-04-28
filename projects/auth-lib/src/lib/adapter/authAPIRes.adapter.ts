@@ -28,6 +28,7 @@ export class AuthAPIResService implements Adaptor {
       token: data.token,
       userId: data.user._id,
       email: data.user.email,
+      user:data.user,
     };
   }
 }
