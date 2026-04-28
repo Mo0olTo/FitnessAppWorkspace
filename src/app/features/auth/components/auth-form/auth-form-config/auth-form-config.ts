@@ -3,74 +3,74 @@ import { FormConfig, FormType } from "../models/formType";
 
 export const AUTH_FORM_CONFIG: Record<FormType, FormConfig> = {
     // login
-  login: {
-        title: {
-            title: 'welcome back',
-            subTitle: 'hey there',
-            reverse: true,
-            },
+   login: {
+         title: {
+             title: 'welcome back',
+             subTitle: 'hey there',
+             reverse: true,
+             },
 
-         heading: 'login',
+          heading: 'login',
 
-        fields: [
+         fields: [
         {
-            key: 'email',
-            type: 'email',
-            icon: 'email',
-            placeholder: 'Email',
-            valueKey: 'loginEmail',
-            outputKey: 'loginEmailChange',
-        },
+             key: 'email',
+             type: 'email',
+             icon: 'email',
+             placeholder: 'Email',
+             valueKey: 'loginEmail',
+             outputKey: 'loginEmailChange',
+         },
 
-        {
-            key: 'password',
-            type: 'password',
-            icon: 'password',
-            placeholder: 'Password',
-            valueKey: 'loginPassword',
-            outputKey: 'loginPasswordChange',
+         {
+             key: 'password',
+             type: 'password',
+             icon: 'password',
+             placeholder: 'Password',
+             valueKey: 'loginPassword',
+             outputKey: 'loginPasswordChange',
         },
     ],
 
-    buttonText: 'login',
+     buttonText: 'login',
 
-    showSocial: true,
+     showSocial: true,
 
-    forgetLink: true,
+     forgetLink: true,
 
-    footer: {
-      text: 'Dont have an account yet ?',
-      actionText: 'Register',
-      route: '/auth/register',
+     footer: {
+       text: 'Dont have an account yet ?',
+       actionText: 'Register',
+       route: '/auth/register',
     },
   },
     // register
   register: {
-    title: {
-      title: 'create an account',
-      subTitle: 'hey there',
-      reverse: true,
-    },
+     title: {
+       title: 'create an account',
+       subTitle: 'hey there',
+       reverse: true,
+     },
 
-    heading: 'register',
+     heading: 'register',
 
-    fields: [
-      {
-        key: 'firstName',
-        type: 'text',
-        icon: 'user',
-        placeholder: 'First Name',
-        valueKey: 'firstName',
-        outputKey: 'firstNameChange',
-      },
+     fields: [
+        {
+         key: 'firstName',
+         type: 'text',
+         icon: 'user',
+         placeholder: 'First Name',
+         valueKey: 'firstName',
+         outputKey: 'firstNameChange',
+       },
 
-      {
-        key: 'lastName',
-        type: 'text',
-        icon: 'user',
-        placeholder: 'Last Name',
-        valueKey: 'lastName',
-        outputKey: 'lastNameChange',
+       {
+         key: 'lastName',
+         type: 'text',
+         icon: 'user',
+         placeholder: 'Last Name',
+         valueKey: 'lastName',
+         outputKey: 'lastNameChange',
       },
 
       {
@@ -83,48 +83,48 @@ export const AUTH_FORM_CONFIG: Record<FormType, FormConfig> = {
       },
 
       {
-        key: 'password',
-        type: 'password',
-        icon: 'password',
-        placeholder: 'Password',
-        valueKey: 'regPassword',
-        outputKey: 'regPasswordChange',
+         key: 'password',
+         type: 'password',
+         icon: 'password',
+         placeholder: 'Password',
+         valueKey: 'regPassword',
+         outputKey: 'regPasswordChange',
       },
     ],
 
-    buttonText: 'register',
+     buttonText: 'register',
 
-    showSocial: true,
+     showSocial: true,
 
-    footer: {
-      text: 'Already Have an account !',
-      actionText: 'login',
-      route: '/auth/login',
+     footer: {
+       text: 'Already Have an account !',
+       actionText: 'login',
+       route: '/auth/login',
     },
   },
     // forget Password
-  forgetPass: {
-    title: {
-      title: 'forget password',
-    },
+   forgetPass: {
+     title: {
+       title: 'forget password',
+     },
 
-    heading: 'enter your email',
+     heading: 'enter your email',
 
-    fields: [
+     fields: [
       {
-        key: 'email',
-        type: 'email',
-        icon: 'email',
-        placeholder: 'Email',
-        valueKey: 'forgetEmail',
-        outputKey: 'forgetEmailChange',
+         key: 'email',
+         type: 'email',
+         icon: 'email',
+         placeholder: 'Email',
+         valueKey: 'forgetEmail',
+         outputKey: 'forgetEmailChange',
       },
     ],
 
-    buttonText: 'send OTP',
+     buttonText: 'send OTP',
   },
     // new Password
-  newPass: {
+   newPass: {
     title: {
       title: 'create new password',
     },
@@ -154,18 +154,18 @@ export const AUTH_FORM_CONFIG: Record<FormType, FormConfig> = {
     buttonText: 'Done',
   },
     // OTP
-  otp: {
-    title: {
-      title: 'otp code',
+   otp: {
+     title: {
+       title: 'otp code',
     },
 
-    heading: 'Enter OTP and Check your email',
+     heading: 'Enter OTP and Check your email',
 
-    buttonText: 'confirm',
+     buttonText: 'confirm',
 
-    footer: {
-      text: "Didn't recieve verification code ?",
-      actionText: 'Resend Code?',
+     footer: {
+       text: "Didn't recieve verification code ?",
+       actionText: 'Resend Code?',
     },
   },
 };

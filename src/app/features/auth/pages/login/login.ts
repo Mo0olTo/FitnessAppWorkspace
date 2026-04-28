@@ -19,41 +19,41 @@ export class Login {
   private readonly authFacade=inject(AuthFacade)
 
 
-    readonly email     = signal<string>('');
-    readonly password  = signal<string>(''); 
+     email     = signal<string>('');
+     password  = signal<string>(''); 
 
 
-    readonly emailTouched     = signal<boolean>(false);
-    readonly passwordTouched  = signal<boolean>(false); 
+     emailTouched     = signal<boolean>(false);
+     passwordTouched  = signal<boolean>(false); 
     
 
-      readonly emailErrors = computed(() => {
+       emailErrors = computed(() => {
         const v = this.email();
         if (!v) return { required: true };
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return { email: true };
         return undefined;
       });
     
-      readonly passwordErrors = computed(() => {
+       passwordErrors = computed(() => {
         const v = this.password();
         if (!v) return { required: true };
         if (!PASS_PATTERN.test(v)) return { pattern: true };
         return null;
       });
 
-      readonly errors = computed(() => ({
+       errors = computed(() => ({
         email: this.emailErrors(),
         password: this.passwordErrors()
       }));
 
-      readonly touched = computed(() => ({
+       touched = computed(() => ({
         email: this.emailTouched(),
         password: this.passwordTouched()
       }));
 
 
 
-      readonly isFormValid = computed(() =>
+       isFormValid = computed(() =>
         !this.emailErrors()     &&
         !this.passwordErrors()
       );
