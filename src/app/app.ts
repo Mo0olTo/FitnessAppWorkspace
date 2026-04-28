@@ -1,6 +1,5 @@
 import { Component, inject, signal} from '@angular/core';
 import { ToastModule } from 'primeng/toast';
-import { Component, inject} from '@angular/core';
 import { RouterOutlet } from "@angular/router";
 import { ThemeFacade } from './core/Theme/theme.facade';
 
