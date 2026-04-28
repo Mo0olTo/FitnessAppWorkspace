@@ -1,0 +1,21 @@
+.section{
+    font-family: 'Baloo Thambi 2', system-ui, sans-serif;
+}
+
+.custom-otp-input {
+    width: 40px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--color-borders);
+    border-radius: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    outline: none;
+    padding-bottom: 4px;
+  
+    &:focus {
+      border-bottom-color: var(--color-primary);
+    }
+  }

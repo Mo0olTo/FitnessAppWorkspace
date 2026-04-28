@@ -58,7 +58,22 @@ html.dark {
   --p-knob-text-color: var(--color-main-text) !important;
   --p-transition-duration: 0.5 !important;
   --p-disabled-opacity: 1 !important;
+
+
+  // primeng Toaster
+  --success-toast-bg: var(--color-primary) !important;
+
 }
 
 
+.p-toast-message-success {
+  background: var(--success-toast-bg) !important;
+  color: white !important;
+
+}
+
+.p-toast .p-toast-message-success .p-toast-summary,
+.p-toast .p-toast-message-success .p-toast-detail {
+  color: white !important;
+}
 

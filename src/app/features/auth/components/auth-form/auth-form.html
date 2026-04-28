@@ -1,0 +1,164 @@
+<section>
+
+<!-- title -->
+
+<div class="mb-7">
+  <app-form-title
+  [title]="formConfig().title.title"
+  [subTitle]="formConfig().title.subTitle || ''"
+  [reverse]="formConfig().title.reverse || false"
+  ></app-form-title>
+</div>
+
+
+<!-- Form Container -->
+
+<div
+  class="min-h-[237px] w-[363px] lg:w-[486px] border-[2px] rounded-4xl border-[var(--color-borders)] flex flex-col justify-center items-center px-6 lg:px-12 py-4"
+>
+
+  <!-- heading -->
+
+  @if (formConfig().heading) {
+    <h1
+      class="font-extrabold text-2xl text-center text-[var(--color-main-text)] capitalize mt-5 mb-2"
+    >
+      {{ formConfig().heading }}
+    </h1>
+  }
+
+
+  <!-- Dynamic fields we use in form  -->
+
+  @if (formType() !== 'otp') {
+
+    <div class="flex flex-col justify-center items-center gap-y-2">
+
+      @for (field of formConfig().fields; track field.key) {
+
+        <app-reusable-input
+          [type]="field.type"
+          [icon]="field.icon"
+          [placeholder]="field.placeholder"
+          [value]="getValue(field.valueKey)"
+          (valueChange)="emitValue(field.outputKey, $event)"
+          (blur)="fieldBlur.emit(field.key)"
+        />
+
+        <app-validation-msg
+          [errors]="errors()?.[field.key]"
+          [touched]="touched()?.[field.key] ?? false"
+          [label]="field.placeholder"
+        />
+
+      }
+
+    </div>
+
+  }
+
+
+  <!-- otp -->
+
+  @if (formType() === 'otp') {
+
+    <div class="card flex justify-center">
+
+      <p-inputotp
+        [ngModel]="otpValue()"
+        (ngModelChange)="otpValueChange.emit($event)"
+        (blur)="fieldBlur.emit('otpValue')"
+        [length]="4"
+        class="!gap-x-10 !my-6"
+      >
+
+        <ng-template #input let-token let-events="events">
+
+          <input
+            class="custom-otp-input"
+            (keydown)="events.keydown($event)"
+            (input)="events.input($event)"
+            type="text"
+            [attr.value]="token"
+            [maxLength]="7"
+          />
+
+        </ng-template>
+
+      </p-inputotp>
+
+    </div>
+
+  }
+
+
+  <!-- Routing to forget password compnent -->
+
+  @if (formConfig().forgetLink) {
+
+    <div
+      class="text-[var(--color-primary)] font-bold text-[16px] flex justify-end items-center w-[311px] underline mt-3 mb-6"
+    >
+
+      <h1 [routerLink]="'/auth/forget-pass'">
+        Forget Password ?
+      </h1>
+
+    </div>
+
+  }
+
+
+  <!-- Form social icons -->
+
+  @if (formConfig().showSocial) {
+
+    <div class="flex items-center gap-3 my-6">
+
+      <hr class="flex-1 w-[100px] h-[1px] border-[var(--color-borders)]" />
+
+      <p class="text-[var(--color-main-text)] text-lg">
+        or
+      </p>
+
+      <hr class="flex-1 w-[100px] h-[1px] border-[var(--color-borders)]" />
+
+    </div>
+
+  }
+
+
+  <!-- Form button -->
+
+  <div class="py-7">
+
+    <app-form-button
+      [btnTitle]="formConfig().buttonText"
+      (click)="submit.emit()"
+    />
+
+  </div>
+
+
+  <!-- Form footer -->
+
+  @if (formConfig().footer) {
+
+    <div class="text-[var(--color-main-text)] font-bold text-[18px] flex flex-col justify-center items-center w-[311px] mt-3 mb-6" >
+
+      <h1> {{ formConfig().footer?.text }}  </h1>
+
+      <span
+        class="text-[var(--color-primary)] underline cursor-pointer"
+        [routerLink]="formConfig().footer?.route"
+      >
+        {{ formConfig().footer?.actionText }}
+      </span>
+
+    </div>
+
+  }
+
+</div>
+
+</section>
