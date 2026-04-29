@@ -16,7 +16,7 @@ import { ISignInReq } from 'auth-lib';
 export class Login {
 
 
-  private readonly authFacade=inject(AuthFacade)
+   readonly authFacade=inject(AuthFacade)
 
 
     email= signal<string>('');
