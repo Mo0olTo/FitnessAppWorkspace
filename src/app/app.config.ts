@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch() , withInterceptors([headersInterceptor,])),
     provideRouter(routes), provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
-    importProvidersFrom(CookieService ),
+    CookieService,
     MessageService,
     
     providePrimeNG({

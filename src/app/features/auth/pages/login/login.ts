@@ -16,91 +16,91 @@ import { ISignInReq } from 'auth-lib';
 export class Login {
 
 
-  private readonly authFacade=inject(AuthFacade)
+   readonly authFacade=inject(AuthFacade)
 
 
-    readonly email     = signal<string>('');
-    readonly password  = signal<string>(''); 
+    email= signal<string>('');
+    password= signal<string>(''); 
 
 
-    readonly emailTouched     = signal<boolean>(false);
-    readonly passwordTouched  = signal<boolean>(false); 
+     emailTouched= signal<boolean>(false);
+     passwordTouched= signal<boolean>(false); 
     
 
-      readonly emailErrors = computed(() => {
+      emailErrors = computed(() => {
         const v = this.email();
         if (!v) return { required: true };
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return { email: true };
         return undefined;
       });
     
-      readonly passwordErrors = computed(() => {
-        const v = this.password();
-        if (!v) return { required: true };
-        if (!PASS_PATTERN.test(v)) return { pattern: true };
-        return null;
-      });
+      passwordErrors = computed(() => {
+       const v = this.password();
+       if (!v) return { required: true };
+       if (!PASS_PATTERN.test(v)) return { pattern: true };
+       return null;
+     });
 
-      readonly errors = computed(() => ({
-        email: this.emailErrors(),
-        password: this.passwordErrors()
+      errors = computed(() => ({
+       email: this.emailErrors(),
+       password: this.passwordErrors()
+    }));
+
+     touched = computed(() => ({
+      email: this.emailTouched(),
+      password: this.passwordTouched()
       }));
 
-      readonly touched = computed(() => ({
-        email: this.emailTouched(),
-        password: this.passwordTouched()
-      }));
 
 
-
-      readonly isFormValid = computed(() =>
-        !this.emailErrors()     &&
-        !this.passwordErrors()
+      isFormValid = computed(() =>
+       !this.emailErrors()     &&
+      !this.passwordErrors()
       );
 
 
-      touch(field: 'email' | 'password') {
-        if (field === 'email') this.emailTouched.set(true);
-        if (field === 'password') this.passwordTouched.set(true);
+    touch(field: 'email' | 'password') {
+       if (field === 'email') this.emailTouched.set(true);
+       if (field === 'password') this.passwordTouched.set(true);
       }
 
     
-      markAllTouched(): void {
+     markAllTouched(): void {
 
-        this.emailTouched.set(true);
-        this.passwordTouched.set(true);
+       this.emailTouched.set(true);
+       this.passwordTouched.set(true);
       }
     
-      reset(): void {
-        this.email.set('');
-        this.password.set('');
+     reset(): void {
+       this.email.set('');
+       this.password.set('');
 
-        this.emailTouched.set(false);
-        this.passwordTouched.set(false);
+       this.emailTouched.set(false);
+       this.passwordTouched.set(false);
       } 
 
-      onFieldBlur(field: keyof AuthFormState) {
+    onFieldBlur(field: keyof AuthFormState) {
 
-        if (field === 'email') {
+      if (field === 'email') {
           this.emailTouched.set(true);
         }
       
-        if (field === 'password') {
-          this.passwordTouched.set(true);
-        }
+      if (field === 'password') {
+         this.passwordTouched.set(true);
+       }
       
       } 
 
       
     
-      onSubmit():void {
-        this.markAllTouched();
-        if (this.isFormValid()){
-          this.authFacade.login({
-            email:this.email(),
-            password:this.password()
-          })
-        }
+     onSubmit():void {
+       this.markAllTouched();
+          if (this.isFormValid()){
+           this.authFacade.login({
+              email:this.email(),
+              password:this.password()
+           })
+         }
 
       }
 
