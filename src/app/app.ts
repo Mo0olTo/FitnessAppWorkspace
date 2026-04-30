@@ -1,16 +1,20 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { ToastModule } from 'primeng/toast';
 import { RouterOutlet } from '@angular/router';
-import { FormTitle } from './features/auth/components/form-title/form-title';
-import { Knob } from './features/auth/components/knob/knob';
-import { FormButton } from './features/auth/components/form-button/form-button';
+import { ThemeFacade } from './core/Theme/theme.facade';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ToastModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('FitnessApp');
-  progress = 1;
-  isDisabled = true;
+  private readonly themefacede = inject(ThemeFacade);
+  isDark = signal(true);
+
+  toggle() {
+    this.isDark.update((v) => !v);
+    this.themefacede.toggleTheme();
+  }
 }

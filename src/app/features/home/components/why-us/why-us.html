@@ -1,0 +1,91 @@
+<section class=" bg-white dark:bg-[#232424] w-full px-2 lg:px-12">
+
+    <!-- why us section -->
+    <div class=" flex flex-col xl:flex-row items-start md:items-center justify-between w-full container mx-auto ">
+
+        <!-- left Section title and desc points -->
+        <div class="flex flex-col items-start justify-around w-full md:w-[622px] min-h-[843px] md:min-h-[732px]">
+
+            <app-section-title
+            logo="/images/Vector.png"
+            sectionTitleImage="/images/Whyus.webp "
+            sectionName="why us"
+            ></app-section-title>
+
+            <div class="relative">
+                <h1 class="text-[24px] md:text-[40px]  font-bold text-[var(--color-main-text)] uppercase tracking-wide z-20">
+                    Elevate fitness with the <span class="text-[var(--color-primary)]">best way</span> possible
+                </h1>
+                
+                <img src="/images/Whyus.webp" alt="logo" 
+                class="absolute left-[1%] bottom-[10%] w-full pr-6  max-h-[47px] sm:max-h-[43px] md:max-h-[96px] opacity-70 md:opacity-40 [mask-image:linear-gradient(to_top,rgba(0,0,0,0.1),rgba(0,0,0,1))]  ">
+             
+            </div>
+            <p class="text-lg font-normal text-[var(--color-main-text)]">
+                We offer a fitness journey that's tailored to your goals, supported by professional trainers and a welcoming community. Whether it's weight loss, strength building, or overall wellness, our proven methods.
+            </p>
+
+
+            <!-- steps section -->
+            <div class="flex flex-col w-full justify-around items-center  gap-y-9">
+                <div class="flex justify-between items-center gap-x-3">
+                    <!-- circle -->
+                     <div class="  lg:ml-4 circle ">
+                        <img src="/icons/step-1.webp" alt="step-1" class="w-[57px] h-[57px] object-cover ">
+                      
+                     </div>
+
+                     <div class="w-5/6 text-[var(--color-main-text)] space-y-4">
+                        <h2 class="font-bold text-xl capitalize">personalized fitness plans</h2>
+                        <p>We tailor every workout to fit your unique goals and fitness level ensuring that you make the most progress.</p>
+                     </div>
+                </div>
+                <div class="flex justify-between items-center gap-x-3">
+                    <!-- circle 2 -->
+                     <div class=" lg:ml-4 circle ">
+                        <img src="/icons/step-2.webp" alt="step-2" class="w-[57px] h-[57px] object-cover">
+                     </div>
+
+                     <div class="w-5/6 text-[var(--color-main-text)] space-y-4">
+                        <h2 class="font-bold text-xl capitalize ">results-driven focus</h2>
+                        <p>Everything we do is designed to help you achieve measurable results, whether you're aiming for weight loss.</p>
+                     </div>
+                </div>
+                <div class="flex justify-between items-center gap-x-3">
+                    <!-- circle 3  -->
+                     <div class=" lg:ml-4">
+                        <img src="/icons/step-3.webp" alt="step-3" class="w-[57px] h-[57px] object-cover">
+                     </div>
+
+                     <div class="w-5/6 text-[var(--color-main-text)] space-y-4">
+                        <h2 class="font-bold text-xl capitalize">state-of-the-art equipment</h2>
+                        <p>We provide the latest in gym equipment, from cardio machines to free , weights, designed to support every type.</p>
+                     </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Right Section title and desc points -->
+        <div class="flex flex-col items-center md:items-start justify-center flex-wrap w-full md:w-[605px] max-h-[843px] md:min-h-[732px] py-10 gap-1.5 md:gap-2 overflow-hidden">
+
+          
+
+                @for (img of images(); track $index) {
+                    <div class="overflow-hidden w-[165.22962951660156px] md:w-[291px] " [style.height.px]="imageHeights()[$index]">
+                      <img 
+                        [src]="img" 
+                        alt="gymnastic athlete" 
+                        class="object-cover w-full h-full cursor-pointer rounded-2xl "
+                      >
+                    </div>
+                  }
+
+            
+          
+        </div>
+
+    </div>
+
+</section>

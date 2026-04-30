@@ -27,8 +27,10 @@ export class Darkmode {
     effect(() => {
        if (!this.isBrowser) return;
       const value = this.theme();
+      const isDark = value === 'dark';
 
-      document.body.classList.toggle('dark', value === 'dark');
+      document.documentElement.classList.toggle('dark', isDark);
+      document.body.classList.toggle('dark', isDark);
       localStorage.setItem('theme', value);
     });
   }

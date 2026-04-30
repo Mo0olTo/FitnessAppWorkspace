@@ -1,5 +1,8 @@
 @import '../src/app/styles/theme.scss';
 @import 'tailwindcss';
+
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-family-baloo: 'Baloo Thambi 2', cursive;
 }
@@ -8,12 +11,60 @@ body {
   font-family: var(--font-family-baloo);
 }
 
+/* ── Scrollbar ── */
 :root {
-  // knob styles
+  --scrollbar-track: #ffffff;
+  --scrollbar-thumb: var(--color-primary);
+  --scrollbar-thumb-hover: #a8a8a8;
+}
+
+html.dark {
+  --scrollbar-track: rgb(36, 36, 36);
+  --scrollbar-thumb: var(--color-primary);
+  --scrollbar-thumb-hover: #555555;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+:root {
+  /* PrimeNG / knob (depends on theme tokens above) */
   --p-knob-value-background: var(--color-primary) !important;
   --p-knob-text-color: var(--color-main-text) !important;
   --p-transition-duration: 0.5 !important;
   --p-disabled-opacity: 1 !important;
 
-  //
+  // primeng Toaster
+  --success-toast-bg: var(--color-primary) !important;
+}
+
+.p-toast-message-success {
+  background: var(--success-toast-bg) !important;
+  color: white !important;
+}
+
+.p-toast .p-toast-message-success .p-toast-summary,
+.p-toast .p-toast-message-success .p-toast-detail {
+  color: white !important;
 }
