@@ -5,7 +5,7 @@ import { Knob } from './features/auth/components/knob/knob';
 import { FormButton } from './features/auth/components/form-button/form-button';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormTitle, Knob, FormButton],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

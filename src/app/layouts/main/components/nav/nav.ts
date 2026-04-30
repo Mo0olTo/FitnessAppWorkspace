@@ -12,7 +12,7 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class Nav {
   private readonly _routes = inject(Router);
-  isLoggedIn = signal(true);
+  isLoggedIn = signal(false);
   isMenuOpen = signal(false);
   toggleMenu() {
     this.isMenuOpen.update((prev) => !prev);
