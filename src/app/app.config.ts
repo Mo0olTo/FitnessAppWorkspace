@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { headersInterceptor } from './core/interceptors/headers/headers-interceptor';
+import { loadingInterceptor } from './core/interceptors/loading/loading-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
       useExisting: AuthLib,
     },
     
-    provideHttpClient(withFetch() , withInterceptors([headersInterceptor,])),
+    provideHttpClient(withFetch() , withInterceptors([headersInterceptor,loadingInterceptor])),
     provideRouter(routes), provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
     CookieService,

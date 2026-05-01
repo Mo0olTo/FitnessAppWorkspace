@@ -2,10 +2,11 @@ import { Component, inject, signal} from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 import { RouterOutlet } from "@angular/router";
 import { ThemeFacade } from './core/Theme/theme.facade';
+import { Loading } from "./shared/components/loading/loading";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,ToastModule],
+  imports: [RouterOutlet, ToastModule, Loading],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 
