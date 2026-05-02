@@ -7,6 +7,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './form-button.scss',
 })
 export class FormButton {
-  btnTitle=input<string>('') 
-  disabled=input<boolean>(false)
+  btnTitle = input<string>('');
+  disabled = input<boolean>(false);
 }

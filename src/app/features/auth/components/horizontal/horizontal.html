@@ -1,0 +1,18 @@
+<div class="picker-wrapper relative w-full h-32 flex justify-center items-center overflow-hidden">
+  <div class="absolute bottom-2 text-orange-600 text-2xl z-10">▲</div>
+  <swiper-container
+    #swiperRef
+    slides-per-view="5"
+    centered-slides="true"
+    [spaceBetween]="0"
+    class="w-full"
+  >
+    @for (num of data(); track $index) {
+      <swiper-slide class="flex items-center justify-center">
+        <span [class.active]="activeIndex() === $index" class="number-style">
+          {{ num }}
+        </span>
+      </swiper-slide>
+    }
+  </swiper-container>
+</div>

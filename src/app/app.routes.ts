@@ -7,8 +7,7 @@ export const routes: Routes = [
   {
     path: '',
     component: Main,
-    loadChildren: () =>
-      import('./routes/main.routes').then((m) => m.mainRoutes),
+    loadChildren: () => import('./routes/main.routes').then((m) => m.mainRoutes),
   },
   {
     path: 'auth',
