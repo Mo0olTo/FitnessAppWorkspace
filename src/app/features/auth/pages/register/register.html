@@ -90,7 +90,13 @@
       [title]="'How Old Are you ?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
-    <app-horizontal (valueChange)="onAgeChange($event)" [data]="ageRange"></app-horizontal>
+
+    <app-horizontal
+      [data]="ageRange"
+      (valueChange)="onAgeChange($event)"
+      unit="year"
+    ></app-horizontal>
+
     <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
   </section>
 }
@@ -101,6 +107,11 @@
       [title]="'what is your weight ?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
+    <app-horizontal
+      [data]="weightRange"
+      (valueChange)="onWeightChange($event)"
+      unit="kg"
+    ></app-horizontal>
     <div class="">
       <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
     </div>
@@ -113,6 +124,11 @@
       [title]="'what is your height ?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
+    <app-horizontal
+      [data]="heightRange"
+      (valueChange)="onHeightChange($event)"
+      unit="cm"
+    ></app-horizontal>
     <div class="">
       <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
     </div>

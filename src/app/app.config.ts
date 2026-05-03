@@ -21,6 +21,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
+    AuthLib,
     {
       provide: API_URL,
       useValue: environment.apiBaseUrl,

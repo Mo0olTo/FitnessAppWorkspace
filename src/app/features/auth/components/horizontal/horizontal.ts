@@ -21,7 +21,7 @@ export class Horizontal {
   data = input.required<number[]>();
   initialIndex = input<number>(0);
   valueChange = output<number>();
-
+  unit = input<string>('');
   @ViewChild('swiperRef') swiperRef!: ElementRef<SwiperContainer>;
   activeIndex = signal(0);
 

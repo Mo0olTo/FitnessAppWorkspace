@@ -42,6 +42,8 @@ export class Register {
   emailTouched = signal(false);
   passwordTouched = signal(false);
   ageRange = Array.from({ length: 80 - 20 + 1 }, (_, i) => i + 20);
+  weightRange = Array.from({ length: 150 - 40 + 1 }, (_, i) => i + 40);
+  heightRange = Array.from({ length: 200 - 140 + 1 }, (_, i) => i + 140);
   updateField<K extends keyof ReturnType<typeof this.form>>(
     key: K,
     value: ReturnType<typeof this.form>[K],
@@ -118,6 +120,16 @@ export class Register {
     this.updateField('age', age);
 
     console.log(this.form().age);
+  }
+  onWeightChange(weight: number) {
+    this.updateField('weight', weight);
+
+    console.log(this.form().weight);
+  }
+  onHeightChange(height: number) {
+    this.updateField('height', height);
+
+    console.log(this.form().height);
   }
   onSubmit(): void {
     console.log(this.form().firstName);
