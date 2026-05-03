@@ -7,10 +7,11 @@ import { Knob } from '../../components/knob/knob';
 import { FormTitle } from '../../components/form-title/form-title';
 import { FormButton } from '../../components/form-button/form-button';
 import { RadioButton } from '../../components/radio-button/radio-button';
+import { Horizontal } from '../../components/horizontal/horizontal';
 
 @Component({
   selector: 'app-register',
-  imports: [AuthForm, Knob, FormTitle, FormButton, RadioButton],
+  imports: [AuthForm, Knob, FormTitle, FormButton, RadioButton, Horizontal],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -40,7 +41,7 @@ export class Register {
   lastNameTouched = signal(false);
   emailTouched = signal(false);
   passwordTouched = signal(false);
-
+  ageRange = Array.from({ length: 80 - 20 + 1 }, (_, i) => i + 20);
   updateField<K extends keyof ReturnType<typeof this.form>>(
     key: K,
     value: ReturnType<typeof this.form>[K],
@@ -112,6 +113,11 @@ export class Register {
 
   selectGender(gender: string) {
     this.selectedGender.set(gender);
+  }
+  onAgeChange(age: number) {
+    this.updateField('age', age);
+
+    console.log(this.form().age);
   }
   onSubmit(): void {
     console.log(this.form().firstName);

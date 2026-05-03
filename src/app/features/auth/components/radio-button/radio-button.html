@@ -1,10 +1,10 @@
 <div
   (click)="select()"
   [class]="
-    'flex items-center justify-between p-4  rounded-full border cursor-pointer transition-all duration-300 w-80 ' +
+    'flex items-center justify-between p-4  rounded-full border cursor-pointer transition-all duration-300 w-100 ' +
     (selectedValue() === value()
       ? 'border-white bg-white/20'
-      : 'border-white/20 bg-white/10 backdrop-blur-md')
+      : 'border-white/20 bg-white/10 backdrop-blur-sm')
   "
 >
   <span class="text-white font-semibold">{{ label() }}</span>
