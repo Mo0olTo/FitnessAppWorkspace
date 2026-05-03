@@ -8,6 +8,7 @@ import { FormTitle } from '../../components/form-title/form-title';
 import { FormButton } from '../../components/form-button/form-button';
 import { RadioButton } from '../../components/radio-button/radio-button';
 import { Horizontal } from '../../components/horizontal/horizontal';
+import { ISignUpReq } from 'auth-lib';
 
 @Component({
   selector: 'app-register',
@@ -17,15 +18,15 @@ import { Horizontal } from '../../components/horizontal/horizontal';
 })
 export class Register {
   private readonly _authFacade = inject(AuthFacade);
-  form = signal({
+  form = signal<ISignUpReq>({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
     gender: '',
-    height: null as number | null,
-    weight: null as number | null,
-    age: null as number | null,
+    height: 0,
+    weight: 0,
+    age: 0,
     goal: '',
     activityLevel: '',
   });
@@ -100,14 +101,10 @@ export class Register {
   totalSteps = signal(7);
   buttonText = computed(() => (this.currentStep() === this.steps.length - 1 ? 'Register' : 'Next'));
 
-  prevStep(): void {
-    if (this.currentStep() > 1) {
-      this.currentStep.update((s) => s - 1);
-    }
-  }
-
   nextStep(): void {
-    if (this.currentStep() < this.steps.length) {
+    if (this.currentStep() === 6) {
+      this.onSubmit();
+    } else if (this.currentStep() < this.steps.length) {
       this.currentStep.update((s) => s + 1);
     }
   }
@@ -132,6 +129,12 @@ export class Register {
     console.log(this.form().height);
   }
   onSubmit(): void {
-    console.log(this.form().firstName);
+    const isUserData = this.form();
+    if (this.isFormValid()) {
+      this._authFacade.register(this.form());
+      console.log(isUserData);
+    } else {
+      console.log('error');
+    }
   }
 }

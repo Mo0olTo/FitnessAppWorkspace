@@ -3,7 +3,7 @@ export interface ISignUpReq {
   lastName: string;
   email: string;
   password: string;
-  rePassword: string;
+  rePassword?: string;
   gender: string;
   height: number;
   weight: number;
