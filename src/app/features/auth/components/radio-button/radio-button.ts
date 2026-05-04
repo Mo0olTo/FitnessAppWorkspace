@@ -1,22 +1,19 @@
-import { Component, input, model } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
 @Component({
   selector: 'app-radio-button',
-  imports: [RadioButtonModule, FormsModule],
+  imports: [RadioButtonModule],
   templateUrl: './radio-button.html',
   styleUrl: './radio-button.scss',
 })
 export class RadioButton {
   label = input.required<string>();
-
   value = input.required<any>();
-
   groupName = input<string>('fitness-group');
-
-  selectedValue = model<any>();
+  selectedValue = input<any>();
+  @Output() valueChange = new EventEmitter<string>();
 
   select(): void {
-    this.selectedValue.set(this.value());
+    this.valueChange.emit(this.value());
   }
 }

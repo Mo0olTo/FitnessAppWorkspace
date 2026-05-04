@@ -141,11 +141,36 @@
       [title]="'what is your Goal ?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
-    <app-radio-button [label]="'Gain Weight'" [value]="'gain-weight'" />
-    <app-radio-button [label]="'Lose Weight'" [value]="'lose-weight'" />
-    <app-radio-button [label]="'Get fitter'" [value]="'Get-fitter'" />
-    <app-radio-button [label]="'Gain more flexible'" [value]="'Gain-more-flexible'" />
-    <app-radio-button [label]="'Learn the basic'" [value]="'Gain-more-flexible'" />
+    <app-radio-button
+      [label]="'Gain Weight'"
+      [value]="'gain-weight'"
+      (valueChange)="updateField('goal', $event)"
+      [selectedValue]="form().goal"
+    />
+    <app-radio-button
+      [label]="'Lose Weight'"
+      [value]="'lose-weight'"
+      (valueChange)="updateField('goal', $event)"
+      [selectedValue]="form().goal"
+    />
+    <app-radio-button
+      [label]="'Get fitter'"
+      [value]="'Get-fitter'"
+      (valueChange)="updateField('goal', $event)"
+      [selectedValue]="form().goal"
+    />
+    <app-radio-button
+      [label]="'Gain more flexible'"
+      [value]="'Gain-more-flexible'"
+      (valueChange)="updateField('goal', $event)"
+      [selectedValue]="form().goal"
+    />
+    <app-radio-button
+      [label]="'Learn the basic'"
+      [value]="'Learn-the-basic'"
+      (valueChange)="updateField('goal', $event)"
+      [selectedValue]="form().goal"
+    />
     <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
   </section>
 }

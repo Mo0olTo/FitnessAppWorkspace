@@ -2,7 +2,6 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { AuthForm } from '../../components/auth-form/auth-form';
 import { AuthFacade } from '../../auth-facade/auth-facade';
 import { PASS_PATTERN } from '../../../../shared/validators/PASS-PATTERN';
-
 import { Knob } from '../../components/knob/knob';
 import { FormTitle } from '../../components/form-title/form-title';
 import { FormButton } from '../../components/form-button/form-button';
@@ -112,6 +111,8 @@ export class Register {
 
   selectGender(gender: string) {
     this.selectedGender.set(gender);
+
+    this.updateField('gender', gender);
   }
   onAgeChange(age: number) {
     this.updateField('age', age);

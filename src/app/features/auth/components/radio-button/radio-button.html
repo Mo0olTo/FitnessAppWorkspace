@@ -1,7 +1,7 @@
 <div
   (click)="select()"
   [class]="
-    'flex items-center justify-between p-4  rounded-full border cursor-pointer transition-all duration-300 w-100 ' +
+    'flex items-center justify-between p-4 rounded-full border cursor-pointer transition-all duration-300 w-100 ' +
     (selectedValue() === value()
       ? 'border-white bg-white/20'
       : 'border-white/20 bg-white/10 backdrop-blur-sm')
@@ -9,11 +9,8 @@
 >
   <span class="text-white font-semibold">{{ label() }}</span>
 
-  <p-radioButton
-    [value]="value()"
-    [(ngModel)]="selectedValue"
-    [name]="groupName()"
-    (onClick)="$event.originalEvent.stopPropagation()"
-  >
-  </p-radioButton>
+  <div
+    class="w-4 h-4 rounded-full border flex items-center justify-center"
+    [class.bg-white]="selectedValue() === value()"
+  ></div>
 </div>
