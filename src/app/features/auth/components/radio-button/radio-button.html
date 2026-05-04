@@ -3,14 +3,16 @@
   [class]="
     'flex items-center justify-between p-4 rounded-full border cursor-pointer transition-all duration-300 w-100 ' +
     (selectedValue() === value()
-      ? 'border-white bg-white/20'
+      ? 'border-orange-500 bg-white-500/10'
       : 'border-white/20 bg-white/10 backdrop-blur-sm')
   "
 >
-  <span class="text-white font-semibold">{{ label() }}</span>
+  <span class="text-white font-semibold" [class.text-orange-500]="selectedValue() === value()">
+    {{ label() }}
+  </span>
 
   <div
     class="w-4 h-4 rounded-full border flex items-center justify-center"
-    [class.bg-white]="selectedValue() === value()"
+    [class.bg-orange-500]="selectedValue() === value()"
   ></div>
 </div>
