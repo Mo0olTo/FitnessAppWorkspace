@@ -92,8 +92,20 @@ export class Register {
   });
 
   readonly isFormValid = computed(() => {
-    const errs = this.errors();
-    return Object.values(errs).every((e) => e === null);
+    const f = this.form();
+
+    return !!(
+      f.firstName &&
+      f.lastName &&
+      f.email &&
+      f.password &&
+      f.gender &&
+      f.age &&
+      f.height &&
+      f.weight &&
+      f.goal &&
+      f.activityLevel
+    );
   });
 
   currentStep = signal(0);
@@ -132,7 +144,9 @@ export class Register {
   onSubmit(): void {
     const isUserData = this.form();
     if (this.isFormValid()) {
-      this._authFacade.register(this.form());
+      this._authFacade.register({
+        ...this.form(),
+      });
       console.log(isUserData);
     } else {
       console.log('error');

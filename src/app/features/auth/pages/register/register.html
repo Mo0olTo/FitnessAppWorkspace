@@ -181,11 +181,40 @@
       [title]="'your regular physical activity level?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
-    <app-radio-button [label]="'Rookie'" [value]="'Rookie'" />
-    <app-radio-button class="mt-3" [label]="'Beginner'" [value]="'Beginner'" />
-    <app-radio-button class="mt-3" [label]="'Intermediate'" [value]="'Intermediate'" />
-    <app-radio-button class="mt-3" [label]="'Advance'" [value]="'Advance'" />
-    <app-radio-button class="mt-3" [label]="'True Beast'" [value]="'True-Beast'" />
+    <app-radio-button
+      [label]="'Rookie'"
+      [value]="'Rookie'"
+      (valueChange)="updateField('activityLevel', $event)"
+      [selectedValue]="form().activityLevel"
+    />
+    <app-radio-button
+      class="mt-3"
+      [label]="'Beginner'"
+      [value]="'Beginner'"
+      (valueChange)="updateField('activityLevel', $event)"
+      [selectedValue]="form().activityLevel"
+    />
+    <app-radio-button
+      class="mt-3"
+      [label]="'Intermediate'"
+      [value]="'Intermediate'"
+      (valueChange)="updateField('activityLevel', $event)"
+      [selectedValue]="form().activityLevel"
+    />
+    <app-radio-button
+      class="mt-3"
+      [label]="'Advance'"
+      [value]="'Advance'"
+      (valueChange)="updateField('activityLevel', $event)"
+      [selectedValue]="form().activityLevel"
+    />
+    <app-radio-button
+      class="mt-3"
+      [label]="'True Beast'"
+      [value]="'True-Beast'"
+      [selectedValue]="form().activityLevel"
+      (valueChange)="updateField('activityLevel', $event)"
+    />
     <app-form-button class="mt-3" [btnTitle]="'Register'" [disabled]="false" (click)="nextStep()" />
   </section>
 }
