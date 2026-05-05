@@ -113,7 +113,9 @@ export class Register {
   buttonText = computed(() => (this.currentStep() === this.steps.length - 1 ? 'Register' : 'Next'));
 
   nextStep(): void {
-    if (this.currentStep() === 6) {
+    const isLastStep = this.currentStep() === this.steps.length;
+
+    if (isLastStep) {
       this.onSubmit();
     } else if (this.currentStep() < this.steps.length) {
       this.currentStep.update((s) => s + 1);
@@ -150,6 +152,7 @@ export class Register {
       console.log(isUserData);
     } else {
       console.log('error');
+      console.log(this._authFacade.error());
     }
   }
 }
