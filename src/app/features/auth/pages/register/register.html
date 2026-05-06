@@ -10,7 +10,8 @@
       (regEmailChange)="updateField('email', $event)"
       [regPassword]="form().password"
       (regPasswordChange)="updateField('password', $event)"
-      (submit)="nextStep()"
+      [disabled]="!isStep0Valid()"
+      (submit)="isStep0Valid() ? nextStep() : null"
     ></app-auth-form>
   </section>
 }
@@ -141,80 +142,33 @@
       [title]="'what is your Goal ?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
-    <app-radio-button
-      [label]="'Gain Weight'"
-      [value]="'gain-weight'"
-      (valueChange)="updateField('goal', $event)"
-      [selectedValue]="form().goal"
-    />
-    <app-radio-button
-      [label]="'Lose Weight'"
-      [value]="'lose-weight'"
-      (valueChange)="updateField('goal', $event)"
-      [selectedValue]="form().goal"
-    />
-    <app-radio-button
-      [label]="'Get fitter'"
-      [value]="'Get-fitter'"
-      (valueChange)="updateField('goal', $event)"
-      [selectedValue]="form().goal"
-    />
-    <app-radio-button
-      [label]="'Gain more flexible'"
-      [value]="'Gain-more-flexible'"
-      (valueChange)="updateField('goal', $event)"
-      [selectedValue]="form().goal"
-    />
-    <app-radio-button
-      [label]="'Learn the basic'"
-      [value]="'Learn-the-basic'"
-      (valueChange)="updateField('goal', $event)"
-      [selectedValue]="form().goal"
-    />
+    @for (goal of goals; track goal.value) {
+      <app-radio-button
+        [label]="goal.label"
+        [value]="goal.value"
+        (valueChange)="updateField('goal', $event)"
+        [selectedValue]="form().goal"
+      />
+    }
+
     <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
   </section>
 }
 @if (currentStep() === 6) {
-  <section class="flex flex-col items-center justify-between min-h-[70vh] w-full gap-lg-3">
+  <section class="flex flex-col items-center justify-between min-h-[70vh] w-full gap-6">
     <app-knob [max]="6" [min]="0" [value]="6" />
     <app-form-title
       [title]="'your regular physical activity level?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
-    <app-radio-button
-      [label]="'Rookie'"
-      [value]="'Rookie'"
-      (valueChange)="updateField('activityLevel', $event)"
-      [selectedValue]="form().activityLevel"
-    />
-    <app-radio-button
-      class="mt-3"
-      [label]="'Beginner'"
-      [value]="'Beginner'"
-      (valueChange)="updateField('activityLevel', $event)"
-      [selectedValue]="form().activityLevel"
-    />
-    <app-radio-button
-      class="mt-3"
-      [label]="'Intermediate'"
-      [value]="'Intermediate'"
-      (valueChange)="updateField('activityLevel', $event)"
-      [selectedValue]="form().activityLevel"
-    />
-    <app-radio-button
-      class="mt-3"
-      [label]="'Advance'"
-      [value]="'Advance'"
-      (valueChange)="updateField('activityLevel', $event)"
-      [selectedValue]="form().activityLevel"
-    />
-    <app-radio-button
-      class="mt-3"
-      [label]="'True Beast'"
-      [value]="'True-Beast'"
-      [selectedValue]="form().activityLevel"
-      (valueChange)="updateField('activityLevel', $event)"
-    />
+    @for (activity of activityLevels; track activity.value) {
+      <app-radio-button
+        [label]="activity.label"
+        [value]="activity.value"
+        (valueChange)="updateField('activityLevel', $event)"
+        [selectedValue]="form().activityLevel"
+      />
+    }
     <app-form-button class="mt-3" [btnTitle]="'Register'" [disabled]="false" (click)="nextStep()" />
   </section>
 }
