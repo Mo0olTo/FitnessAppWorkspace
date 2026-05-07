@@ -1,5 +1,5 @@
 @if (currentStep() === 0) {
-  <section class="flex justify-center items-center w-full flex-col gap-8">
+  <section class="flex justify-center items-center w-100 flex-col gap-8">
     <app-auth-form
       formType="register"
       [firstName]="form().firstName"
@@ -10,14 +10,13 @@
       (regEmailChange)="updateField('email', $event)"
       [regPassword]="form().password"
       (regPasswordChange)="updateField('password', $event)"
-      [disabled]="!isStep0Valid()"
       (submit)="isStep0Valid() ? nextStep() : null"
     ></app-auth-form>
   </section>
 }
 
 @if (currentStep() === 1) {
-  <section class="flex justify-center items-center w-full flex-col gap-8">
+  <section class="flex justify-center items-center w-100 flex-col gap-8">
     <app-knob [max]="6" [min]="0" [value]="1" />
 
     <app-form-title
@@ -80,7 +79,7 @@
       </button>
     </div>
 
-    <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
+    <app-form-button [btnTitle]="'Next'" [disabled]="!canGoNext()" (click)="nextStep()" />
   </section>
 }
 
@@ -98,7 +97,7 @@
       unit="year"
     ></app-horizontal>
 
-    <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
+    <app-form-button [btnTitle]="'Next'" [disabled]="!canGoNext()" (click)="nextStep()" />
   </section>
 }
 @if (currentStep() === 3) {
@@ -114,7 +113,7 @@
       unit="kg"
     ></app-horizontal>
     <div class="">
-      <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
+      <app-form-button [btnTitle]="'Next'" [disabled]="!canGoNext()" (click)="nextStep()" />
     </div>
   </section>
 }
@@ -131,7 +130,7 @@
       unit="cm"
     ></app-horizontal>
     <div class="">
-      <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
+      <app-form-button [btnTitle]="'Next'" [disabled]="!canGoNext()" (click)="nextStep()" />
     </div>
   </section>
 }
@@ -151,7 +150,7 @@
       />
     }
 
-    <app-form-button [btnTitle]="'Next'" [disabled]="false" (click)="nextStep()" />
+    <app-form-button [btnTitle]="'Next'" [disabled]="!canGoNext()" (click)="nextStep()" />
   </section>
 }
 @if (currentStep() === 6) {
@@ -169,6 +168,11 @@
         [selectedValue]="form().activityLevel"
       />
     }
-    <app-form-button class="mt-3" [btnTitle]="'Register'" [disabled]="false" (click)="nextStep()" />
+    <app-form-button
+      class="mt-3"
+      [btnTitle]="'Register'"
+      [disabled]="!canGoNext()"
+      (click)="nextStep()"
+    />
   </section>
 }

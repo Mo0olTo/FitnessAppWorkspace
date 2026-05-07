@@ -22,6 +22,7 @@ export class Register {
     lastName: '',
     email: '',
     password: '',
+    rePassword: '',
     gender: '',
     height: 0,
     weight: 0,
@@ -30,10 +31,11 @@ export class Register {
     activityLevel: '',
   });
   readonly steps = [
-    ['firstName', 'lastName'],
-    ['email', 'password'],
+    ['auth'],
     ['gender'],
-    ['height', 'weight', 'age'],
+    ['age'],
+    ['weight'],
+    ['height'],
     ['goal'],
     ['activityLevel'],
   ];
@@ -44,10 +46,8 @@ export class Register {
   ageRange = Array.from({ length: 80 - 20 + 1 }, (_, i) => i + 20);
   weightRange = Array.from({ length: 150 - 40 + 1 }, (_, i) => i + 40);
   heightRange = Array.from({ length: 200 - 140 + 1 }, (_, i) => i + 140);
-  updateField<K extends keyof ReturnType<typeof this.form>>(
-    key: K,
-    value: ReturnType<typeof this.form>[K],
-  ): void {
+
+  updateField<K extends keyof ISignUpReq>(key: K, value: ISignUpReq[K]): void {
     this.form.update((f) => ({
       ...f,
       [key]: value,
@@ -62,6 +62,7 @@ export class Register {
       lastName: this.validateName(f.lastName),
       email: this.validateEmail(f.email),
       password: this.validatePassword(f.password),
+      rePassword: f.rePassword !== f.password ? { mismatch: true } : null,
     };
   });
 
@@ -109,11 +110,11 @@ export class Register {
   });
 
   currentStep = signal(0);
-  totalSteps = signal(7);
+  totalSteps = signal(this.steps.length);
   buttonText = computed(() => (this.currentStep() === this.steps.length - 1 ? 'Register' : 'Next'));
 
   nextStep(): void {
-    const isLastStep = this.currentStep() === this.steps.length;
+    const isLastStep = this.currentStep() === this.steps.length - 1;
 
     if (isLastStep) {
       this.onSubmit();
@@ -145,24 +146,23 @@ export class Register {
   }
 
   readonly goals = [
-    { label: 'Gain Weight', value: 'gain-weight' },
+    { label: 'Gain weight', value: 'gain-weight' },
     {
-      label: 'Lose Weight',
+      label: 'Lose weight',
       value: 'lose-weight',
     },
-    { label: 'Get fitter', value: 'Get-fitter' },
+    { label: 'Get fitter', value: 'get-fitter' },
     { label: 'Gain more flexible', value: 'gain-more-flexible' },
     { label: 'Learn the basics', value: 'learn-the-basics' },
   ];
 
   readonly activityLevels = [
-    { label: 'Rookie', value: 'rookie' },
-    { label: 'Beginner', value: 'beginner' },
-    { label: 'Intermediate', value: 'Intermediate' },
-    { label: 'Advanced', value: 'advanced' },
-    { label: 'True Beast', value: 'true-beast' },
+    { label: 'Rookie', value: 'level1' },
+    { label: 'Beginner', value: 'level2' },
+    { label: 'Intermediate', value: 'level3' },
+    { label: 'Advanced', value: 'level4' },
+    { label: 'True Beast', value: 'level5' },
   ];
-
   readonly isStep0Valid = computed(() => {
     const f = this.form();
     const e = this.errors();
@@ -185,30 +185,42 @@ export class Register {
     switch (this.currentStep()) {
       case 0:
         return this.isStep0Valid();
+
       case 1:
         return this.isStep1Valid();
+
       case 2:
-        return this.isStep2Valid();
+        return this.form().age > 0;
+
+      case 3:
+        return this.form().weight > 0;
+
+      case 4:
+        return this.form().height > 0;
+
       case 5:
         return !!this.form().goal;
+
       case 6:
         return !!this.form().activityLevel;
+
       default:
-        return true;
+        return false;
     }
   });
 
   onSubmit(): void {
     if (!this.canGoNext()) return;
+    const payload = {
+      ...this.form(),
+      rePassword: this.form().password,
+    };
 
-    const isUserData = this.form();
     if (this.isFormValid()) {
-      this._authFacade.register({
-        ...this.form(),
-      });
-      console.log(isUserData);
+      this._authFacade.register(payload);
+
+      console.log('تم الإرسال بنجاح:', payload);
     } else {
-      console.log('error');
       console.log(this._authFacade.error());
     }
   }

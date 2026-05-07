@@ -1,5 +1,6 @@
 <button
-  class="text-[var(--color-main-text)] rounded-3xl py-2 w-100"
+  [disabled]="disabled()"
+  class="text-[var(--color-main-text)] rounded-3xl py-2 w-90"
   [class]="
     disabled()
       ? 'text-[var(--color-main-text)] bg-[#D3D3D3] cursor-not-allowed'

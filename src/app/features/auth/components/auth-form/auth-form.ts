@@ -26,7 +26,6 @@ import { AUTH_FORM_CONFIG } from './auth-form-config/auth-form-config';
 })
 export class AuthForm {
   formType = input<FormType>('login');
-  disabled = input<boolean>(false);
   formConfig = computed(() => AUTH_FORM_CONFIG[this.formType()]);
   btnText = input<string>('');
   // login Values
