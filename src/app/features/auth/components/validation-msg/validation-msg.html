@@ -27,5 +27,11 @@
       </p-message>
     }
 
+    @if (errors()?.['mismatch']) {
+      <p-message severity="error">
+        Passwords do not match
+      </p-message>
+    }
+
   </section>
 }
