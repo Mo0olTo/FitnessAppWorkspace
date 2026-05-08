@@ -50,3 +50,7 @@ src/styles.css
 
 #register Example with Signalsform and facade layer
 src/app/features/auth/register-example
+
+# Claude MD File
+CLAUDE.md 
+.claude/
