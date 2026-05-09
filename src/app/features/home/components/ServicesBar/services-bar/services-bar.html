@@ -1,0 +1,15 @@
+<div class="marquee-container overflow-hidden bg-[var(--color-primary)] py-5.5 text-white w-full">
+  <div class="marquee-content flex">
+    <div class="flex shrink-0 items-center gap-10 px-5">
+      @for (item of duplicatedItems(); track $index) {
+        <span class="text-lg font-bold uppercase"> {{ item }} ✦ </span>
+      }
+    </div>
+
+    <div class="flex shrink-0 items-center gap-10 px-5" aria-hidden="true">
+      @for (item of duplicatedItems(); track $index) {
+        <span class="text-lg font-bold uppercase"> {{ item }} ✦ </span>
+      }
+    </div>
+  </div>
+</div>

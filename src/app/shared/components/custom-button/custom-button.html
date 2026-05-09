@@ -1,0 +1,17 @@
+<button
+  [style.background-color]="'var(' + customBg() + ')'"
+  [style.color]="color()"
+  [style.color]="'var(' + colorBtn() + ')'"
+  [style.width]="width()"
+  [style.border]="border()"
+  (click)="onBtnClick()"
+  class="custom-btn cursor-pointer"
+>
+  <span class="label">{{ title() }}</span>
+
+  @if (icon()) {
+    <span class="icon-wrapper">
+      <i [class]="icon() + ' text-white'"></i>
+    </span>
+  }
+</button>

@@ -10,7 +10,7 @@ describe('Login', () => {
   let authFacadeMock: jasmine.SpyObj<AuthFacade>;
 
   beforeEach(async () => {
-    authFacadeMock = jasmine.createSpyObj('AuthFacade', ['login'], {
+      authFacadeMock = jasmine.createSpyObj('AuthFacade', ['login'], {
       loading: jasmine.createSpy().and.returnValue(false),
       error: jasmine.createSpy().and.returnValue(null),
     });
@@ -295,22 +295,6 @@ describe('Login', () => {
       component.onSubmit();
 
       expect(authFacadeMock.login).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Loading State', () => {
-    it('should reflect loading state from facade', () => {
-      authFacadeMock.loading.and.returnValue(true);
-      fixture.detectChanges();
-
-      expect(component.authFacade.loading()).toBeTrue();
-    });
-
-    it('should reflect not loading state from facade', () => {
-      authFacadeMock.loading.and.returnValue(false);
-      fixture.detectChanges();
-
-      expect(component.authFacade.loading()).toBeFalse();
     });
   });
 

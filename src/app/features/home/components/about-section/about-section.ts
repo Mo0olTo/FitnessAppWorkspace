@@ -13,7 +13,6 @@ interface Feature {
   styleUrl: './about-section.scss',
 })
 export class AboutSection {
-
   features = signal<Feature[]>([
     {
       title: 'Personal Trainer',
@@ -32,5 +31,4 @@ export class AboutSection {
       description: 'Fuel your fitness journey with customized meal plans for you.',
     },
   ]);
-
 }
