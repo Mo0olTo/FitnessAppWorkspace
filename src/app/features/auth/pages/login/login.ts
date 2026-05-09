@@ -3,7 +3,6 @@ import { AuthForm } from '../../components/auth-form/auth-form';
 import { PASS_PATTERN } from '../../../../shared/validators/PASS-PATTERN';
 import { AuthFormState } from '../../../../shared/models/authFormState';
 import { AuthFacade } from '../../auth-facade/auth-facade';
-import { ISignInReq } from 'auth-lib';
 
 @Component({
   selector: 'app-login',
