@@ -1,9 +1,7 @@
-@import "../src/app/styles/theme.scss";
-@import "tailwindcss";
+@import '../src/app/styles/theme.scss';
+@import 'tailwindcss';
 
 @variant dark (&:where(.dark, .dark *));
-
-
 
 @theme {
   --font-family-baloo: 'Baloo Thambi 2', cursive;
@@ -50,8 +48,6 @@ html.dark {
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-
-
 :root {
   /* PrimeNG / knob (depends on theme tokens above) */
   --p-knob-value-background: var(--color-primary) !important;
@@ -59,21 +55,16 @@ html.dark {
   --p-transition-duration: 0.5 !important;
   --p-disabled-opacity: 1 !important;
 
-
   // primeng Toaster
   --success-toast-bg: var(--color-primary) !important;
-
 }
-
 
 .p-toast-message-success {
   background: var(--success-toast-bg) !important;
   color: white !important;
-
 }
 
 .p-toast .p-toast-message-success .p-toast-summary,
 .p-toast .p-toast-message-success .p-toast-detail {
   color: white !important;
 }
-

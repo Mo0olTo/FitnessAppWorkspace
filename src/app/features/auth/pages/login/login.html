@@ -1,21 +1,14 @@
 <div class="flex justify-center items-center w-full flex-col gap-8">
-
-
-  <app-auth-form 
-  formType="login"
-
-  [loginEmail]="email()"
-  (loginEmailChange)="email.set($event)"
-
-  [loginPassword]="password()"
-  (loginPasswordChange)="password.set($event)"
-
-  (fieldBlur)="onFieldBlur($event)"
- 
-  [errors]="errors()"
-
-  [touched]="touched()"
-  (submit)="onSubmit()"
- >
- </app-auth-form> 
+  <app-auth-form
+    formType="login"
+    [loginEmail]="email()"
+    (loginEmailChange)="email.set($event)"
+    [loginPassword]="password()"
+    (loginPasswordChange)="password.set($event)"
+    (fieldBlur)="onFieldBlur($event)"
+    [errors]="errors()"
+    [touched]="touched()"
+    (submit)="onSubmit()"
+  >
+  </app-auth-form>
 </div>

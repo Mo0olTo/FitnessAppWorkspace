@@ -46,8 +46,8 @@ export class AuthFacade {
              secure:true
            })
 
-          // load user info to add welcome message 
-           this.loadUserAfterLogin();
+            // load user info to add welcome message
+            this.loadUserAfterLogin();
 
            // toster {WELCOME MESSAGE HERE}
            setTimeout(() => {
