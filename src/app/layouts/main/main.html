@@ -1,21 +1,7 @@
-<div
-  class="main relative w-full min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
-  style="background-image: url('/images/bg.png')"
->
-  <div
-    class="w-full min-h-screen flex flex-col bg-white/60 dark:bg-black/60 backdrop-blur-[40px]"
-    style="
-      background-color: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(40.1px);
-      -webkit-backdrop-filter: blur(40.1px);
-    "
-  >
-    <div class="relative z-10 w-full">
-      <app-nav></app-nav>
-      <div class="mx-auto">
-        <router-outlet />
-      </div>
-    </div>
-    <app-footer></app-footer>
+<div class="flex flex-col justify-between">
+  <app-nav></app-nav>
+  <div class="min-h-[100vh]">
+    <router-outlet />
   </div>
+  <app-footer></app-footer>
 </div>

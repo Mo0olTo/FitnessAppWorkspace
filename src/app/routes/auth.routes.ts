@@ -4,8 +4,7 @@ import { noAuthGuard } from '../core/guards/no-auth.guard';
 
 export const authRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'login',
+  {  path: 'login',
     title: 'Login',
     canActivate: [noAuthGuard],
     loadComponent: () =>
@@ -23,9 +22,7 @@ export const authRoutes: Routes = [
     title: 'Forget Password',
     canActivate: [noAuthGuard],
     loadComponent: () =>
-      import('../features/auth/pages/forget-pass/forget-pass').then(
-        (m) => m.ForgetPass
-      ),
+      import('../features/auth/pages/forget-pass/forget-pass').then((m) => m.ForgetPass),
   },
   {
     path: 'user-info',

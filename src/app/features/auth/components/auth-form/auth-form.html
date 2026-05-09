@@ -55,7 +55,6 @@
           [ngModel]="otpValue()"
           (ngModelChange)="otpValueChange.emit($event)"
           (blur)="fieldBlur.emit('otpValue')"
-          z
           [length]="4"
           class="!gap-x-10 !my-6"
         >
@@ -98,7 +97,10 @@
     <!-- Form button -->
 
     <div class="py-7">
-      <app-form-button [btnTitle]="formConfig().buttonText" (click)="submit.emit()" />
+      <app-form-button
+        [btnTitle]="btnText?.() || formConfig().buttonText"
+        (click)="submit.emit()"
+      />
     </div>
 
     <!-- Form footer -->

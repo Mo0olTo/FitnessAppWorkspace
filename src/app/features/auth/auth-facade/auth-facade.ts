@@ -1,5 +1,6 @@
+import { Register } from './../pages/register/register';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { AuthLib, IForgetPasswordReq, IResetReq, ISignInReq, IUser, IVerifyReq } from 'auth-lib';
+import { AuthLib, IForgetPasswordReq, IResetReq, ISignInReq, IUser, IVerifyReq , ISignInReq, ISignUpReq} from 'auth-lib';
 import { CookieService } from 'ngx-cookie-service';
 import { finalize, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -11,25 +12,63 @@ import { FormType } from '../components/auth-form/models/formType';
   providedIn: 'root',
 })
 export class AuthFacade {
+  private readonly auth = inject(AuthLib);
+  private readonly cookieService = inject(CookieService);
+  private readonly router = inject(Router);
+  private readonly messageService = inject(MessageService);
+  private readonly destroy$ = new Subject<void>();
+  private readonly loading=inject(LoadingService)
 
-   private readonly auth=inject(AuthLib)
-   private readonly cookieService=inject(CookieService)
-   private readonly router=inject(Router)
-   private readonly messageService=inject(MessageService)
-   private readonly destroy$ = new Subject<void>();
-   private readonly loading=inject(LoadingService)
-
-
-   
-   user = signal<IUser| null>(null);
-   error = signal<string | null>(null);
-   isLogged = computed(() => this.user() !== null);
-   firstName=signal<string>('')
+  loading = signal(false);
+  user = signal<IUser | null>(null);
+  error = signal<string | null>(null);
+  isLogged = computed(() => this.user() !== null);
+  firstName = signal<string>('');
 
   // forget-pass step management
   forgetPassStep = signal<Extract<FormType, 'forgetPass' | 'otp' | 'newPass'>>('forgetPass');
   private readonly resetEmail = signal<string>('');
 
+
+   
+
+  // start Register
+  register(data: ISignUpReq): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.auth
+      .SignUp(data)
+      .pipe(
+        finalize(() => this.loading.set(false)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: (res) => {
+          if (res.message === 'success') {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Registration successful',
+              detail: 'You can now log in with your credentials',
+            });
+
+            this.router.navigate(['/auth/login']);
+          }
+        },
+        error: (err) => {
+          this.error.set(err.error.error || 'Registration Failed');
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.error() ?? 'Registration Failed'}`,
+            life: 3000,
+          });
+        },
+      });
+  }
+  // end Register
+
+ 
+   
 
   // login
    login(data:ISignInReq):void{

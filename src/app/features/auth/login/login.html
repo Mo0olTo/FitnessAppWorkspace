@@ -1,0 +1,180 @@
+<div class="mx-auto flex w-full max-w-md flex-col gap-8">
+  <header class="space-y-1 text-center lg:text-left">
+    <p class="text-sm font-medium text-white/90">Hey There</p>
+    <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">WELCOME BACK</h1>
+  </header>
+
+  <section
+    class="rounded-[28px] border border-white/15 bg-[rgba(30,30,30,0.82)] p-7 shadow-[0_24px_64px_rgba(0,0,0,0.45)] backdrop-blur-md sm:p-8"
+  >
+    <h2 class="mb-6 text-center text-xl font-bold text-white">Login</h2>
+
+    <form class="flex flex-col gap-5" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="relative">
+        <span
+          class="pointer-events-none absolute left-4 top-1/2 z-[1] -translate-y-1/2 text-white/80"
+          aria-hidden="true"
+        >
+          <svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+          >
+            <path d="M4 7h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke-linejoin="round" />
+            <path d="M4 7 12 13l8-6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <input
+          class="w-full rounded-full border border-white/25 bg-[#1a1a1a] py-3.5 pl-12 pr-4 text-sm text-white outline-none ring-[var(--color-primary)] placeholder:text-white/40 focus:border-[var(--color-primary)] focus:ring-2"
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="relative">
+        <span
+          class="pointer-events-none absolute left-4 top-1/2 z-[1] -translate-y-1/2 text-white/80"
+          aria-hidden="true"
+        >
+          <svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+          >
+            <rect x="5" y="11" width="14" height="10" rx="2" />
+            <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke-linecap="round" />
+          </svg>
+        </span>
+        <input
+          class="w-full rounded-full border border-white/25 bg-[#1a1a1a] py-3.5 pl-12 pr-12 text-sm text-white outline-none ring-[var(--color-primary)] placeholder:text-white/40 focus:border-[var(--color-primary)] focus:ring-2"
+          [type]="passwordVisible() ? 'text' : 'password'"
+          formControlName="password"
+          placeholder="Password"
+          autocomplete="current-password"
+        />
+        <button
+          type="button"
+          class="absolute right-3 top-1/2 z-[1] -translate-y-1/2 rounded-full p-1.5 text-white/80 transition hover:text-white"
+          (click)="togglePasswordVisibility()"
+          [attr.aria-pressed]="passwordVisible()"
+          [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+        >
+          @if (passwordVisible()) {
+            <svg
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+            >
+              <path d="M3 3l18 18" stroke-linecap="round" />
+              <path d="M10.58 10.58a2 2 0 0 0 2.83 2.83" stroke-linecap="round" />
+              <path
+                d="M9.88 5.09A10.94 10.94 0 0 1 12 5c5 0 9.27 3.11 10 7-.26 1.45-1.04 2.79-2.17 3.87M6.12 6.12A10.9 10.9 0 0 0 2 12c.73 3.89 5 7 10 7a10.94 10.94 0 0 0 4.29-.84"
+                stroke-linecap="round"
+              />
+            </svg>
+          } @else {
+            <svg
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+            >
+              <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          }
+        </button>
+      </div>
+
+      <div class="flex justify-end">
+        <a
+          class="text-sm font-medium text-[var(--color-primary)] underline underline-offset-2 transition hover:text-[#ff6a33]"
+          routerLink="/auth/forget-pass"
+        >
+          Forget Password?
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 py-1">
+        <div class="h-px flex-1 bg-white/20"></div>
+        <span class="text-xs font-medium uppercase tracking-wide text-white/50">Or</span>
+        <div class="h-px flex-1 bg-white/20"></div>
+      </div>
+
+      <div class="flex justify-center gap-4">
+        <button
+          type="button"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#1a1a1a] text-white transition hover:border-white/40 hover:bg-white/5"
+          aria-label="Continue with Facebook"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M13.5 22v-8.2h2.7l.4-3.1h-3.1V9.1c0-.9.25-1.5 1.6-1.5h1.7V5.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.5v3.1H9.8V22h3.7Z"
+            />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#1a1a1a] text-white transition hover:border-white/40 hover:bg-white/5"
+          aria-label="Continue with Google"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="#EA4335"
+              d="M12 10.2v3.9h5.5c-.2 1.3-.9 2.4-1.9 3.1l3 2.3c1.8-1.7 2.8-4.1 2.8-7 0-.7-.1-1.3-.2-2H12Z"
+            />
+            <path
+              fill="#34A853"
+              d="M12 22c2.4 0 4.5-.8 6-2.2l-3-2.3c-.8.6-1.9 1-3 1-2.3 0-4.3-1.6-5-3.7H4v3.1C5.5 19.9 8.5 22 12 22Z"
+            />
+            <path
+              fill="#FBBC05"
+              d="M7 13.9c-.2-.6-.3-1.2-.3-1.9s.1-1.3.3-1.9V7H4C3.4 8.5 3 10.2 3 12s.4 3.5 1.1 5l3-2.1Z"
+            />
+            <path
+              fill="#4285F4"
+              d="M12 5.8c1.3 0 2.5.5 3.4 1.4l2.6-2.6C16.5 3.2 14.4 2.2 12 2.2 8.5 2.2 5.5 4.3 4 7l3 2.3c.7-2.1 2.7-3.5 5-3.5Z"
+            />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#1a1a1a] text-white transition hover:border-white/40 hover:bg-white/5"
+          aria-label="Continue with Apple"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M16.4 3.2c.1 1.7-.5 3.3-1.6 4.5-1.1 1.2-2.9 2.1-4.6 2 .1-1.6.7-3.2 1.8-4.4 1.1-1.2 2.8-2 4.4-2.1Zm2.5 12.6c-.4-1.2-.6-2.5-.6-3.8 0-1.4.2-2.8.7-4.1-2.1-.9-4.4-1.4-6.7-1.4-2.4 0-4.7.5-6.8 1.5.5 1.3.8 2.7.8 4.1 0 1.3-.2 2.6-.6 3.8-.8 2.4-2.3 4.5-4.3 6.1 1.1 1.6 2.5 2.9 4.2 3.8 1.6.9 3.4 1.4 5.3 1.4 1.9 0 3.7-.5 5.3-1.4 1.7-.9 3.1-2.2 4.2-3.8-2-1.6-3.5-3.7-4.3-6.1Z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <button
+        class="mt-1 w-full rounded-full bg-[var(--color-primary)] py-3.5 text-center text-base font-bold text-white shadow-lg shadow-[#ff4100]/25 transition hover:bg-[#e63a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-white/75">
+      Dont Have An Account Yet ?
+      <a
+        class="font-semibold text-[var(--color-primary)] underline underline-offset-2 transition hover:text-[#ff6a33]"
+        routerLink="/auth/register"
+      >
+        Register
+      </a>
+    </p>
+  </section>
+</div>

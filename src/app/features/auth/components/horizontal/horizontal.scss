@@ -1,0 +1,30 @@
+swiper-container {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    rgb(175, 22, 22) 25%,
+    rgb(0, 0, 0) 75%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    rgb(216, 5, 5) 25%,
+    rgb(173, 25, 25) 75%,
+    transparent
+  );
+}
+
+swiper-slide {
+  opacity: 0.4;
+}
+
+swiper-slide.swiper-slide-active {
+  opacity: 1;
+  color: #ff4500;
+}
+
+:host {
+  display: block;
+  width: 40%;
+}

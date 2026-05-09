@@ -6,11 +6,9 @@ import { ISignInRes } from '../interfaces/sign-in/ISignInRes';
 import { ISignUpRes } from '../interfaces/sign-up/ISignUpRes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthAPIResService implements Adaptor {
-
-
   // * ADAPTOR METHODS FOR SIGNUP RESPONSE
   adaptSignUp(data: ISignUpRes): AdaptedSignUpRes {
     return {

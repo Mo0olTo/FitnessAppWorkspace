@@ -1,6 +1,4 @@
-
 export class AuthEndPoint {
-
   //* REGISTER AND LOGIN
   static SIGNIN = `/auth/signin`;
   static SIGNUP = `/auth/signup`;

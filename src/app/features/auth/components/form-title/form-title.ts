@@ -6,10 +6,8 @@ import { Component, input } from '@angular/core';
   templateUrl: './form-title.html',
   styleUrl: './form-title.scss',
 })
-export class FormTitle { 
-
-  title = input<string>('')
-  subTitle = input<string>('')
-  reverse = input<boolean>(false)
-
+export class FormTitle {
+  title = input<string>('');
+  subTitle = input<string>('');
+  reverse = input<boolean>(false);
 }

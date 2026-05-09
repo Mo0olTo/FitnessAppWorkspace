@@ -1,4 +1,4 @@
-import { Component,input, signal, computed, output,} from '@angular/core';
+import { Component, input, signal, computed, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ICONS } from '../../../../styles/icons';
@@ -12,7 +12,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrl: './reusable-input.scss',
 })
 export class ReusableInput {
-
   // (,'') =======>  signals inputs & outputs
 
   type = input<'text' | 'email' | 'password'>('text');
@@ -23,7 +22,6 @@ export class ReusableInput {
   value = input<string>('');
   valueChange = output<string>();
   blur = output<void>();
-
 
   // (,'') =======> internal state
   showPassword = signal(false);
@@ -42,10 +40,10 @@ export class ReusableInput {
   }
 
   togglePassword(): void {
-    this.showPassword.update(v => !v);
+    this.showPassword.update((v) => !v);
   }
 
-  // (,'') =======> icons 
+  // (,'') =======> icons
 
   iconSvg = computed((): SafeHtml | null => {
     const name = this.icon();

@@ -27,8 +27,6 @@ import { IVerifyRes } from './interfaces/verify-code/IVerifyRes';
 import { API_URL } from './tokens/tokens';
 import { createUrl } from './utilites/helper';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -36,59 +34,54 @@ export class AuthLib extends authAPI {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = inject(API_URL);
   private readonly authAPIResService = inject(AuthAPIResService);
-  
 
   override SignUp(data: ISignUpReq): Observable<AdaptedSignUpRes> {
-    return this.http
-      .post<ISignUpRes>(createUrl(this.apiUrl,AuthEndPoint.SIGNUP), data)
-      .pipe(
-        map((res: ISignUpRes) => this.authAPIResService.adaptSignUp(res)),
-        catchError((err) => throwError(() => err))
-      );
+    return this.http.post<ISignUpRes>(createUrl(this.apiUrl, AuthEndPoint.SIGNUP), data).pipe(
+      map((res: ISignUpRes) => this.authAPIResService.adaptSignUp(res)),
+      catchError((err) => throwError(() => err)),
+    );
   }
 
   override SignIn(data: ISignInReq): Observable<AdaptedSignInRes> {
-    return this.http
-      .post<ISignInRes>(createUrl(this.apiUrl,AuthEndPoint.SIGNIN), data)
-      .pipe(
-        map((res: ISignInRes) => this.authAPIResService.adaptSignIn(res)),
-        catchError((err) => throwError(() => err))
-      );
+    return this.http.post<ISignInRes>(createUrl(this.apiUrl, AuthEndPoint.SIGNIN), data).pipe(
+      map((res: ISignInRes) => this.authAPIResService.adaptSignIn(res)),
+      catchError((err) => throwError(() => err)),
+    );
   }
 
   override LogOut(): Observable<ILogOutRes> {
     return this.http
-      .get<ILogOutRes>(createUrl(this.apiUrl,AuthEndPoint.LOGOUT))
+      .get<ILogOutRes>(createUrl(this.apiUrl, AuthEndPoint.LOGOUT))
       .pipe(catchError((err) => throwError(() => err)));
   }
 
   override ForgetPassword(data: IForgetPasswordReq): Observable<IForgetPasswordRes> {
     return this.http
-      .post<IForgetPasswordRes>(createUrl(this.apiUrl,AuthEndPoint.FORGETPASSWORD), data)
+      .post<IForgetPasswordRes>(createUrl(this.apiUrl, AuthEndPoint.FORGETPASSWORD), data)
       .pipe(catchError((err) => throwError(() => err)));
   }
 
   override VerifyCode(data: IVerifyReq): Observable<IVerifyRes> {
     return this.http
-      .post<IVerifyRes>(createUrl(this.apiUrl,AuthEndPoint.VERIFY), data)
+      .post<IVerifyRes>(createUrl(this.apiUrl, AuthEndPoint.VERIFY), data)
       .pipe(catchError((err) => throwError(() => err)));
   }
 
   override ResetPassword(data: IResetReq): Observable<IResetRes> {
     return this.http
-      .put<IResetRes>(createUrl(this.apiUrl,AuthEndPoint.RESETPASSWORD), data)
+      .put<IResetRes>(createUrl(this.apiUrl, AuthEndPoint.RESETPASSWORD), data)
       .pipe(catchError((err) => throwError(() => err)));
   }
 
   override ChangePassword(data: IChangePassReq): Observable<IChangePassRes> {
     return this.http
-      .patch<IChangePassRes>(createUrl(this.apiUrl,AuthEndPoint.CHANGEPASSWORD), data)
+      .patch<IChangePassRes>(createUrl(this.apiUrl, AuthEndPoint.CHANGEPASSWORD), data)
       .pipe(catchError((err) => throwError(() => err)));
   }
 
   override EditProfile(data: IEditReq): Observable<IEditRes> {
     return this.http
-      .put<IEditRes>(createUrl(this.apiUrl,AuthEndPoint.EDITPROFILE), data)
+      .put<IEditRes>(createUrl(this.apiUrl, AuthEndPoint.EDITPROFILE), data)
       .pipe(catchError((err) => throwError(() => err)));
   }
 
@@ -97,13 +90,13 @@ export class AuthLib extends authAPI {
     formData.append('photo', data.photo);
 
     return this.http
-      .put<IUploadPhotoRes>(createUrl(this.apiUrl,AuthEndPoint.UPLOADPHOTO), formData)
+      .put<IUploadPhotoRes>(createUrl(this.apiUrl, AuthEndPoint.UPLOADPHOTO), formData)
       .pipe(catchError((err) => throwError(() => err)));
   }
 
   override GetLoggedUserData(): Observable<IUser> {
     return this.http
-      .get<IUser>(createUrl(this.apiUrl,AuthEndPoint.GETLOGGEDUSERDATA))
+      .get<IUser>(createUrl(this.apiUrl, AuthEndPoint.GETLOGGEDUSERDATA))
       .pipe(catchError((err) => throwError(() => err)));
   }
 }

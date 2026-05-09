@@ -3,17 +3,16 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
+  const cookie = inject(CookieService);
+  const token = cookie.get('FitnessToken');
 
-   const cookie = inject(CookieService);
-   const token = cookie.get('FitnessToken');
+  if (token) {
+    req = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 
-   if (token) {
-     req = req.clone({
-       setHeaders: {
-         Authorization : `Bearer ${token}`,
-       }
-     });
-   }
-
-   return next(req);
+  return next(req);
 };

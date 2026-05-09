@@ -7,11 +7,9 @@ import { Component, input } from '@angular/core';
   styleUrl: './section-title.scss',
 })
 export class SectionTitle {
+  sectionTitleImage = input<string>('');
+  logo = input<string>('');
+  sectionName = input<string>('');
 
-  sectionTitleImage=input<string>('') 
-  logo=input<string>('')
-  sectionName=input<string>('') 
-
-  centeredName=input<boolean>(false)
-
+  centeredName = input<boolean>(false);
 }
