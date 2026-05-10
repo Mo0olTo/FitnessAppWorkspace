@@ -1,6 +1,6 @@
 import { Register } from './../pages/register/register';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { AuthLib, IForgetPasswordReq, IResetReq, ISignInReq, IUser, IVerifyReq , ISignInReq, ISignUpReq} from 'auth-lib';
+import { AuthLib, IForgetPasswordReq, IResetReq, IUser, IVerifyReq , ISignInReq, ISignUpReq} from 'auth-lib';
 import { CookieService } from 'ngx-cookie-service';
 import { finalize, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -19,7 +19,6 @@ export class AuthFacade {
   private readonly destroy$ = new Subject<void>();
   private readonly loading=inject(LoadingService)
 
-  loading = signal(false);
   user = signal<IUser | null>(null);
   error = signal<string | null>(null);
   isLogged = computed(() => this.user() !== null);
@@ -34,13 +33,13 @@ export class AuthFacade {
 
   // start Register
   register(data: ISignUpReq): void {
-    this.loading.set(true);
+    this.loading.loading.set(true);
     this.error.set(null);
 
     this.auth
       .SignUp(data)
       .pipe(
-        finalize(() => this.loading.set(false)),
+        finalize(() => this.loading.loading.set(false)),
         takeUntil(this.destroy$),
       )
       .subscribe({
@@ -212,11 +211,7 @@ export class AuthFacade {
         },
       });
   }
-       error: () => {
-         this.user.set(null);
-       }
-     });
-   }
+       
 }
 
 
