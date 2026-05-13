@@ -1,9 +1,8 @@
 import { Component, input, output } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-custom-button',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './custom-button.html',
   styleUrl: './custom-button.scss',
 })
