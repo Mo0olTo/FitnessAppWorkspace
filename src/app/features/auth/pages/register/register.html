@@ -16,7 +16,7 @@
 }
 
 @if (currentStep() === 1) {
-  <section class="flex justify-center items-center w-100 flex-col gap-8">
+  <section class="flex justify-center items-center flex-col gap-8">
     <app-knob [max]="6" [min]="0" [value]="1" />
 
     <app-form-title
@@ -157,6 +157,7 @@
   <section class="flex flex-col items-center justify-between min-h-[70vh] w-full gap-6">
     <app-knob [max]="6" [min]="0" [value]="6" />
     <app-form-title
+      class="w-full text-center"
       [title]="'your regular physical activity level?'"
       [subTitle]="'this helps us create Your personalized plan'"
     />
