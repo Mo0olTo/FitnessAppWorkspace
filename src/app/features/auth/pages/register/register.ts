@@ -219,7 +219,7 @@ export class Register {
     if (this.isFormValid()) {
       this._authFacade.register(payload);
 
-      console.log('تم الإرسال بنجاح:', payload);
+      console.log('Sent successfully:  :', payload);
     } else {
       console.log(this._authFacade.error());
     }
