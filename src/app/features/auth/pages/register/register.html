@@ -9,6 +9,8 @@
       [regEmail]="form().email"
       (regEmailChange)="updateField('email', $event)"
       [regPassword]="form().password"
+      [errors]="errors()"
+      [touched]="touched()"
       (regPasswordChange)="updateField('password', $event)"
       (submit)="isStep0Valid() ? nextStep() : null"
     ></app-auth-form>

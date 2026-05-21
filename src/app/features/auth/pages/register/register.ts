@@ -54,6 +54,13 @@ export class Register {
     }));
   }
 
+  markAllTouched() {
+    this.firstNameTouched.set(true);
+    this.lastNameTouched.set(true);
+    this.emailTouched.set(true);
+    this.passwordTouched.set(true);
+  }
+
   readonly errors = computed(() => {
     const f = this.form();
 
@@ -210,6 +217,7 @@ export class Register {
   });
 
   onSubmit(): void {
+    this.markAllTouched();
     if (!this.canGoNext()) return;
     const payload = {
       ...this.form(),
