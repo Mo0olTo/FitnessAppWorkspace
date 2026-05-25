@@ -8,6 +8,7 @@ import { FormButton } from '../../components/form-button/form-button';
 import { RadioButton } from '../../components/radio-button/radio-button';
 import { Horizontal } from '../../components/horizontal/horizontal';
 import { ISignUpReq } from 'auth-lib';
+import { AuthFormState } from '../../../../shared/models/authFormState';
 
 @Component({
   selector: 'app-register',
@@ -39,10 +40,12 @@ export class Register {
     ['goal'],
     ['activityLevel'],
   ];
-  firstNameTouched = signal(false);
-  lastNameTouched = signal(false);
-  emailTouched = signal(false);
-  passwordTouched = signal(false);
+  readonly touchedFields = signal<Record<string, boolean>>({
+    firstName: false,
+    lastName: false,
+    email: false,
+    password: false,
+  });
   ageRange = Array.from({ length: 80 - 20 + 1 }, (_, i) => i + 20);
   weightRange = Array.from({ length: 150 - 40 + 1 }, (_, i) => i + 40);
   heightRange = Array.from({ length: 200 - 140 + 1 }, (_, i) => i + 140);
@@ -55,12 +58,15 @@ export class Register {
   }
 
   markAllTouched() {
-    this.firstNameTouched.set(true);
-    this.lastNameTouched.set(true);
-    this.emailTouched.set(true);
-    this.passwordTouched.set(true);
+    this.touchedFields.update((t) => {
+      const updated = { ...t };
+      Object.keys(updated).forEach((key) => (updated[key] = true));
+      return updated;
+    });
   }
-
+  onFieldBlur(field: keyof AuthFormState): void {
+    this.touchedFields.update((t) => ({ ...t, [field]: true }));
+  }
   readonly errors = computed(() => {
     const f = this.form();
 
@@ -90,14 +96,7 @@ export class Register {
     if (!PASS_PATTERN.test(v)) return { weakPassword: true };
     return null;
   }
-  readonly touched = computed(() => {
-    return {
-      firstName: this.firstNameTouched(),
-      lastName: this.lastNameTouched(),
-      email: this.emailTouched(),
-      password: this.passwordTouched(),
-    };
-  });
+  readonly touched = computed(() => this.touchedFields());
 
   readonly isFormValid = computed(() => {
     const f = this.form();
