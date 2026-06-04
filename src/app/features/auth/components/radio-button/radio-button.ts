@@ -4,7 +4,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 @Component({
   selector: 'app-radio-button',
   standalone: true,
-  imports: [RadioButtonModule, NgClass],
+  imports: [RadioButtonModule],
   templateUrl: './radio-button.html',
   styleUrl: './radio-button.scss',
 })

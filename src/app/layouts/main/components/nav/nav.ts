@@ -4,10 +4,18 @@ import { CustomButton } from '../../../../shared/components/custom-button/custom
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { AuthFacade } from '../../../../features/auth/auth-facade/auth-facade';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nav',
-  imports: [CustomButton, RouterLinkActive, RouterLink, NgOptimizedImage, RouterLink],
+  imports: [
+    CustomButton,
+    RouterLinkActive,
+    RouterLink,
+    NgOptimizedImage,
+    RouterLink,
+    TranslatePipe,
+  ],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })
