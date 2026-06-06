@@ -1,0 +1,16 @@
+<div class="card rounded-2xl relative w-[350px] h-[346px]">
+  <img [src]="image()" [alt]="title()" class="w-full h-full object-cover rounded-2xl" />
+  <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-bg)] rounded-b-2xl w-full p-2">
+    <div class="card-content">
+      <h3 class="card-title font-bold text-[22.2px] text-[var(--color-main-text)]">
+        {{ title() }}
+      </h3>
+      <span class="card-action flex items-center gap-3 mt-2 cursor-pointer">
+        <p class="font-medium text-[17.49px] text-[#FF4100]">{{ actionText() }}</p>
+        <span class="flex items-center justify-center w-7 h-7 rounded-full bg-[#FF4100] p-2">
+          <i class="pi pi-arrow-up-right"></i>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
