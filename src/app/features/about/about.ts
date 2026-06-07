@@ -7,4 +7,8 @@ import { ReusableCard } from '../../shared/components/reusable-card/reusable-car
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
-export class About {}
+export class About {
+  onCardClick() {
+    alert('Card clicked!');
+  }
+}

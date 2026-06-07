@@ -6,7 +6,9 @@
         {{ title() }}
       </h3>
       <span class="card-action flex items-center gap-3 mt-2 cursor-pointer">
-        <p class="font-medium text-[17.49px] text-[#FF4100]">{{ actionText() }}</p>
+        <p class="font-medium text-[17.49px] text-[#FF4100]" (click)="onBtnClick()">
+          {{ actionText() }}
+        </p>
         <span class="flex items-center justify-center w-7 h-7 rounded-full bg-[#FF4100] p-2">
           <i class="pi pi-arrow-up-right"></i>
         </span>
