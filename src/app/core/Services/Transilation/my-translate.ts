@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { DOCUMENT, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 type Language = 'en' | 'ar';
 @Injectable({
@@ -10,6 +10,7 @@ export class MyTranslate {
   currentLang = signal<Language>('en');
   private readonly _translateService = inject(TranslateService);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly _document = inject(DOCUMENT);
 
   initLanguage(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -29,9 +30,9 @@ export class MyTranslate {
     this._translateService.use(lang);
   }
 
-  setDirection() {
-    const lang = this.currentLang();
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
+  updateDocumentLanguage() {
+    const Lang = this.currentLang();
+    this._document.documentElement.dir = Lang === 'ar' ? 'rtl' : 'ltr';
+    this._document.documentElement.lang = Lang;
   }
 }
