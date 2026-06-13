@@ -1,24 +1,34 @@
 <section class="container mx-auto">
     <div class="card">
-        <p-carousel [value]="products()" [numVisible]="3" [numScroll]="3" [responsiveOptions]="responsiveOptions" >
-            <ng-template let-product #item>
-                <div class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4">
-                    <div class="mb-4">
-                        <div class="relative mx-auto">
-                            <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-full rounded-border" />
-                           
+      @if (carouselData().length) {
+        <p-carousel [value]="carouselData()" [numVisible]="3" [numScroll]="3" [responsiveOptions]="responsiveOptions" >
+            <ng-template let-item #item>
+
+                <div class="flex justify-center items-center ">
+
+                    <div class="card rounded-2xl relative w-[250] h-[250] lg:w-[350px] lg:h-[398px]  ">
+                        <div class="rounded-b-3xl">
+                          <img src="{{item.image}}" [alt]="item.name" class="w-[403px] h-[398px] object-cover bg-center rounded-2xl" />
                         </div>
-                    </div>
-                    <div class="mb-4 font-medium">{{ product.name }}</div>
-                    <div class="flex justify-between items-center">
-                        <div class="mt-0 font-semibold text-xl">{{ '$' + product.price }}</div>
-                        <span>
-                            <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-                            <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
-                        </span>
-                    </div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-bg)] rounded-b-2xl w-full p-2">
+                          <div class="card-content">
+                            <h3 class="card-title font-bold text-[22.2px] text-[var(--color-main-text)]">
+                              {{ item.name}}
+                            </h3>
+                            <span class="card-action flex items-center gap-3 mt-2 cursor-pointer">
+                              <p class="font-medium text-[17.49px] text-[#FF4100]" >
+                                Read more
+                              </p>
+                              <span class="flex items-center justify-center w-7 h-7 rounded-full bg-[#FF4100] p-2">
+                                <i class="pi pi-arrow-up-right"></i>
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                 </div>
             </ng-template>
         </p-carousel>
+      }
     </div>
 </section>
