@@ -7,6 +7,7 @@ import { AuthFacade } from '../../../../features/auth/auth-facade/auth-facade';
 
 @Component({
   selector: 'app-nav',
+  standalone: true,
   imports: [CustomButton, RouterLinkActive, RouterLink, NgOptimizedImage, RouterLink],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
@@ -14,15 +15,12 @@ import { AuthFacade } from '../../../../features/auth/auth-facade/auth-facade';
 export class Nav {
   private readonly _routes = inject(Router);
   readonly _auth = inject(AuthFacade);
-  isLoggedIn = signal(false);
-  isMenuOpen = signal(false);
+  readonly isLoggedIn = this._auth.isLogged;
+  readonly isMenuOpen = signal(false);
   toggleMenu() {
     this.isMenuOpen.update((prev) => !prev);
   }
 
-  goToProfile() {
-    this._routes.navigate(['/profile']);
-  }
   goToLogin() {
     this._routes.navigate(['/login']);
   }

@@ -1,8 +1,8 @@
 import { API_URL, AuthLib, authAPI } from 'auth-lib';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import {
+  APP_INITIALIZER,
   ApplicationConfig,
-  importProvidersFrom,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
@@ -17,6 +17,7 @@ import { MessageService } from 'primeng/api';
 import { headersInterceptor } from './core/interceptors/headers/headers-interceptor';
 import { providePrimeNG } from 'primeng/config';
 import { loadingInterceptor } from './core/interceptors/loading/loading-interceptor';
+import { AuthFacade } from './features/auth/auth-facade/auth-facade';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,9 +32,10 @@ export const appConfig: ApplicationConfig = {
       provide: authAPI,
       useExisting: AuthLib,
     },
-    
-    provideHttpClient(withFetch() , withInterceptors([headersInterceptor,loadingInterceptor])),
-    provideRouter(routes), provideClientHydration(withEventReplay()),
+
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loadingInterceptor])),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
     CookieService,
     MessageService,
@@ -46,5 +48,11 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (authFacade: AuthFacade) => () => authFacade.checkAuthStatus(),
+      deps: [AuthFacade],
+      multi: true,
+    },
   ],
 };
