@@ -1,1 +1,48 @@
-<p>classes works!</p>
+<section class="bg-[var(--color-section-bg)] ">
+    <div class="w-full flex flex-col justify-center items-center  container mx-auto   px-4  py-12 lg:py-16">
+
+        <!-- title -->
+         <div class="">
+            <app-section-title
+            sectionTitleImage="/images/WOrkouts.webp"
+            logo="/images/Vector.png"
+            sectionName="fitness class"
+            [centeredName]="true"
+            ></app-section-title>
+         </div>
+         <!-- secttion desc -->
+         <div class="">
+            <h1 class=" text-center text-[24px] md:text-[34px] font-bold text-[var(--color-main-text)] uppercase tracking-wide ">
+                Transform Your Body with Our <br> Dynamic
+            <span class="text-[var(--color-primary)] text-wrap">Upcoming Workouts</span> 
+            </h1>
+        </div>
+
+         <div class="space-x-3 py-5 ">
+            <app-filter-tabs
+            [tabs]="muscleTabs()"
+            (tabChanged)="onCategoryChange($event)"
+            ></app-filter-tabs>
+        </div> 
+        
+        @defer (on viewport) {
+            <div class="w-full ">
+                <app-carousel
+                [carouselData]="muscleGroup()"
+                ></app-carousel>
+            </div>
+
+
+        }@placeholder {
+            <p></p>
+        }
+
+
+
+        
+    </div> 
+    
+   
+
+ 
+</section>
