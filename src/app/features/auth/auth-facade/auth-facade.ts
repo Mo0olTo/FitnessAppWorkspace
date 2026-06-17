@@ -1,5 +1,13 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { AuthLib, IForgetPasswordReq, IResetReq, IUser, IVerifyReq , ISignInReq, ISignUpReq} from 'auth-lib';
+import {
+  AuthLib,
+  IForgetPasswordReq,
+  IResetReq,
+  IUser,
+  IVerifyReq,
+  ISignInReq,
+  ISignUpReq,
+} from 'auth-lib';
 import { CookieService } from 'ngx-cookie-service';
 import { finalize, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -16,7 +24,7 @@ export class AuthFacade {
   private readonly router = inject(Router);
   private readonly messageService = inject(MessageService);
   private readonly destroy$ = new Subject<void>();
-  private readonly loading=inject(LoadingService)
+  private readonly loading = inject(LoadingService);
 
   user = signal<IUser | null>(null);
   error = signal<string | null>(null);
@@ -92,75 +100,85 @@ export class AuthFacade {
   }
   // end Register
 
- 
-   
-
   // login
-   login(data:ISignInReq):void{
-     this.loading.loading.set(true)
-     this.error.set(null)
+  login(data: ISignInReq): void {
+    this.loading.loading.set(true);
+    this.error.set(null);
 
-     this.auth.SignIn(data).pipe(finalize(()=>this.loading.loading.set(false)) ,takeUntil(this.destroy$)).subscribe({
-       next:(res)=>{ 
-         if(res.message==='success'){
-           // saving Token to Cookies
-           this.cookieService.set('FitnessToken' , res.token , {
-             path:'/',
-             sameSite:'Strict',
-             secure:true
-           })
-           
+    this.auth
+      .SignIn(data)
+      .pipe(
+        finalize(() => this.loading.loading.set(false)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: (res) => {
+          if (res.message === 'success') {
+            // saving Token to Cookies
+            this.cookieService.set('FitnessToken', res.token, {
+              path: '/',
+              sameSite: 'Strict',
+              secure: true,
+            });
+
             // load user info to add welcome message
             this.loadUserAfterLogin();
 
-           // toster {WELCOME MESSAGE HERE}
-           setTimeout(() => {
-             this.messageService.add({
-               severity:'success',
-               summary:`Welcome ${this.firstName()}`,
-               detail:'login Success',
-               life: 4000,
-             })
-           }, 500);
-         
-         }
-        
-        
-       },
-       error:(err)=>{
-         this.error.set(err.error.error || 'Login Failed')
-         this.messageService.add({
-           severity:'error',
-           summary:`${this.error()}`,
-           detail:'login Failed',
-           life:3000
-         })
-      }
-    })
-  } 
-  
+            // toster {WELCOME MESSAGE HERE}
+            setTimeout(() => {
+              this.messageService.add({
+                severity: 'success',
+                summary: `Welcome ${this.firstName()}`,
+                detail: 'login Success',
+                life: 4000,
+              });
+            }, 500);
+          }
+        },
+        error: (err) => {
+          this.error.set(err.error.error || 'Login Failed');
+          this.messageService.add({
+            severity: 'error',
+            summary: `${this.error()}`,
+            detail: 'login Failed',
+            life: 3000,
+          });
+        },
+      });
+  }
+
   // load user Data after login
-   loadUserAfterLogin(): void {
-     this.loading.loading.set(true);
-     this.auth.GetLoggedUserData().pipe(finalize(() => this.loading.loading.set(false)) , takeUntil(this.destroy$)).subscribe({
-       next: (res:IUser) => {
-         this.user.set(res);
-         this.firstName.set(res.user.firstName)
-         this.router.navigate(['/home']);
-       },
-  
-      error: () => {
-        this.user.set(null);
-      }
-    });
+  loadUserAfterLogin(): void {
+    this.loading.loading.set(true);
+    this.auth
+      .GetLoggedUserData()
+      .pipe(
+        finalize(() => this.loading.loading.set(false)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: (res: IUser) => {
+          this.user.set(res);
+          this.firstName.set(res.user.firstName);
+          this.router.navigate(['/main/home']);
+        },
+
+        error: () => {
+          this.user.set(null);
+        },
+      });
   }
 
   // forget password — step 1: send OTP
   forgetPassword(email: string): void {
     this.loading.loading.set(true);
     this.error.set(null);
-    this.auth.ForgetPassword({ email } as IForgetPasswordReq)
-      .pipe(finalize(() => this.loading.loading.set(false)), takeUntil(this.destroy$))
+    this.auth
+      .ForgetPassword({ email } as IForgetPasswordReq)
+      .pipe(
+        finalize(() => this.loading.loading.set(false)),
+        takeUntil(this.destroy$),
+      )
       .subscribe({
         next: () => {
           this.resetEmail.set(email);
@@ -187,8 +205,12 @@ export class AuthFacade {
   verifyCode(code: string): void {
     this.loading.loading.set(true);
     this.error.set(null);
-    this.auth.VerifyCode({ resetCode: code } as IVerifyReq)
-      .pipe(finalize(() => this.loading.loading.set(false)), takeUntil(this.destroy$))
+    this.auth
+      .VerifyCode({ resetCode: code } as IVerifyReq)
+      .pipe(
+        finalize(() => this.loading.loading.set(false)),
+        takeUntil(this.destroy$),
+      )
       .subscribe({
         next: () => {
           this.forgetPassStep.set('newPass');
@@ -214,8 +236,12 @@ export class AuthFacade {
   resetPassword(newPassword: string): void {
     this.loading.loading.set(true);
     this.error.set(null);
-    this.auth.ResetPassword({ email: this.resetEmail(), newPassword } as IResetReq)
-      .pipe(finalize(() => this.loading.loading.set(false)), takeUntil(this.destroy$))
+    this.auth
+      .ResetPassword({ email: this.resetEmail(), newPassword } as IResetReq)
+      .pipe(
+        finalize(() => this.loading.loading.set(false)),
+        takeUntil(this.destroy$),
+      )
       .subscribe({
         next: () => {
           this.forgetPassStep.set('forgetPass');
@@ -237,7 +263,4 @@ export class AuthFacade {
         },
       });
   }
-       
 }
-
-
