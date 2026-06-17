@@ -19,4 +19,8 @@ export class WhyUs {
 
   imageHeights = signal<number[]>([378, 344, 285, 346]);
 
+  btnCheck():void{
+    window.alert('Hello From Preview ')
+    
+  }
 }
