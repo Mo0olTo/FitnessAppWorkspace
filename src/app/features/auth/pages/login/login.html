@@ -8,6 +8,7 @@
     (fieldBlur)="onFieldBlur($event)"
     [errors]="errors()"
     [touched]="touched()"
+    [disabled]="!isFormValid()"
     (submit)="onSubmit()"
   >
   </app-auth-form>
