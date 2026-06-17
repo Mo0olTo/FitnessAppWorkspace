@@ -1,4 +1,3 @@
-import { Register } from './../pages/register/register';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import {
   AuthLib,
@@ -29,6 +28,7 @@ export class AuthFacade {
 
   user = signal<IUser | null>(null);
   error = signal<string | null>(null);
+  authReady = signal(false);
   isLogged = computed(() => this.user() !== null);
   firstName = signal<string>('');
 
