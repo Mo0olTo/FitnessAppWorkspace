@@ -1,12 +1,11 @@
 import { Component, input, signal } from '@angular/core';
 import { SectionTitle } from '../../../../shared/components/section-title/section-title';
 import { ReuseableCarousel } from "../../../../shared/components/carousel/carousel";
-import { ListCard } from "../../../../shared/components/listCard/list-card/list-card";
 
 
 @Component({
   selector: 'app-why-us',
-  imports: [SectionTitle, ReuseableCarousel, ListCard],
+  imports: [SectionTitle, ReuseableCarousel],
   templateUrl: './why-us.html',
   styleUrl: './why-us.scss',
 })
