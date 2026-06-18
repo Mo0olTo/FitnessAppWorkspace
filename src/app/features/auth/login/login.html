@@ -7,7 +7,9 @@
   <section
     class="rounded-[28px] border border-white/15 bg-[rgba(30,30,30,0.82)] p-7 shadow-[0_24px_64px_rgba(0,0,0,0.45)] backdrop-blur-md sm:p-8"
   >
-    <h2 class="mb-6 text-center text-xl font-bold text-white">Login</h2>
+    <h2 class="mb-6 text-center text-xl font-bold text-white">
+      {{ 'authForm.login' | translate }}
+    </h2>
 
     <form class="flex flex-col gap-5" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="relative">
@@ -30,7 +32,7 @@
           class="w-full rounded-full border border-white/25 bg-[#1a1a1a] py-3.5 pl-12 pr-4 text-sm text-white outline-none ring-[var(--color-primary)] placeholder:text-white/40 focus:border-[var(--color-primary)] focus:ring-2"
           type="email"
           formControlName="email"
-          placeholder="Email"
+          [placeholder]="'authForm.email' | translate"
           autocomplete="email"
         />
       </div>
@@ -55,7 +57,7 @@
           class="w-full rounded-full border border-white/25 bg-[#1a1a1a] py-3.5 pl-12 pr-12 text-sm text-white outline-none ring-[var(--color-primary)] placeholder:text-white/40 focus:border-[var(--color-primary)] focus:ring-2"
           [type]="passwordVisible() ? 'text' : 'password'"
           formControlName="password"
-          placeholder="Password"
+          [placeholder]="'authForm.password' | translate"
           autocomplete="current-password"
         />
         <button
@@ -100,13 +102,15 @@
           class="text-sm font-medium text-[var(--color-primary)] underline underline-offset-2 transition hover:text-[#ff6a33]"
           routerLink="/auth/forget-pass"
         >
-          Forget Password?
+          {{ 'authForm.forgetPassword' | translate }}
         </a>
       </div>
 
       <div class="flex items-center gap-3 py-1">
         <div class="h-px flex-1 bg-white/20"></div>
-        <span class="text-xs font-medium uppercase tracking-wide text-white/50">Or</span>
+        <span class="text-xs font-medium uppercase tracking-wide text-white/50">{{
+          'authForm.or' | translate
+        }}</span>
         <div class="h-px flex-1 bg-white/20"></div>
       </div>
 
@@ -163,17 +167,17 @@
         class="mt-1 w-full rounded-full bg-[var(--color-primary)] py-3.5 text-center text-base font-bold text-white shadow-lg shadow-[#ff4100]/25 transition hover:bg-[#e63a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
         type="submit"
       >
-        Login
+        {{ 'authForm.login' | translate }}
       </button>
     </form>
 
     <p class="mt-6 text-center text-sm text-white/75">
-      Dont Have An Account Yet ?
+      {{ 'authForm.dontHaveAccount' | translate }}
       <a
         class="font-semibold text-[var(--color-primary)] underline underline-offset-2 transition hover:text-[#ff6a33]"
         routerLink="/auth/register"
       >
-        Register
+        {{ 'authForm.register' | translate }}
       </a>
     </p>
   </section>
