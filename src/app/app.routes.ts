@@ -8,9 +8,8 @@ export const routes: Routes = [
   {
     path: '',
     component: Main,
-   
-    loadChildren: () =>
-      import('./routes/main.routes').then((m) => m.mainRoutes),
+    // canActivate: [authGuard],
+    loadChildren: () => import('./routes/main.routes').then((m) => m.mainRoutes),
   },
   {
     path: 'auth',

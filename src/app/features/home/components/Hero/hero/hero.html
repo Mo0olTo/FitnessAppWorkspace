@@ -1,21 +1,29 @@
-<section
-  class=" flex flex-cold lg:flex-row justify-between items-end pt-7 px-0 pb-0 w-full"
->
-  <!-- TEXT -->
-  <div class="container mx-auto max-w-md lg:max-w-3xl">
-    <h1
-      class="font-bold text-[var(--color-main-text)] text-4xl lg:text-6xl uppercase leading-tight"
-    >
-      Your body can
-      <span class="block lg:inline text-[var(--color-primary)]"> stand almost </span>
-      anything
-    </h1>
-    <p
-      class="relative text-[var(--color-main-text)] text-lg mt-5 pl-4 before:content-[''] before:absolute before:w-1 before:h-[120px] lg:before:h-[70px] before:bg-[var(--color-primary)] before:top-0 before:left-0"
-    >
-      It's your mind that needs convincing. Push past your limits, stay committed, and watch as your
-      body transforms into a powerhouse of strength and resilience.
-    </p>
+<div class="relative overflow-hidden pt-11 bg-[var(--color-bg)]">
+  <div
+    class="pointer-events-none absolute inset-0 scale-110 bg-cover bg-center blur-[14px] [background-image:url('/images/auth-bg.webp')]"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute inset-0 bg-[color:var(--color-bg)] backdrop-blur-[var(--blur)]"
+    aria-hidden="true"
+  ></div>
+  <section
+    class="relative z-10 flex flex-col lg:flex-row justify-between items-center pt-28 px-0 pb-0 h-full w-full"
+  >
+    <!-- TEXT -->
+    <div class="container mx-auto max-w-md lg:max-w-3xl">
+      <h1
+        class="font-bold text-[var(--color-main-text)] text-4xl lg:text-6xl uppercase leading-tight"
+      >
+        {{ 'home.hero.titleStart' | translate }}
+        <span class="block lg:inline text-[var(--color-primary)]"> stand almost </span>
+        anything
+      </h1>
+      <p
+        class="relative text-[var(--color-main-text)] text-lg mt-5 pl-4 before:content-[''] before:absolute before:w-1 before:h-[120px] lg:before:h-[70px] before:bg-[var(--color-primary)] before:top-0 before:left-0"
+      >
+        {{ 'home.hero.mindset_description' | translate }}
+      </p>
 
       <!-- STATS -->
       <div class="flex flex-col lg:flex-row gap-8 mt-8">
