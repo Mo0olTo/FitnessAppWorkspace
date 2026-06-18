@@ -66,6 +66,7 @@ export class AuthForm {
 
   // Button Submit for each form
   submit = output<void>();
+  disabled = input<boolean>(false);
 
   // for Validation
   fieldBlur = output<keyof AuthFormState>();
@@ -79,6 +80,7 @@ export class AuthForm {
     rePassword: '',
     otpValue: '',
   });
+  
   buttonTitle = computed(() => this.btnText?.() ?? this.formConfig().buttonText);
   errors = input<Partial<Record<keyof AuthFormState, any>>>({});
   touched = input<Partial<Record<keyof AuthFormState, boolean>>>({});

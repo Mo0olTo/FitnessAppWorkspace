@@ -1,0 +1,55 @@
+:host ::ng-deep {
+    .p-galleria-prev-button{
+      left: 10% !important;
+      background-color: var(--color-primary) !important;
+    }
+    .p-galleria-next-button{
+      right: 10% !important;
+      background-color: var(--color-primary) !important;
+    }
+    .p-galleria-close-button{
+      background-color: var(--color-primary) !important;
+    }
+    .p-button-text.p-button-secondary{
+     background-color: var(--color-primary) !important;
+     color:white !important;
+    }
+    .p-button-text.p-button-secondary:hover{
+     background-color: #fa5924 !important;
+     color:rgb(255, 255, 255) !important;
+    }
+
+    .p-carousel-indicator-list {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+    }
+
+    
+    .p-carousel-indicator {
+      width: 10px !important;
+      height: 10px !important;
+      border-radius: 50% !important;
+      background: var( --color-main-text)!important;
+      transition: width 0.3s ease, border-radius 0.3s ease, background 0.3s ease;
+      overflow: hidden;
+    }
+
+    .p-carousel-indicator .p-carousel-indicator-button {
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: inherit !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      display: block;
+    }
+
+    .p-carousel-indicator.p-carousel-indicator-active {
+      width: 40px !important;
+      height: 10px !important;
+      border-radius: 999px !important;
+      background: var(--color-primary) !important;
+    }
+}

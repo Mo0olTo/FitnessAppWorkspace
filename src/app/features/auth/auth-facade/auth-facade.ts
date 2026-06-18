@@ -1,4 +1,3 @@
-import { Register } from './../pages/register/register';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import {
   AuthLib,
@@ -29,12 +28,42 @@ export class AuthFacade {
 
   user = signal<IUser | null>(null);
   error = signal<string | null>(null);
+  authReady = signal(false);
   isLogged = computed(() => this.user() !== null);
   firstName = signal<string>('');
 
   // forget-pass step management
   forgetPassStep = signal<Extract<FormType, 'forgetPass' | 'otp' | 'newPass'>>('forgetPass');
   private readonly resetEmail = signal<string>('');
+
+  constructor() {
+    this.initializeSession();
+  }
+
+  private initializeSession(): void {
+    const token = this.cookieService.get('FitnessToken');
+
+    if (!token) {
+      this.authReady.set(true);
+      return;
+    }
+
+    this.auth
+      .GetLoggedUserData()
+      .pipe(
+        finalize(() => this.authReady.set(true)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: (res: IUser) => {
+          this.user.set(res);
+          this.firstName.set(res.user.firstName);
+        },
+        error: () => {
+          this.user.set(null);
+        },
+      });
+  }
 
   // start Register
   register(data: ISignUpReq): void {

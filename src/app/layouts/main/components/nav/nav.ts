@@ -32,7 +32,7 @@ export class Nav {
     this._routes.navigate(['/profile']);
   }
   goToLogin() {
-    this._routes.navigate(['/login']);
+    this._routes.navigate(['auth/login']);
   }
   goToRegister() {
     this._routes.navigate(['/register']);

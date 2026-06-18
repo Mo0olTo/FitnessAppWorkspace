@@ -12,7 +12,8 @@
   <!-- Form Container -->
 
   <div
-    class="min-h-[237px] w-[363px] lg:w-[486px] border-[2px] rounded-4xl border-[var(--color-borders)] flex flex-col justify-center items-center px-6 lg:px-12 py-4"
+    class="min-h-[237px] w-[363px] lg:w-[486px] border-[2px] rounded-4xl border-[var(--color-borders)]
+     flex flex-col justify-center items-center px-6 lg:px-12 py-4"
   >
     <!-- heading -->
 
@@ -38,11 +39,13 @@
             (blur)="fieldBlur.emit(field.key)"
           />
 
+         <div class="w-full ">
           <app-validation-msg
-            [errors]="errors()?.[field.key]"
-            [touched]="touched()?.[field.key] ?? false"
-            [label]="field.placeholder"
-          />
+          [errors]="errors()?.[field.key]"
+          [touched]="touched()?.[field.key] ?? false"
+          [label]="field.placeholder"
+        />
+         </div>
         }
       </div>
     }
@@ -76,7 +79,7 @@
 
     @if (formConfig().forgetLink) {
       <div
-        class="text-[var(--color-primary)] font-bold text-[16px] flex justify-end items-center w-[311px] underline mt-3 mb-6"
+        class="text-[var(--color-primary)] font-bold text-[16px] flex justify-end items-center w-[311px] underline mt-3 mb-6 cursor-pointer"
       >
         <h1 [routerLink]="'/auth/forget-pass'">{{ 'authForm.forgetPassword' | translate }}</h1>
       </div>
@@ -99,6 +102,7 @@
     <div class="py-7">
       <app-form-button
         [btnTitle]="btnText?.() || formConfig().buttonText"
+        [disabled]="disabled()"
         (click)="submit.emit()"
       />
     </div>

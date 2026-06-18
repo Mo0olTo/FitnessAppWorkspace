@@ -68,3 +68,15 @@ html.dark {
 .p-toast .p-toast-message-success .p-toast-detail {
   color: white !important;
 }
+
+@media screen and (max-width: 768px) {
+  .p-toast {
+    width: calc(100vw - 2rem) !important;
+    max-width: 100% !important;
+  }
+
+  .p-toast-top-right {
+    right: 1rem !important;
+    left: 1rem !important;
+  }
+}
