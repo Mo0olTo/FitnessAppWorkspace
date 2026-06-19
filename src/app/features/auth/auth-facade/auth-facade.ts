@@ -28,6 +28,7 @@ export class AuthFacade {
 
   user = signal<IUser | null>(null);
   error = signal<string | null>(null);
+  authReady = signal(false);
   isLogged = computed(() => this.user() !== null);
   firstName = signal<string>('');
   goal = signal<string>('');

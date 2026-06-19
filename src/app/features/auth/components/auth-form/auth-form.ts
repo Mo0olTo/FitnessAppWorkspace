@@ -9,6 +9,7 @@ import { AuthFormState } from '../../../../shared/models/authFormState';
 import { ValidationMsg } from '../validation-msg/validation-msg';
 import { FormType } from './models/formType';
 import { AUTH_FORM_CONFIG } from './auth-form-config/auth-form-config';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth-form',
@@ -20,6 +21,7 @@ import { AUTH_FORM_CONFIG } from './auth-form-config/auth-form-config';
     InputOtpModule,
     FormsModule,
     ValidationMsg,
+    TranslatePipe,
   ],
   templateUrl: './auth-form.html',
   styleUrl: './auth-form.scss',
@@ -64,6 +66,7 @@ export class AuthForm {
 
   // Button Submit for each form
   submit = output<void>();
+  disabled = input<boolean>(false);
 
   // for Validation
   fieldBlur = output<keyof AuthFormState>();
@@ -77,6 +80,7 @@ export class AuthForm {
     rePassword: '',
     otpValue: '',
   });
+  
   buttonTitle = computed(() => this.btnText?.() ?? this.formConfig().buttonText);
   errors = input<Partial<Record<keyof AuthFormState, any>>>({});
   touched = input<Partial<Record<keyof AuthFormState, boolean>>>({});
