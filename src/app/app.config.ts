@@ -1,5 +1,6 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import {
+  APP_INITIALIZER,
   ApplicationConfig,
   inject,
   provideAppInitializer,
@@ -35,6 +36,10 @@ export const appConfig: ApplicationConfig = {
       provide: authAPI,
       useExisting: AuthLib,
     },
+
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loadingInterceptor])),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
 
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loadingInterceptor])),
     provideRouter(routes),
