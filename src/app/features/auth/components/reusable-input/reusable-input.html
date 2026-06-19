@@ -16,7 +16,8 @@
         [value]="value()"
         (input)="onInput($event)"
         (blur)="onBlur()"
-        class="w-full !bg-transparent !rounded-3xl !py-4 border !border-[var(--color-borders)] !text-[var(--color-main-text)] placeholder:!text-[var(--color-main-text)] !text-xl !px-7"
+        class="!w-full !bg-transparent !rounded-3xl !py-4 border !border-[var(--color-borders)] 
+        !text-[var(--color-main-text)] placeholder:!text-[var(--color-main-text)] !text-xl !px-7"
         [ngClass]="{
           '!pl-12': icon(),
           '!pl-3': !icon(),
