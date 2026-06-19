@@ -40,6 +40,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loadingInterceptor])),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
+
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loadingInterceptor])),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
     CookieService,
     MessageService,
