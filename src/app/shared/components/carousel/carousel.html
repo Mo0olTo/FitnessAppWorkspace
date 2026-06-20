@@ -15,9 +15,9 @@
                             <h3 class="card-title font-bold text-[22.2px] text-[var(--color-main-text)]">
                               {{ item.name}}
                             </h3>
-                            <span class="card-action flex items-center gap-3 mt-2 cursor-pointer">
+                            <span (click)="onCardClick(item._id)" class="card-action flex items-center gap-3 mt-2 cursor-pointer">
                               <p class="font-medium text-[17.49px] text-[#FF4100]" >
-                                Read more
+                                Read more 
                               </p>
                               <span class="flex items-center justify-center w-7 h-7 rounded-full bg-[#FF4100] p-2">
                                 <i class="pi pi-arrow-up-right"></i>
