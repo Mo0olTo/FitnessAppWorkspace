@@ -7,11 +7,20 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Toast } from 'primeng/toast';
 import { IChangePassReq } from 'auth-lib';
 import { ReusableInput } from '../../components/reusable-input/reusable-input';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [DialogModule, ButtonModule, InputTextModule, Toast, ReactiveFormsModule, ReusableInput],
+  imports: [
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    Toast,
+    ReactiveFormsModule,
+    ReusableInput,
+    TranslatePipe,
+  ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,6 +32,7 @@ export class Profile implements OnInit {
   readonly activityLevel = this.authFacade.activityLevel;
   readonly weight = this.authFacade.weight;
   readonly visible = signal<boolean>(false);
+  readonly logoutVisible = signal<boolean>(false);
   readonly isSubmitting = signal<boolean>(false);
   changePasswordForm!: FormGroup;
 
@@ -53,7 +63,7 @@ export class Profile implements OnInit {
     { title: 'Security', icon: 'pi pi-lock' },
     { title: 'Privacy Policy', icon: 'pi pi-shield' },
     { title: 'Help', icon: 'pi pi-question-circle' },
-    { title: 'Logout', icon: 'pi pi-sign-out', action: () => this.logout() },
+    { title: 'Logout', icon: 'pi pi-sign-out', action: () => this.openLogoutModel() },
   ];
   ngOnInit(): void {
     this.authFacade.loadUserAfterLogin();
@@ -80,8 +90,15 @@ export class Profile implements OnInit {
   toggleTheme() {
     console.log('Theme trigger');
   }
-  logout() {
+  openLogoutModel() {
+    this.logoutVisible.set(true);
+  }
+  onLogout() {
     console.log('Logout trigger');
+    this.authFacade.logout();
+  }
+  closeLogoutDialog() {
+    this.logoutVisible.set(false);
   }
 
   closeDialog() {

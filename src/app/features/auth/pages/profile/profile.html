@@ -63,6 +63,7 @@
   </div>
 </div>
 
+<!--  Change Password Model (dialog) -->
 <div class="card flex justify-center">
   <p-dialog
     [visible]="visible()"
@@ -133,6 +134,55 @@
           />
         </div>
       </form>
+    </ng-template>
+  </p-dialog>
+</div>
+
+<!-- LogOut model (dialog) -->
+<div class="card flex justify-center">
+  <p-dialog
+    [visible]="logoutVisible()"
+    (visibleChange)="logoutVisible.set($event)"
+    [modal]="true"
+    maskStyleClass="backdrop-blur-sm"
+    styleClass="!border-0 !bg-transparent"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <ng-template #headless>
+      <div
+        class="flex flex-col items-center px-8 py-8 gap-6 rounded-2xl border border-white/10 dark:bg-[#232424] shadow-2xl text-center"
+        style="width: 380px"
+      >
+        <svg width="31" height="33">...</svg>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-xl font-bold text-[var(--color-main-text)]">
+            {{ 'logout.out' | translate }}
+          </h3>
+          <p class="text-white/60 text-sm leading-relaxed px-2">
+            {{ 'logout.sure' | translate }}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-4 mt-2 w-full">
+          <p-button
+            label="Cancel"
+            type="button"
+            (click)="closeLogoutDialog()"
+            [text]="true"
+            styleClass="!p-3 w-full !text-white/70 !border !border-white/20 hover:!bg-white/5 !rounded-xl"
+            class="w-full"
+          />
+          <p-button
+            label="Log Out"
+            type="button"
+            (click)="onLogout()"
+            styleClass="!p-3 w-full !bg-[#FF4100] !text-white !border-0 hover:!bg-[#e03a00] !rounded-xl font-bold shadow-lg shadow-[#FF4100]/20"
+            class="w-full"
+          />
+        </div>
+      </div>
     </ng-template>
   </p-dialog>
 </div>

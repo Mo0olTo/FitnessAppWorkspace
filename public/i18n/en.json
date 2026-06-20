@@ -21,5 +21,10 @@
     "about": "About",
     "classes": "Classes",
     "healthy": "Healthy"
+  },
+
+  "logout": {
+    "out": "Log Out",
+    "sure": "Are you sure you want to log out?"
   }
 }

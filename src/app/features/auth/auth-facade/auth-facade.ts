@@ -299,4 +299,40 @@ export class AuthFacade {
       map((res) => undefined),
     );
   }
+
+  // LogOut Function
+  logout() {
+    this.loading.loading.set(true);
+    this.error.set(null);
+    this.auth
+      .LogOut()
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.loading.set(false)),
+      )
+      .subscribe({
+        next: () => {
+          this.cookieService.delete('FitnessToken', '/');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Logged Out',
+            detail: 'You have been logged out successfully',
+            life: 3000,
+          });
+          // Here we redirect to the login page after one second so he can see the lovely toast
+          setTimeout(() => {
+            this.router.navigate(['/auth/login']);
+          }, 1000);
+        },
+        error: (err) => {
+          this.error.set(err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Logout Failed',
+            detail: 'Something went wrong. Please try again.',
+            life: 3000,
+          });
+        },
+      });
+  }
 }
