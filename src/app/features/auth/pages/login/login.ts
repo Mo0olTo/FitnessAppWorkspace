@@ -3,10 +3,11 @@ import { AuthForm } from '../../components/auth-form/auth-form';
 import { PASS_PATTERN } from '../../../../shared/validators/PASS-PATTERN';
 import { AuthFormState } from '../../../../shared/models/authFormState';
 import { AuthFacade } from '../../auth-facade/auth-facade';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
-  imports: [AuthForm],
+  imports: [AuthForm, TranslatePipe],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

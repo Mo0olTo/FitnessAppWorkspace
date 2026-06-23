@@ -31,10 +31,16 @@ export class AuthFacade {
   authReady = signal(false);
   isLogged = computed(() => this.user() !== null);
   firstName = signal<string>('');
+  goal = signal<string>('');
+  activityLevel = signal<string>('');
+  weight = signal<number>(0);
 
   // forget-pass step management
   forgetPassStep = signal<Extract<FormType, 'forgetPass' | 'otp' | 'newPass'>>('forgetPass');
   private readonly resetEmail = signal<string>('');
+  // Check Token
+  checkAuthStatus(): void {
+    const hasToken = this.cookieService.check('FitnessToken');
 
   constructor() {
     this.initializeSession();
@@ -49,24 +55,7 @@ export class AuthFacade {
       this.authReady.set(true);
       return;
     }
-
-    this.auth
-      .GetLoggedUserData()
-      .pipe(
-        finalize(() => this.authReady.set(true)),
-        takeUntil(this.destroy$),
-      )
-      .subscribe({
-        next: (res: IUser) => {
-          this.user.set(res);
-          this.firstName.set(res.user.firstName);
-        },
-        error: () => {
-          this.user.set(null);
-        },
-      });
   }
-
   // start Register
   register(data: ISignUpReq): void {
     this.loading.loading.set(true);
@@ -117,15 +106,28 @@ export class AuthFacade {
         next: (res) => {
           if (res.message === 'success') {
             // saving Token to Cookies
+            // ! ------------------ [ NEW LOGIN ORDER ] ------------------
+            // ! 1. Save Token First: The token comes from the SignIn response, not user data.
             this.cookieService.set('FitnessToken', res.token, {
               path: '/',
               sameSite: 'Strict',
               secure: true,
             });
 
-            // load user info to add welcome message
-            this.loadUserAfterLogin();
+            // * TODO: Nested the data fetch here so router.navigate ONLY runs after signals are fully populated.
+            // * This prevents the async race condition where navigation used to beat the HTTP response.
+            this.auth.GetLoggedUserData().subscribe({
+              next: (userRes: IUser) => {
+                this.user.set(userRes);
+                this.firstName.set(userRes.user.firstName);
+                this.goal.set(userRes.user.goal);
+                this.activityLevel.set(userRes.user.activityLevel);
+                this.weight.set(userRes.user.weight);
 
+                // ? Navigation now executes safely INSIDE the subscription block.
+                this.router.navigate(['/main/home']);
+              },
+            });
             // toster {WELCOME MESSAGE HERE}
             setTimeout(() => {
               this.messageService.add({
@@ -162,7 +164,14 @@ export class AuthFacade {
         next: (res: IUser) => {
           this.user.set(res);
           this.firstName.set(res.user.firstName);
-          this.router.navigate(['/main/home']);
+          this.goal.set(res.user.goal);
+          this.activityLevel.set(res.user.activityLevel);
+          this.weight.set(res.user.weight);
+          // ! ------------------ [ CRITICAL BREAKING CHANGE NOTICE ] ------------------
+          // ! WARNING: Removed (this.router.navigate) from this method entirely!
+          // ? Reason: This method runs automatically on app refresh via APP_INITIALIZER.
+          // ? Leaving navigate here would force-redirect the user to /home even if they refreshed while on /profile!
+          // this.router.navigate(['/main/home']);
         },
 
         error: () => {

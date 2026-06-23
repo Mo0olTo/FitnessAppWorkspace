@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
+import { ReusableCard } from '../../shared/components/reusable-card/reusable-card';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [ReusableCard],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
 export class About {
-
+  onCardClick() {
+    alert('Card clicked!');
+  }
 }

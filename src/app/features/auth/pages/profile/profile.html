@@ -1,1 +1,62 @@
-<p>profile works!</p>
+<div class="relative min-h-screen dark:bg-[#232424]">
+  <div
+    class="absolute inset-0 bg-cover bg-center opacity-5"
+    style="background-image: url('/images/auth-bg.webp')"
+  ></div>
+
+  <div class="container mx-auto pt-40 relative z-10">
+    <div class="info flex items-center justify-around flex-wrap gap-6">
+      @for (metrics of profileMetrics; track metrics.label) {
+        <div class="p-2 text-[var(--color-main-text)]">
+          <h3 class="text-center text-4xl font-extrabold">{{ metrics.label }}</h3>
+          <p class="text-center text-xs opacity-60 mb-2">TAP TO CHANGE</p>
+
+          <button
+            class="flex justify-between items-center font-bold text-base bg-[#FF4100] w-[240px] py-2.5 px-4 rounded-3xl border border-[var(--color-borders)] hover:bg-[#e03a00] transition-colors"
+          >
+            {{ metrics.signal() }}
+            <span class="font-bold text-base !text-[var(--color-main-text)]">
+              <i class="pi pi-sync"></i>
+            </span>
+          </button>
+        </div>
+      }
+    </div>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-16 px-4 text-[var(--color-main-text)]"
+    >
+      @for (item of settingItems; track $index) {
+        <div
+          class="flex flex-col items-center justify-center bg-white/[0.03] border border-white/10 rounded-2xl p-6 h-[170px] cursor-pointer transition-all duration-300 hover:bg-white/[0.07] hover:border-[#FF4100]/50 backdrop-blur-md"
+          [class.md:col-start-2]="
+            item.title?.toLowerCase() === 'logout' || $index === settingItems.length - 1
+          "
+        >
+          <i [class]="item.icon" class="text-2xl text-[#FF4100] mb-4"></i>
+
+          <span
+            class="text-base font-semibold tracking-wide"
+            [class.text-[#FF4100]]="item.title?.toLowerCase() === 'logout'"
+          >
+            {{ item.title }}
+          </span>
+
+          @if (item.subtitle) {
+            <span class="text-sm opacity-60 mt-1">({{ item.subtitle }})</span>
+          }
+
+          @if (item.hasToggle) {
+            <div class="mt-3 flex items-center">
+              <div
+                class="w-10 h-5 bg-[#FF4100] rounded-full p-0.5 cursor-pointer flex items-center justify-end"
+              >
+                <div class="bg-white w-4 h-4 rounded-full shadow"></div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
