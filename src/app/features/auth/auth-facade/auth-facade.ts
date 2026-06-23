@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import {
   AuthLib,
   IForgetPasswordReq,
@@ -42,10 +42,18 @@ export class AuthFacade {
   checkAuthStatus(): void {
     const hasToken = this.cookieService.check('FitnessToken');
 
-    if (hasToken) {
-      this.loadUserAfterLogin();
-    } else {
-      this.user.set(null);
+  constructor() {
+    this.initializeSession();
+  } 
+
+  
+
+  private initializeSession(): void {
+    const token = this.cookieService.get('FitnessToken');
+
+    if (!token) {
+      this.authReady.set(true);
+      return;
     }
   }
   // start Register

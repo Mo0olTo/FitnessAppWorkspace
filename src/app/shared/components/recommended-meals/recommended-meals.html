@@ -1,0 +1,9 @@
+<section>
+    <div class="w-full">
+        <app-carousel
+        [carouselData]="mealRecommended()"
+        (cardAction)="onNavigation()"
+        [minimizeCard]="true"
+        ></app-carousel>
+    </div>
+</section>

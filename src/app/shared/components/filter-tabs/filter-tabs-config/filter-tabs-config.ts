@@ -1,3 +1,4 @@
+import { Category } from "../../../models/meals-res";
 import { FilterTab } from "../models/filter-tabs.model";
 
 
@@ -19,8 +20,8 @@ export const FILTER_TABS = {
   ] as FilterTab[],
 
   meals: [
-    { id: 'breakfast', label: 'Breakfast' },
-    { id: 'lunch', label: 'Lunch' },
-    { id: 'dinner', label: 'Dinner' }
-  ] as FilterTab[]
+    { strCategory: 'Beef',  },
+    { strCategory: 'Chicken',  },
+    { strCategory: 'Seafood',  }
+  ] as Category[]
 };

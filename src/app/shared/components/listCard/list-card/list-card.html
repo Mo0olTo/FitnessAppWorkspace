@@ -21,14 +21,17 @@
                 <p class="font-normal text-sm text-[var(--color-main-text)] ">{{metaData()}}</p>
             </div>
             <div class="w-1/4 flex flex-col items-end justify-center">
-                    <button 
+               @if (showPlayButton()) {
+
+                <button 
                     
-                    (click)="onPlayButton($event)"
-                    [class]="active() ? ' bg-white hover:text-[var(--color-primary)] hover:bg-[#353737]' : ''"
-                    class="cursor-pointer  font-normal text-xl text-[var(--color-main-text) 
-                     bg-[var(--color-primary)]  rounded-full w-[30px] h-[30px] flex justify-center items-center ">
-                    ▶
-                   </button>
+                (click)="onPlayButton($event)"
+                [class]="active() ? ' bg-white hover:text-[var(--color-primary)] hover:bg-[#353737]' : ''"
+                class="cursor-pointer  font-normal text-xl text-[var(--color-main-text) 
+                 bg-[var(--color-primary)]  rounded-full w-[30px] h-[30px] flex justify-center items-center ">
+                ▶
+               </button>
+               }
             </div>
             </div>
         </div>

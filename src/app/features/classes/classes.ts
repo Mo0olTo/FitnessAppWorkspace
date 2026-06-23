@@ -24,7 +24,6 @@ export class Classes implements OnInit {
   private readonly facade = inject(MuscleFacade);
   private readonly injector = inject(EnvironmentInjector);
   private readonly exercisefacade = inject(ExercisesFacade);
-  private readonly mealsStore = inject(MealsStore);
 
 
   step=signal<number>(1)
@@ -68,10 +67,6 @@ export class Classes implements OnInit {
   ngOnInit(): void {
     this.facade.loadAllMuscles();
     this.addFullBody()
-    console.log(this.mealsStore.loadMealsCategories());
-    
-    
-
   }
 
 

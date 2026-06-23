@@ -1,20 +1,18 @@
 import { Component, computed, effect, EnvironmentInjector, inject, input, OnInit, output, runInInjectionContext, signal } from '@angular/core';
 import { SectionTitle } from "../../../../shared/components/section-title/section-title";
-import { FilterTabs } from "../../../../shared/components/filter-tabs/filter-tabs";
 import { FilterTab } from '../../../../shared/components/filter-tabs/models/filter-tabs.model';
 import { FULL_BODY_CARDS, FULL_BODY_TAB } from '../../../../shared/components/filter-tabs/models/FULL-Body';
 import { MuscleFacade } from '../../../../store/muscles/muscles.facade';
 import { Muscle } from '../../../../shared/models/muscle-group-res';
-import { ExerciseStore } from '../../../../store/exercises/exercise.store';
 import { ExercisesFacade } from '../../../../store/exercises/exercises.facade';
-import { MusclesRes } from '../../../../shared/models/musclesRes';
 import { Exercise } from '../../../../shared/models/exercise-res';
 import { ListCard } from "../../../../shared/components/listCard/list-card/list-card";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { RecommendedMeals } from "../../../../shared/components/recommended-meals/recommended-meals";
 
 @Component({
   selector: 'app-workout-details',
-  imports: [SectionTitle, FilterTabs, ListCard],
+  imports: [SectionTitle,  ListCard, RecommendedMeals],
   templateUrl: './workout-details.html',
   styleUrl: './workout-details.scss',
 })
