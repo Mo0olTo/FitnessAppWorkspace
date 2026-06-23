@@ -1,15 +1,17 @@
 <section class="relative">
     <div class="bg-[url('/images/workouts/workoutsBG.webp')]  bg-cover bg-center bg-no-repeat w-full min-h-[1250px] lg:min-h-[871px]">
 
-        <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center ">
             <!-- section title -->
     
-             <app-section-title
+            <div class="translate-y-7 z-[66]">
+                <app-section-title
                 sectionTitleImage="/images/WOrkouts.webp"
                 logo="/images/Vector.png"
                 sectionName="fitness class"
                 [centeredName]="true"
              ></app-section-title>
+            </div>
             
        
         <div class="bg-[#ffffff] opacity-[85%] dark:opacity-[97%] dark:bg-[#232424] blur-[2px]  w-full h-[940px] lg:h-[494px] z-10 relative">
@@ -21,12 +23,12 @@
                         <!-- desc -->
             <div class="">
                 <h1 class=" text-center text-[24px] md:text-[34px] font-bold text-[var(--color-main-text)] uppercase tracking-wide ">
-                    Transform Your Body with Our <br> Dynamic
+                    Transform Your Body with Our <br> Dynamic 
                 <span class="text-[var(--color-primary)] text-wrap">Upcoming Workouts</span> 
                 </h1>
             </div>
             <!-- filter tabs -->
-            <div class="w-full px-4 my-4">
+            <div class="w-full px-4 my-4 container mx-auto">
             <app-filter-tabs
             [tabs]="muscleTabs()"
             (tabChanged)="onCategoryChange($event)"
@@ -48,6 +50,7 @@
         <div class="w-full  absolute -translate-y-39 lg:-translate-y-54 z-20 ">
          <app-carousel
          [carouselData]="muscleGroup()"
+         (cardAction)="onNavigation()"
          ></app-carousel>
 
      </div>

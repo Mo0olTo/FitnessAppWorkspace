@@ -76,7 +76,6 @@ export class ExerciseStore {
       .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: (res: ExerciseRES) => {
-          console.log(res);
           this.exercises.set(res.exercises);
           this.lastKey.set(key);
         },

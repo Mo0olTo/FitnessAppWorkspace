@@ -7,6 +7,7 @@ import { ReuseableCarousel } from "../../../../shared/components/carousel/carous
 import { MuscleFacade } from '../../../../store/muscles/muscles.facade';
 import { Muscle } from '../../../../shared/models/muscle-group-res';
 import { FULL_BODY_CARDS, FULL_BODY_TAB } from '../../../../shared/components/filter-tabs/models/FULL-Body';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workouts',
@@ -18,6 +19,7 @@ export class Workouts implements OnInit {
 
   private readonly facade = inject(MuscleFacade);
   private readonly injector = inject(EnvironmentInjector);
+  private readonly router = inject(Router);
 
 
   workoutTabs=FILTER_TABS.workoutCategories
@@ -66,4 +68,10 @@ export class Workouts implements OnInit {
     this.isFullBody.set(false);
     this.facade.loadMusclesbyId(tab.id);
   }
+
+  onNavigation():void{
+    this.router.navigate([`/classes`])
+    
+  }
+
 }

@@ -23,6 +23,7 @@ videoUrl = input<string>('');
 active = input<boolean>(false);
 videoPreview = output<VideoPreviewPayload>();
 playBtn=output<any>()
+showPlayButton = input(true);
 
 onPreview(url:string): void {
   this.videoPreview.emit({ url, exercise: this.exercise() });
