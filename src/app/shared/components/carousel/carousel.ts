@@ -1,22 +1,6 @@
-import { Component, OnInit, inject, input, output, signal } from '@angular/core';
+import { Component, HostListener, OnInit, computed, inject, input, output, signal } from '@angular/core';
 import { Carousel } from 'primeng/carousel';
 
-
-
-
-
-export interface Product {
-  id?: string;
-  code?: string;
-  name?: string;
-  description?: string;
-  price?: number;
-  quantity?: number;
-  inventoryStatus?: string;
-  category?: string;
-  image?: string;
-  rating?: number;
-}
 
 @Component({
   selector: 'app-carousel',
@@ -27,8 +11,6 @@ export interface Product {
 export class ReuseableCarousel implements OnInit{
   
 
-  // this is mock for previewing the carousel
-  products = signal<Product[]>([]);
   // this variable for calling it in each component
   carouselData=input<any[]>([])
   // the 
@@ -37,38 +19,78 @@ export class ReuseableCarousel implements OnInit{
   cardAction=output<any>()
   responsiveOptions: any[] | undefined; 
 
-
-
-  
-
-
+  screenWidth = signal(window.innerWidth); 
 
   ngOnInit() {
    
 
-      this.responsiveOptions = [
-          {
-              breakpoint: '1400px',
-              numVisible: 2,
-              numScroll: 1
-          },
-          {
-              breakpoint: '1199px',
-              numVisible: 3,
-              numScroll: 1
-          },
-          {
-              breakpoint: '767px',
-              numVisible: 2,
-              numScroll: 1
-          },
-          {
-              breakpoint: '575px',
-              numVisible: 1,
-              numScroll: 1
-          }
-      ];
+    this.responsiveOptions = [
+        {
+            breakpoint: '1400px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '1199px',
+            numVisible: 3,
+            numScroll: 1
+        },
+        {
+            breakpoint: '767px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '575px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ];
+}
+
+
+  onCardClick(path:string) {
+    this.cardAction.emit(path); 
   }
+  
+ 
+
+  @HostListener('window:resize')
+  onResize() {
+    this.screenWidth.set(window.innerWidth);
+  } 
+
+
+  cardsPerSlide = computed(() => {
+    const width = this.screenWidth();
+  
+    if (width < 768) {
+      return 2; // Mobile (1 × 2)
+    }
+  
+    if (width < 1024) {
+      return 4; // Tablet (2 × 2)
+    }
+  
+    return 6; // Desktop (3 × 2)
+  });
+
+
+
+  groupedData = computed(() => {
+    const data = this.carouselData();
+    const size = this.cardsPerSlide();
+  
+    const result = [];
+  
+    for (let i = 0; i < data.length; i += size) {
+      result.push(data.slice(i, i + size));
+    }
+  
+    return result;
+  });
+
+
 
 
 }
