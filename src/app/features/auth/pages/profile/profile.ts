@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { AuthFacade } from '../../auth-facade/auth-facade';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -8,6 +15,8 @@ import { Toast } from 'primeng/toast';
 import { IChangePassReq } from 'auth-lib';
 import { ReusableInput } from '../../components/reusable-input/reusable-input';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ThemeFacade } from '../../../../core/Theme/theme.facade';
+import { MyTranslate } from '../../../../core/Services/Transilation/my-translate';
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +37,10 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class Profile implements OnInit {
   private readonly authFacade = inject(AuthFacade);
   private readonly fb = inject(FormBuilder);
+  private readonly themefacede = inject(ThemeFacade);
+  public readonly translateService = inject(MyTranslate);
+  isDark = signal(this.themefacede.isDark);
+
   readonly goal = this.authFacade.goal;
   readonly activityLevel = this.authFacade.activityLevel;
   readonly weight = this.authFacade.weight;
@@ -36,12 +49,17 @@ export class Profile implements OnInit {
   readonly isSubmitting = signal<boolean>(false);
   changePasswordForm!: FormGroup;
 
+  toggle() {
+    // this.isDark.update((v) => !v);
+    this.themefacede.toggleTheme();
+  }
+
   readonly profileMetrics = [
-    { label: 'Your Goal', signal: this.goal },
-    { label: 'Level', signal: this.activityLevel },
-    { label: 'Weight', signal: this.weight },
+    { label: 'profile.settingItems.goal', signal: this.goal },
+    { label: 'profile.settingItems.level', signal: this.activityLevel },
+    { label: 'profile.settingItems.weight', signal: this.weight },
   ];
-  readonly settingItems = [
+  settingItems = computed(() => [
     {
       title: 'Change Password',
       icon: 'pi pi-refresh',
@@ -50,7 +68,7 @@ export class Profile implements OnInit {
     {
       title: 'Select Language',
       icon: 'pi pi-globe',
-      subtitle: 'English',
+      subtitle: this.translateService.currentLang() === 'en' ? 'English' : 'العربية',
       action: () => this.toggleLanguage(),
     },
     {
@@ -64,7 +82,7 @@ export class Profile implements OnInit {
     { title: 'Privacy Policy', icon: 'pi pi-shield' },
     { title: 'Help', icon: 'pi pi-question-circle' },
     { title: 'Logout', icon: 'pi pi-sign-out', action: () => this.openLogoutModel() },
-  ];
+  ]);
   ngOnInit(): void {
     this.authFacade.loadUserAfterLogin();
     this.changePasswordForm = this.fb.group({
@@ -85,10 +103,12 @@ export class Profile implements OnInit {
     console.log('Password trigger');
   }
   toggleLanguage() {
-    console.log('Language trigger');
+    const current = this.translateService.currentLang();
+    const nextLang = current === 'en' ? 'ar' : 'en';
+    this.translateService.switchLang(nextLang);
   }
   toggleTheme() {
-    console.log('Theme trigger');
+    this.toggle();
   }
   openLogoutModel() {
     this.logoutVisible.set(true);

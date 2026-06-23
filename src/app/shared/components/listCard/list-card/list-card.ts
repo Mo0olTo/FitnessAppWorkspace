@@ -7,17 +7,15 @@ import { Component, input, output } from '@angular/core';
   styleUrl: './list-card.scss',
 })
 export class ListCard {
+  image = input<string>('');
+  alt = input<string>();
+  title = input<string>('');
+  metaData = input<string>('');
 
-image=input<string>('')
-alt=input<string>()
-title=input<string>('')
-metaData=input<string>('')
+  videoUrl = input<string>('');
+  videoPreview = output<string>();
 
-videoUrl = input<string>(''); 
-videoPreview = output<string>();
-
-onPreview(): void {
-  this.videoPreview.emit(this.videoUrl());
-}
-
+  onPreview(): void {
+    this.videoPreview.emit(this.videoUrl());
+  }
 }

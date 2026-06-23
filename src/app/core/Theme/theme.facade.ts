@@ -1,17 +1,15 @@
-import { computed, inject, Injectable } from "@angular/core";
-import { Darkmode } from "./darkmode/darkmode";
+import { computed, inject, Injectable } from '@angular/core';
+import { Darkmode } from './darkmode/darkmode';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ThemeFacade {
+  private readonly dark = inject(Darkmode);
 
-    private readonly dark=inject(Darkmode) 
+  currentTheme = this.dark.currentTheme;
 
-    currentTheme = this.dark.currentTheme
+  isDark = computed(() => this.currentTheme() === 'dark');
 
-    isDark = computed(()=>this.currentTheme()=== 'dark')
-
-    toggleTheme(){
-        this.dark.toggleTheme()
-    }
-
+  toggleTheme() {
+    this.dark.toggleTheme();
+  }
 }

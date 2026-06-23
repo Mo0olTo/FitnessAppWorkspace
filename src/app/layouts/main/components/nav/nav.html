@@ -47,7 +47,7 @@
         <div class="hidden md:flex gap-8 cursor-pointer">
           <app-custom-button
             width="77px"
-            title="Login"
+            [title]="'navBar.login' | translate"
             customBg="--color-primary"
             color="white"
             icon="pi pi-arrow-up-right"
@@ -55,7 +55,7 @@
           ></app-custom-button>
           <app-custom-button
             width="85px"
-            title="Signup"
+            [title]="'navBar.register' | translate"
             border="2px solid red"
             colorBtn="--color-primary"
             icon="pi pi-arrow-up-right"

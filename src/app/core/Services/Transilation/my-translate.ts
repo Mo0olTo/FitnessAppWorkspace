@@ -28,6 +28,7 @@ export class MyTranslate {
   private applyLang(lang: Language) {
     this.currentLang.set(lang);
     this._translateService.use(lang);
+    this.updateDocumentLanguage();
   }
 
   updateDocumentLanguage() {

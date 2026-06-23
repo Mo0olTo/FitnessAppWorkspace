@@ -1,26 +1,37 @@
-import { Component, computed, effect, EnvironmentInjector, inject, OnInit, runInInjectionContext, signal } from '@angular/core';
-import { SectionTitle } from "../../shared/components/section-title/section-title";
-import { FilterTabs } from "../../shared/components/filter-tabs/filter-tabs";
+import {
+  Component,
+  computed,
+  effect,
+  EnvironmentInjector,
+  inject,
+  OnInit,
+  runInInjectionContext,
+  signal,
+} from '@angular/core';
+import { SectionTitle } from '../../shared/components/section-title/section-title';
+import { FilterTabs } from '../../shared/components/filter-tabs/filter-tabs';
 import { FilterTab } from '../../shared/components/filter-tabs/models/filter-tabs.model';
 import { MuscleFacade } from '../../store/muscles/muscles.facade';
 import { FILTER_TABS } from '../../shared/components/filter-tabs/filter-tabs-config/filter-tabs-config';
-import { ReuseableCarousel } from "../../shared/components/carousel/carousel";
+import { ReuseableCarousel } from '../../shared/components/carousel/carousel';
 import { Muscle } from '../../shared/models/muscle-group-res';
-import { FULL_BODY_CARDS, FULL_BODY_TAB } from '../../shared/components/filter-tabs/models/FULL-Body';
+import {
+  FULL_BODY_CARDS,
+  FULL_BODY_TAB,
+} from '../../shared/components/filter-tabs/models/FULL-Body';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-classes',
-  imports: [SectionTitle, FilterTabs, ReuseableCarousel],
+  imports: [SectionTitle, FilterTabs, ReuseableCarousel, TranslatePipe],
   templateUrl: './classes.html',
   styleUrl: './classes.scss',
 })
 export class Classes implements OnInit {
-
   private readonly facade = inject(MuscleFacade);
   private readonly injector = inject(EnvironmentInjector);
 
-
-  workoutTabs=FILTER_TABS.workoutCategories
+  workoutTabs = FILTER_TABS.workoutCategories;
 
   muscles = this.facade.allMuscles;
   loading = this.facade.isloading;
@@ -30,24 +41,20 @@ export class Classes implements OnInit {
   isFullBody = signal<boolean>(true);
 
   muscleGroup = computed<Muscle[]>(() => this.displayedGroup());
-  muscleTabs = computed<FilterTab[]>(() =>[
-    FULL_BODY_TAB, 
-    ...this.muscles().map(m => ({
+  muscleTabs = computed<FilterTab[]>(() => [
+    FULL_BODY_TAB,
+    ...this.muscles().map((m) => ({
       id: m._id,
-      label: m.name
-    }))
+      label: m.name,
+    })),
   ]);
-
-
 
   ngOnInit(): void {
     this.facade.loadAllMuscles();
-    this.addFullBody()
-
+    this.addFullBody();
   }
-    
 
-  addFullBody():void{
+  addFullBody(): void {
     runInInjectionContext(this.injector, () => {
       effect(() => {
         const apiData = this.facade.muscleGroup();

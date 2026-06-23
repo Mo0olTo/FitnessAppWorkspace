@@ -1,11 +1,11 @@
 import { Component, input, signal } from '@angular/core';
 import { SectionTitle } from '../../../../shared/components/section-title/section-title';
-import { ReuseableCarousel } from "../../../../shared/components/carousel/carousel";
-
+import { ReuseableCarousel } from '../../../../shared/components/carousel/carousel';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-why-us',
-  imports: [SectionTitle, ReuseableCarousel],
+  imports: [SectionTitle, TranslatePipe],
   templateUrl: './why-us.html',
   styleUrl: './why-us.scss',
 })
@@ -19,8 +19,7 @@ export class WhyUs {
 
   imageHeights = signal<number[]>([378, 344, 285, 346]);
 
-  btnCheck():void{
-    window.alert('Hello From Preview ')
-    
+  btnCheck(): void {
+    window.alert('Hello From Preview ');
   }
 }

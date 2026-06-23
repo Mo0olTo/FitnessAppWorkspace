@@ -7,7 +7,7 @@
       <app-section-title
         sectionTitleImage="/images/WOrkouts.webp"
         logo="/images/Vector.png"
-        sectionName="fitness class"
+        [sectionName]="'classes.fitnessClass' | translate"
         [centeredName]="true"
       ></app-section-title>
     </div>
@@ -16,9 +16,11 @@
       <h1
         class="text-center text-[24px] md:text-[34px] font-bold text-[var(--color-main-text)] uppercase tracking-wide"
       >
-        Transform Your Body with Our <br />
-        Dynamic
-        <span class="text-[var(--color-primary)] text-wrap">Upcoming Workouts</span>
+        {{ 'classes.title_Part1' | translate }}<br />
+        {{ 'classes.dynamic' | translate }}
+        <span class="text-[var(--color-primary)] text-wrap">
+          {{ 'classes.upcoming_Workouts' | translate }}
+        </span>
       </h1>
     </div>
 
