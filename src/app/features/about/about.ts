@@ -1,14 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ReusableCard } from '../../shared/components/reusable-card/reusable-card';
+import { SectionTitle } from "../../shared/components/section-title/section-title";
+
+interface Feature {
+  title: string;
+  description: string;
+}
 
 @Component({
   selector: 'app-about',
-  imports: [ReusableCard],
+  imports: [ReusableCard, SectionTitle],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
 export class About {
-  onCardClick() {
-    alert('Card clicked!');
-  }
+  features = signal<Feature[]>([
+    {
+      title: 'Personal Trainer',
+      description: 'Achieve your fitness goals with the guidance of our certified trainers.',
+    },
+    {
+      title: 'Cardio Programs',
+      description: 'From steady-state runs to interval sprints, our treadmill programs.',
+    },
+    {
+      title: 'Quality Equipment',
+      description: 'Our gym is equipped with the latest cardio & strength machines.',
+    },
+    {
+      title: 'Healthy Nutritions',
+      description: 'Fuel your fitness journey with customized meal plans for you.',
+    },
+  ]);
 }

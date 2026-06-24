@@ -37,31 +37,33 @@
     </nav>
 
     <div routerLink="/profile" class="flex items-center gap-8">
-      @if (_auth.isLogged()) {
-        <div
-          class="w-12 h-12 rounded-full bg-[var(--color-primary)] cursor-pointer flex items-center justify-center text-white shadow-lg"
-        >
-          <i class="pi pi pi-user"></i>
-        </div>
-      } @else {
-        <div class="hidden md:flex gap-8 cursor-pointer">
-          <app-custom-button
-            width="77px"
-            [title]="'navBar.login' | translate"
-            customBg="--color-primary"
-            color="white"
-            icon="pi pi-arrow-up-right"
-            (btnClick)="goToLogin()"
-          ></app-custom-button>
-          <app-custom-button
-            width="85px"
-            [title]="'navBar.register' | translate"
-            border="2px solid red"
-            colorBtn="--color-primary"
-            icon="pi pi-arrow-up-right"
-            (btnClick)="goToRegister()"
-          ></app-custom-button>
-        </div>
+      @if (_auth.authReady()) {
+        @if (_auth.isLogged()) {
+          <div
+            class="w-12 h-12 rounded-full bg-[var(--color-primary)] cursor-pointer flex items-center justify-center text-white shadow-lg"
+          >
+            <i class="pi pi-user"></i>
+          </div>
+        } @else {
+          <div class="hidden md:flex gap-8 cursor-pointer">
+            <app-custom-button
+              width="77px"
+              title="Login"
+              customBg="--color-primary"
+              color="white"
+              icon="pi pi-arrow-up-right"
+              (btnClick)="goToLogin()"
+            />
+            <app-custom-button
+              width="85px"
+              title="Signup"
+              border="2px solid red"
+              colorBtn="--color-primary"
+              icon="pi pi-arrow-up-right"
+              (btnClick)="goToRegister()"
+            />
+          </div>
+        }
       }
 
       <button
