@@ -1,0 +1,60 @@
+<section class="relative">
+    <div class="bg-[url('/images/meals/heroMeal.webp')]  bg-cover bg-center bg-no-repeat w-full min-h-[950px] lg:min-h-[871px]">
+
+        <div class="flex flex-col justify-center items-center ">
+            <!-- section title -->
+    
+           <div class="translate-y-8 z-[66]">
+            <app-section-title
+            sectionTitleImage="/images/meals/Healthy.webp"
+            logo="/images/Vector.png"
+            sectionName="healthy nutritions"
+            [centeredName]="true"
+             ></app-section-title>
+           </div>
+            
+       
+        <div class="bg-[#ffffff] opacity-[85%] dark:opacity-[97%] dark:bg-[#232424] blur-[2px]  w-full h-[640px] lg:h-[494px] z-10 relative">
+            
+        </div>
+        <!-- blured section -->
+        <div class="absolute z-20 felx flex-col justify-center items-center w-full">
+            <div class="mb-24">
+                        <!-- desc -->
+            <div class="">
+                <h1 class=" text-center text-[24px] md:text-[34px] font-bold text-[var(--color-main-text)] uppercase tracking-wide ">
+                    Fuel your fitness journey with  <br> customized 
+                    <span class="text-[var(--color-primary)] text-wrap">meal plans</span>  for you
+                </h1>
+            </div>
+            
+            </div>
+    
+
+        </div> 
+
+        
+        
+    
+    </div> 
+    
+    @defer (on viewport) {
+        
+
+        <!-- carousel cards -->
+        <div class="w-full  absolute -translate-y-39 lg:-translate-y-54 z-20 ">
+         <app-carousel
+         [carouselData]="carouselMeals()"
+         (cardAction)="onNavigation()"
+         ></app-carousel>
+
+     </div> 
+    }@placeholder {
+        <p>is loading...........</p>
+    }
+    </div> 
+    
+</section> 
+
+
+

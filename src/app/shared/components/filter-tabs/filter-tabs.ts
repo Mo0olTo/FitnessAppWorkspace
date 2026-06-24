@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { FilterTab,  } from './models/filter-tabs.model';
 
 @Component({
@@ -15,17 +15,15 @@ export class FilterTabs  {
 
   tabChanged = output<FilterTab >();
 
-  selectedTab = signal<string>('full-body');
-
+  selectedTabs = input<string>('full-body');
   allTabs = computed(() => [
     ...this.tabs()
   ]);
 
 
   onSelectTab(tab: FilterTab): void {
-    this.selectedTab.set(tab.id);
     this.tabChanged.emit(tab);
   }
-  
+
 
 }
