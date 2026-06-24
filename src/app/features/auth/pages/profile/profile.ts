@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { AuthFacade } from '../../auth-facade/auth-facade';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -19,18 +26,43 @@ import { ReusableInput } from '../../components/reusable-input/reusable-input';
 export class Profile implements OnInit {
   private readonly authFacade = inject(AuthFacade);
   private readonly fb = inject(FormBuilder);
+
   readonly goal = this.authFacade.goal;
   readonly activityLevel = this.authFacade.activityLevel;
   readonly weight = this.authFacade.weight;
   readonly visible = signal<boolean>(false);
   readonly isSubmitting = signal<boolean>(false);
+
   changePasswordForm!: FormGroup;
+
+  newPassword = signal('');
+  confirmPassword = signal('');
+
+  // Getters for Controls
+  get currentPasswordControl() {
+    return this.changePasswordForm.get('password');
+  }
+  get newPasswordControl() {
+    return this.changePasswordForm.get('newPassword');
+  }
+  get confirmPasswordControl() {
+    return this.changePasswordForm.get('confirmPassword');
+  }
+
+  passwordsMismatch = computed(() => {
+    const newPass = this.newPassword();
+    const confirmPass = this.confirmPassword();
+
+    if (!confirmPass) return false;
+    return newPass !== confirmPass;
+  });
 
   readonly profileMetrics = [
     { label: 'Your Goal', signal: this.goal },
     { label: 'Level', signal: this.activityLevel },
     { label: 'Weight', signal: this.weight },
   ];
+
   readonly settingItems = [
     {
       title: 'Change Password',
@@ -55,6 +87,7 @@ export class Profile implements OnInit {
     { title: 'Help', icon: 'pi pi-question-circle' },
     { title: 'Logout', icon: 'pi pi-sign-out', action: () => this.logout() },
   ];
+
   ngOnInit(): void {
     this.authFacade.loadUserAfterLogin();
     this.changePasswordForm = this.fb.group({
@@ -67,12 +100,12 @@ export class Profile implements OnInit {
           Validators.pattern(/^[A-Z](?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{5,}$/),
         ],
       ],
+      confirmPassword: ['', [Validators.required]],
     });
   }
 
   openChangePasswordModal() {
     this.visible.set(true);
-    console.log('Password trigger');
   }
   toggleLanguage() {
     console.log('Language trigger');
@@ -86,25 +119,21 @@ export class Profile implements OnInit {
 
   closeDialog() {
     this.visible.set(false);
-    this.changePasswordForm.reset;
-  }
-
-  get currentPasswordControl() {
-    return this.changePasswordForm.get('password');
-  }
-
-  get newPasswordControl() {
-    return this.changePasswordForm.get('newPassword');
+    this.changePasswordForm.reset();
+    this.newPassword.set('');
+    this.confirmPassword.set('');
   }
 
   onSubmit() {
-    if (this.changePasswordForm.invalid) {
+    if (this.changePasswordForm.invalid || this.passwordsMismatch()) {
       this.changePasswordForm.markAllAsTouched();
       return;
     }
 
     this.isSubmitting.set(true);
-    const payload: IChangePassReq = this.changePasswordForm.getRawValue();
+    const { confirmPassword, ...cleanPayload } = this.changePasswordForm.getRawValue();
+    const payload: IChangePassReq = cleanPayload;
+
     this.authFacade.changePassword(payload).subscribe({
       next: () => {
         this.closeDialog();
