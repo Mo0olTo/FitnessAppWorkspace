@@ -19,9 +19,9 @@
     </section>
   }
 
-@if (currentStep() === 1) {
-  <section class="flex justify-center items-center w-full flex-col gap-8">
-    <app-knob [max]="6" [min]="0" [value]="1" />
+  @if (currentStep() === 1) {
+    <section class="flex justify-center items-center w-full flex-col gap-8">
+      <app-knob [max]="6" [min]="0" [value]="1" />
 
       <div class="flex justify-center items-center w-full flex-col">
         <app-form-title
