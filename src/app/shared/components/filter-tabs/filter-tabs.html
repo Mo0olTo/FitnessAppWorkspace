@@ -5,7 +5,7 @@
         @for (tab of allTabs(); track tab.id) {
             <button 
             (click)="onSelectTab(tab)"
-            [class]="selectedTab() === tab.id ? 'bg-[var(--color-primary)] text-white' :'hover:bg-[#ff5100d0]'"
+            [class]="selectedTabs() === tab.id ? 'bg-[var(--color-primary)] text-white' :'hover:bg-[#ff5100d0]'"
             
              class="capitalize min-w-[77px] text-xl font-bold text-[var(--color-main-text)] h-[40px] px-3 py-1  rounded-2xl text-nowrap cursor-pointer ">
                 {{tab.label}}

@@ -30,6 +30,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class Workouts implements OnInit {
   private readonly facade = inject(MuscleFacade);
   private readonly injector = inject(EnvironmentInjector);
+  private readonly router = inject(Router);
 
   workoutTabs = FILTER_TABS.workoutCategories;
 
@@ -72,5 +73,9 @@ export class Workouts implements OnInit {
     }
     this.isFullBody.set(false);
     this.facade.loadMusclesbyId(tab.id);
+  }
+
+  onNavigation(): void {
+    this.router.navigate([`/classes`]);
   }
 }
