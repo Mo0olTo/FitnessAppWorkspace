@@ -1,3 +1,4 @@
+import { IChangePassReq } from './../../../../../projects/auth-lib/src/lib/interfaces/change-password/IChangePassReq';
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import {
   AuthLib,
@@ -9,7 +10,7 @@ import {
   ISignUpReq,
 } from 'auth-lib';
 import { CookieService } from 'ngx-cookie-service';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { finalize, map, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { LoadingService } from '../../../shared/services/loading/loadingService';
@@ -270,8 +271,73 @@ login(data: ISignInReq): void {
           });
         },
       });
-  } 
+  }
 
-  
+  // Change Password Function
+  changePassword(data: IChangePassReq): Observable<void> {
+    this.loading.loading.set(true);
+    this.error.set(null);
 
+    return this.auth.ChangePassword(data).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.loading.set(false)),
+      tap(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success!',
+            detail: 'Password changed successfully',
+            life: 3000,
+          });
+        },
+        (err) => {
+          this.error.set(err.error?.message || 'Failed to change password');
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error?.message || 'Failed to change password',
+            life: 4000,
+          });
+        },
+      ),
+
+      map((res) => undefined),
+    );
+  }
+
+  // LogOut Function
+  logout() {
+    this.loading.loading.set(true);
+    this.error.set(null);
+    this.auth
+      .LogOut()
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.loading.set(false)),
+      )
+      .subscribe({
+        next: () => {
+          this.cookieService.delete('FitnessToken', '/');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Logged Out',
+            detail: 'You have been logged out successfully',
+            life: 3000,
+          });
+          // Here we redirect to the login page after one second so he can see the lovely toast
+          setTimeout(() => {
+            this.router.navigate(['/auth/login']);
+          }, 1000);
+        },
+        error: (err) => {
+          this.error.set(err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Logout Failed',
+            detail: 'Something went wrong. Please try again.',
+            life: 3000,
+          });
+        },
+      });
+  }
 }
