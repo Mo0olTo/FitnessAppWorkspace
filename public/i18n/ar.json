@@ -8,6 +8,15 @@
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور"
   },
+  "register": {
+    "re": "تسجيل الدخول",
+    "step_indicator": "١/٦",
+    "heading": "أخبرنا عن نفسك!",
+    "subheading": "نحن بحاجة لمعرفة جنسك",
+    "gender_male": "ذكر",
+    "gender_female": "أنثى",
+    "button_next": "التالي"
+  },
   "home": {
     "hero": {
       "mindset_description": "عقلك هو ما يحتاج إلى الإقناع. تخطَّ حدودك، وحافظ على التزامك، وشاهد جسدك وهو يتحول إلى كتلة من القوة والصلابة.",
@@ -75,7 +84,7 @@
     "settingItems": {
       "tAPToChange": "انقر للتغير",
       "goal": "هدفك",
-      "level": "المستوي",
+      "activityLevel": "المستوي",
       "weight": "الوزن"
     },
     "changePassword": {

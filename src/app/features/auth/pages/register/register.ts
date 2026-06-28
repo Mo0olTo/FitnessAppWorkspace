@@ -9,10 +9,11 @@ import { RadioButton } from '../../components/radio-button/radio-button';
 import { Horizontal } from '../../components/horizontal/horizontal';
 import { ISignUpReq } from 'auth-lib';
 import { AuthFormState } from '../../../../shared/models/authFormState';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
-  imports: [AuthForm, Knob, FormTitle, FormButton, RadioButton, Horizontal],
+  imports: [AuthForm, Knob, FormTitle, FormButton, RadioButton, Horizontal,TranslatePipe],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
