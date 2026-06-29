@@ -18,6 +18,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ThemeFacade } from '../../../../core/Theme/theme.facade';
 import { MyTranslate } from '../../../../core/Services/Transilation/my-translate';
 import { OptionsModal } from '../../../../shared/components/options-modal/options-modal';
+import { AvatarModule } from 'primeng/avatar';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-profile',
@@ -31,7 +33,8 @@ import { OptionsModal } from '../../../../shared/components/options-modal/option
     ReusableInput,
     TranslatePipe,
     OptionsModal,
-    TranslatePipe,
+    AvatarModule,
+    DividerModule,
   ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
@@ -42,11 +45,27 @@ export class Profile implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly themefacede = inject(ThemeFacade);
   public readonly translateService = inject(MyTranslate);
+
+  readonly currentUser = computed(() => this.authFacade.user());
+  readonly firstName = computed(() => this.currentUser()?.user?.firstName ?? '');
+  readonly lastName = computed(() => this.currentUser()?.user?.lastName ?? '');
+  private readonly localPreview = signal<string | undefined>(undefined);
+  readonly avatarUrl = computed(() => this.currentUser()?.user?.photo ?? undefined);
+  readonly userInitials = computed(() => {
+    const user = this.currentUser()?.user;
+    if (!user) return '';
+    const first = user.firstName?.charAt(0) || '';
+    const last = user.lastName?.charAt(0) || '';
+    return (first + last).toUpperCase();
+  });
+
   isDark = signal(this.themefacede.isDark);
   currentType = signal<'goal' | 'activityLevel' | 'weight'>('goal');
+
   readonly goal = this.authFacade.goal;
   readonly activityLevel = this.authFacade.activityLevel;
   readonly weight = this.authFacade.weight;
+
   readonly visible = signal<boolean>(false);
   readonly logoutVisible = signal<boolean>(false);
   readonly isSubmitting = signal<boolean>(false);
@@ -57,7 +76,6 @@ export class Profile implements OnInit {
   modalOptions = signal<string[]>([]);
 
   toggle() {
-    // this.isDark.update((v) => !v);
     this.themefacede.toggleTheme();
   }
 
@@ -70,6 +88,7 @@ export class Profile implements OnInit {
     },
     { label: 'profile.settingItems.weight', signal: this.weight, type: 'weight' as const },
   ];
+
   readonly modalsData = {
     goal: {
       title: 'What Is Your Goal ?',
@@ -90,6 +109,7 @@ export class Profile implements OnInit {
       options: ['40kg', '60kg', '80kg', '100kg'],
     },
   };
+
   onOptionSelected(value: string, type: 'goal' | 'activityLevel' | 'weight') {
     const apiKeyMap: Record<'goal' | 'activityLevel' | 'weight', keyof IEditReq> = {
       goal: 'goal',
@@ -97,16 +117,16 @@ export class Profile implements OnInit {
       weight: 'weight',
     };
 
-    const currentUser = this.authFacade.user();
+    const userObj = this.currentUser();
 
     const payload: IEditReq = {
-      firstName: currentUser?.user.firstName ?? '',
-      lastName: currentUser?.user.lastName ?? '',
-      email: currentUser?.user.email ?? '',
-      gender: currentUser?.user.gender ?? '',
-      age: currentUser?.user.age ?? 0,
+      firstName: userObj?.user.firstName ?? '',
+      lastName: userObj?.user.lastName ?? '',
+      email: userObj?.user.email ?? '',
+      gender: userObj?.user.gender ?? '',
+      age: userObj?.user.age ?? 0,
       weight: this.authFacade.weight(),
-      height: currentUser?.user.height ?? 0,
+      height: userObj?.user.height ?? 0,
       activityLevel: this.authFacade.activityLevel(),
       goal: this.authFacade.goal(),
       [apiKeyMap[type]]: type === 'weight' ? +value.replace('kg', '') : value,
@@ -122,12 +142,14 @@ export class Profile implements OnInit {
       error: () => {},
     });
   }
+
   openModal(type: 'goal' | 'activityLevel' | 'weight') {
     this.currentType.set(type);
     this.modalTitle.set(this.modalsData[type].title);
     this.modalOptions.set(this.modalsData[type].options);
     this.isModalOpen.set(true);
   }
+
   settingItems = computed(() => [
     {
       title: 'Change Password',
@@ -152,8 +174,10 @@ export class Profile implements OnInit {
     { title: 'Help', icon: 'pi pi-question-circle' },
     { title: 'Logout', icon: 'pi pi-sign-out', action: () => this.openLogoutModel() },
   ]);
+
   ngOnInit(): void {
     this.authFacade.loadUserAfterLogin();
+
     this.changePasswordForm = this.fb.group({
       password: ['', [Validators.required]],
       newPassword: [
@@ -166,33 +190,59 @@ export class Profile implements OnInit {
       ],
     });
   }
+  //  Capture the image from the input, view the preview immediately, and scroll to upload
+  onAvatarChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      // عرض الصورة فوراً في الواجهة كـ Preview سريع
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.localPreview.set(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+
+      // إرسال الملف الحقيقي للـ Facade للرفع
+      this.updatePhoto(file);
+    }
+  }
+
+  updatePhoto(file: File) {
+    this.authFacade.updatePhoto(file);
+  }
 
   openChangePasswordModal() {
     this.visible.set(true);
     console.log('Password trigger');
   }
+
   toggleLanguage() {
     const current = this.translateService.currentLang();
     const nextLang = current === 'en' ? 'ar' : 'en';
     this.translateService.switchLang(nextLang);
   }
+
   toggleTheme() {
     this.toggle();
   }
+
   openLogoutModel() {
     this.logoutVisible.set(true);
   }
+
   onLogout() {
     console.log('Logout trigger');
     this.authFacade.logout();
   }
+
   closeLogoutDialog() {
     this.logoutVisible.set(false);
   }
 
   closeDialog() {
     this.visible.set(false);
-    this.changePasswordForm.reset;
+    this.changePasswordForm.reset(); // ✅ تم التصحيح: استدعاء الدالة بالأقواس
   }
 
   get currentPasswordControl() {
