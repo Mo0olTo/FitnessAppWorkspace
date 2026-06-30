@@ -33,6 +33,7 @@ export class AuthFacade {
   firstName = signal<string>('');
   goal = signal<string>('');
   activityLevel = signal<string>('');
+  userPhoto = signal<string>('');
   weight = signal<number>(0);
 
   // forget-pass step management
@@ -163,6 +164,7 @@ login(data: ISignInReq): void {
           this.goal.set(res.user.goal);
           this.activityLevel.set(res.user.activityLevel);
           this.weight.set(res.user.weight); 
+          this.userPhoto.set(res.user.photo)
           if (redirect) {
             this.router.navigate(['/main/home']);
           }

@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-between bg-[var(--color-section-bg)]">
+<div class="flex flex-col justify-between bg-[var(--color-section-bg)] relative">
   
   <app-nav></app-nav>
   <div class="min-h-[100vh]">
@@ -7,5 +7,27 @@
   <div class="w-full">
     <app-services-bar></app-services-bar>
   </div>
-    <app-footer></app-footer>
+  <app-footer></app-footer> 
+  
+  <div class="fixed right-4 md:right-9 bottom-2 -translate-y-5 z-[120] flex flex-col justify-center items-center gap-3 ">
+    <div class="flex flex-col justify-center items-center" (click)="toggleAssistant()">
+      <div class="">
+        <img src="/ai-bot.webp" class="w-[100px] h-[78px]" alt="AI Assistant" />
+      </div>
+      
+      <div class="bg-[var(--color-primary)] px-3 py-1 w-full text-center ai-font text-white rounded-2xl ">
+        <button
+        type="button"
+        class="ai-bot-trigger bg-transparent border-0 p-0 cursor-pointer"
+        aria-label="Open AI Assistant"
+        
+        data-testid="ai-trigger"
+      >  
+      {{!isOpen() ? message.open : message.close }}
+      </button>
+      </div>
+     </div>
+      <app-ai-assistant></app-ai-assistant>
+    </div>
+
 </div>
