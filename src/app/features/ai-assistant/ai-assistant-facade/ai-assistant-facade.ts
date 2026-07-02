@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { GeminiService } from '../../../shared/services/geminiService/gemini-service';
 import { ChatMessage } from '../../../shared/models/chat-message';
 import { AuthFacade } from '../../auth/auth-facade/auth-facade';
+import { AiContextService } from '../services/ai-context-service';
 
 
 
@@ -11,6 +12,7 @@ import { AuthFacade } from '../../auth/auth-facade/auth-facade';
 export class AiAssistantFacade {
   private readonly gemini = inject(GeminiService);
   private readonly authFacade = inject(AuthFacade);
+  private readonly aiContextService = inject(AiContextService);
 
   messages = signal<ChatMessage[]>([]);
   loading = signal(false);
@@ -18,6 +20,12 @@ export class AiAssistantFacade {
   open = signal(false);
   welcomeMessageShown = signal(false);
   firstName=this.authFacade.firstName
+
+  private websiteContext: any; 
+
+  constructor(){
+    this.loadContext()
+  }
 
   toggle(): void {
     this.open.update(open => {
@@ -75,7 +83,21 @@ export class AiAssistantFacade {
     this.error.set(null);
 
     try {
-      const reply = await this.gemini.chat(trimmed);
+      const prompt = `
+          You are the official AI assistant of ${this.websiteContext.gym.name}.
+
+          Use ONLY the information below.
+
+          ${JSON.stringify(this.websiteContext)}
+
+          User Question:
+          ${trimmed}
+
+          Rules:
+          - Never invent information.
+          - If the answer is not in the website information, politely say that it is unavailable.
+          `;
+      const reply = await this.gemini.chat(prompt);
       const replyText = (reply ?? '').toString().trim();
       await this.typeMessage(pendingAssistant.id, replyText);
       this.replaceMessage(pendingAssistant.id, {
@@ -95,6 +117,14 @@ export class AiAssistantFacade {
       this.loading.set(false);
     }
   }  
+
+   async loadContext() {
+    try {
+      this.websiteContext = await this.aiContextService.load();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   
   private async typeMessage(id: string, text: string): Promise<void> {

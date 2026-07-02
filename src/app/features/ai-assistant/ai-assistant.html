@@ -41,7 +41,7 @@
         >
           @if (msg.pending) {
             <span class="ai-chat__typing" aria-label="Assistant is typing">
-              <span></span><span></span><span></span>
+              <span>.</span><span>. </span><span> .</span>
             </span>
           } @else {
             <span class="ai-chat__text">{{ msg.text }}</span>
@@ -69,8 +69,8 @@
         <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke-linejoin="round" />
       </svg>
     </span>
-    <input
-      class="ai-chat__input"
+    <textarea
+      class="ai-chat__input "
       type="text"
       placeholder="Ask Me Any Things"
       aria-label="Message"
@@ -79,7 +79,7 @@
       (input)="onDraftInput($event)"
       (keydown.enter)="onEnter($event)"
       data-testid="ai-input"
-    />
+    ></textarea>
     <button
       class="ai-chat__send absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 bg-[var(--color-primary)] rounded-full flex justify-end w-[35px] h-[35px] cursor-pointer "
       type="button"

@@ -12,15 +12,15 @@ export class AiAssistant {
   private readonly facade = inject(AiAssistantFacade);
   private readonly authFacade = inject(AuthFacade);
 
-  protected readonly draft = signal('');
-  protected readonly messages = this.facade.messages;
-  protected readonly loading = this.facade.loading;
-  protected readonly error = this.facade.error;
-  protected readonly open = this.facade.open; 
-  protected readonly userPhoto = this.authFacade.userPhoto; 
+   readonly draft = signal('');
+   readonly messages = this.facade.messages;
+   readonly loading = this.facade.loading;
+   readonly error = this.facade.error;
+   readonly open = this.facade.open; 
+   readonly userPhoto = this.authFacade.userPhoto; 
 
 
-  protected readonly canSend = computed(
+   readonly canSend = computed(
     () => !this.facade.loading() && this.draft().trim().length > 0,
   );
 
@@ -35,17 +35,23 @@ export class AiAssistant {
     });
   }
 
-  protected onDraftInput(event: Event): void {
-    const value = (event.target as HTMLInputElement | null)?.value ?? '';
-    this.draft.set(value);
+  onDraftInput(event: Event): void {
+    const element = event.target as HTMLInputElement | HTMLTextAreaElement;
+  
+    this.draft.set(element.value);
+  
+    if (element instanceof HTMLTextAreaElement) {
+      element.style.height = 'auto';
+      element.style.height = `${element.scrollHeight}px`;
+    }
   }
 
-  protected onEnter(event: Event): void {
+   onEnter(event: Event): void {
     event.preventDefault();
     void this.send();
   }
 
-  protected async send(): Promise<void> {
+   async send(): Promise<void> {
     if (this.loading()) return;
     const text = this.draft().trim();
     if (!text) return;
@@ -64,12 +70,14 @@ export class AiAssistant {
     anchor?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }
 
-  protected toggle(): void {
+   toggle(): void {
     this.facade.toggle();
   }
 
-  protected close(): void {
+   close(): void {
     this.facade.close();
-  }
+  } 
+
+
 
 } 

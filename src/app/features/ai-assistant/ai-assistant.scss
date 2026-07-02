@@ -133,6 +133,19 @@
       width: 18px;
       height: 18px;
     }
+  } 
+
+  .ai-chat__input-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  
+  
+  .send-btn {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
   }
 
   .ai-chat__input {
@@ -142,6 +155,11 @@
     border: 1px solid rgba(255, 255, 255, 0.35);
     background: rgba(0, 0, 0, 0.35);
     color: #fff;
+    flex: 1;   
+    max-height: 58px;
+    resize: none; 
+    display: flex;
+    align-items: center;
 
     &::placeholder {
       color: rgba(255, 255, 255, 0.45);
