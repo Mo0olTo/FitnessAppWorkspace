@@ -1,24 +1,47 @@
 import { TestBed } from '@angular/core/testing';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 import { AiAssistantFacade } from './ai-assistant-facade';
 import { GeminiService } from '../../../shared/services/geminiService/gemini-service';
+import { AuthFacade } from '../../auth/auth-facade/auth-facade';
+import { AiContextService } from '../services/ai-context-service';
+
+class AuthFacadeStub {
+  firstName = signal<string>('');
+}
+
+class AiContextServiceStub {
+  // Return a minimal context so the facade's prompt template can build a string.
+  load = jasmine.createSpy('load').and.returnValue(
+    Promise.resolve({ gym: { name: 'Test Gym' } }),
+  );
+}
 
 describe('AiAssistantFacade', () => {
   let facade: AiAssistantFacade;
   let geminiMock: jasmine.SpyObj<GeminiService>;
+  let authFacadeStub: AuthFacadeStub;
+  let aiContextServiceStub: AiContextServiceStub;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     geminiMock = jasmine.createSpyObj('GeminiService', ['chat']);
+    authFacadeStub = new AuthFacadeStub();
+    aiContextServiceStub = new AiContextServiceStub();
 
     TestBed.configureTestingModule({
       providers: [
         provideZonelessChangeDetection(),
         AiAssistantFacade,
         { provide: GeminiService, useValue: geminiMock },
+        { provide: AuthFacade, useValue: authFacadeStub },
+        { provide: AiContextService, useValue: aiContextServiceStub },
       ],
     });
 
     facade = TestBed.inject(AiAssistantFacade);
+
+    // The facade's constructor kicks off an async loadContext() call. Flush
+    // microtasks so websiteContext is populated before any test exercises it.
+    await Promise.resolve();
   });
 
   it('should be created', () => {
@@ -43,7 +66,11 @@ describe('AiAssistantFacade', () => {
 
     await facade.sendMessage('Hi');
 
-    expect(geminiMock.chat).toHaveBeenCalledOnceWith('Hi');
+    // The facade wraps the user text in a prompt before calling the API,
+    // so we verify the call happened exactly once and included the user's text.
+    expect(geminiMock.chat).toHaveBeenCalledTimes(1);
+    const sentPrompt = geminiMock.chat.calls.mostRecent().args[0] as string;
+    expect(sentPrompt).toContain('Hi');
 
     const msgs = facade.messages();
     expect(msgs.length).toBe(2);

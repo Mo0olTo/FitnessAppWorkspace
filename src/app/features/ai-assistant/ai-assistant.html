@@ -5,10 +5,16 @@
   >
     <header class="ai-chat__header flex flex-col gap-y-5">
       <h2 class="ai-chat__title">Smart Coach</h2>
-      <button type="button" class="ai-chat__menu " aria-label="Open menu">
+      <button
+        type="button"
+        class="ai-chat__menu "
+        aria-label="Close chat"
+        (click)="close()"
+        data-testid="ai-close"
+      >
         <span></span><span></span><span></span>
       </button>
- 
+
     </header>
 
   @if (error()) {

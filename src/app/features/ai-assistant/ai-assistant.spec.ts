@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideZonelessChangeDetection } from '@angular/core';
-import { signal } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 
 import { AiAssistant } from './ai-assistant';
-import { AiAssistantFacade, ChatMessage } from './ai-assistant-facade/ai-assistant-facade';
+import { AiAssistantFacade } from './ai-assistant-facade/ai-assistant-facade';
+import { AuthFacade } from '../auth/auth-facade/auth-facade';
+import { ChatMessage } from '../../shared/models/chat-message';
 
 class AiAssistantFacadeStub {
   messages = signal<ChatMessage[]>([]);
@@ -26,19 +27,26 @@ class AiAssistantFacadeStub {
   clear = jasmine.createSpy('clear');
 }
 
+class AuthFacadeStub {
+  userPhoto = signal<string>('');
+}
+
 describe('AiAssistant', () => {
   let component: AiAssistant;
   let fixture: ComponentFixture<AiAssistant>;
   let facadeStub: AiAssistantFacadeStub;
+  let authFacadeStub: AuthFacadeStub;
 
   beforeEach(async () => {
     facadeStub = new AiAssistantFacadeStub();
+    authFacadeStub = new AuthFacadeStub();
 
     await TestBed.configureTestingModule({
       imports: [AiAssistant],
       providers: [
         provideZonelessChangeDetection(),
         { provide: AiAssistantFacade, useValue: facadeStub },
+        { provide: AuthFacade, useValue: authFacadeStub },
       ],
     }).compileComponents();
 
