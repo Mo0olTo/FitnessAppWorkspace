@@ -1,0 +1,363 @@
+{
+    "gym": {
+      "name": " Fitness Platform",
+      "description": "We believe fitness is more than just a workout—it's a lifestyle. With top-of-the-line facilities, certified trainers, and a supportive community, we're here to inspire and guide you every step of the way.",
+      "mission": "Your body can stand almost anything It's your mind that needs convincing. Push past your limits, stay committed, and watch as your body transforms into a powerhouse of strength and resilience."
+    },
+  
+    "location": {
+      "address": "New Cairo , 5th Settlement",
+      "city": "Cairo",
+      "country": "Egypt",
+      "googleMaps": ""
+    },
+  
+    "workingHours": {
+      "monday": "08:00 AM - 10:00 PM",
+      "tuesday": "08:00 AM - 10:00 PM",
+      "wednesday": "08:00 AM - 10:00 PM",
+      "thursday": "08:00 AM - 10:00 PM",
+      "friday": "08:00 AM - 10:00 PM",
+      "saturday": "08:00 AM - 09:00 PM",
+      "sunday": "08:00 AM - 09:00 PM"
+    },
+  
+    "contact": {
+      "phone": "+91 123 456 789",
+      "email": "fitness@elevate.com",
+      "whatsapp": "",
+      "facebook": "",
+      "instagram": "",
+      "website": ""
+    },
+  
+    "workouts": [
+       
+              { "name": "Bodyweight Crunch", "targetMuscles": ["Abdominals"], "description": "A classic spinal flexion move that isolates the rectus abdominis by curling the shoulders toward the hips.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Stability Ball Dead Bug", "targetMuscles": ["Abdominals"], "description": "A core stability move that trains anti-extension by keeping your lower back pressed to the floor while moving opposite arms and legs.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Bodyweight Bird Dog", "targetMuscles": ["Abdominals"], "description": "A quadruped anti-rotation exercise that builds core control and balance by extending opposite arm and leg together.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Plank Hold", "targetMuscles": ["Abdominals"], "description": "An isometric anti-extension exercise that builds core endurance by holding a straight line from head to heels.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Stability Ball Feet Elevated Crunch", "targetMuscles": ["Abdominals"], "description": "A supine crunch variation with feet elevated on a stability ball to increase core engagement through spinal flexion.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Bodyweight Glute Bridge", "targetMuscles": ["Glutes"], "description": "A foundational hip extension exercise performed lying on your back, driving the hips upward to strengthen the glutes.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Bodyweight Squat", "targetMuscles": ["Glutes"], "description": "A fundamental lower-body movement that builds glute and leg strength through a controlled squat pattern.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Standing Glute Kickback", "targetMuscles": ["Glutes"], "description": "A single-leg hip extension exercise that isolates the glutes by kicking one leg back against resistance.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Bodyweight Hip Thrust", "targetMuscles": ["Glutes"], "description": "A shoulder-supported hip extension move that maximizes glute activation through a full range of motion.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Side-Lying Clamshell", "targetMuscles": ["Glutes"], "description": "A side-lying hip abduction exercise that targets the gluteus medius for hip stability.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Parallette Push Up", "targetMuscles": ["Chest"], "description": "A push-up variation using parallette bars for extended range of motion, building pressing strength in the chest.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Knee Push Up", "targetMuscles": ["Chest"], "description": "A beginner-friendly push-up variation performed from the knees to build foundational chest pressing strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Incline Push Up", "targetMuscles": ["Chest"], "description": "A push-up performed with hands elevated on a bench or step to reduce load while training the chest.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Dumbbell Chest Press", "targetMuscles": ["Chest"], "description": "A supine pressing movement using dumbbells that builds horizontal push strength in the chest.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Standing Cable Chest Fly", "targetMuscles": ["Chest"], "description": "An isolation exercise that stretches and contracts the chest through a wide arcing arm motion.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Dumbbell Shoulder Press", "targetMuscles": ["Shoulders"], "description": "An overhead pressing movement that builds strength across all three deltoid heads.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Dumbbell Lateral Raise", "targetMuscles": ["Shoulders"], "description": "An isolation exercise raising the arms out to the sides to target the medial deltoids.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Front Raise", "targetMuscles": ["Shoulders"], "description": "An isolation movement raising a weight forward to target the anterior deltoids.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Bodyweight Pike Push Up", "targetMuscles": ["Shoulders"], "description": "A bent-over push-up variation that shifts load onto the shoulders for vertical pressing strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Band Face Pull", "targetMuscles": ["Shoulders"], "description": "A pulling exercise using a resistance band that strengthens the rear deltoids and improves posture.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Dumbbell Bent-Over Row", "targetMuscles": ["Back"], "description": "A hinge-position rowing movement that builds pulling strength across the mid and upper back.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Assisted Pull Up", "targetMuscles": ["Back"], "description": "A vertical pulling exercise using assistance to build lat and upper back strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Seated Cable Row", "targetMuscles": ["Back"], "description": "A machine-based horizontal pulling exercise that develops thickness in the mid-back.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Superman Hold", "targetMuscles": ["Back"], "description": "A prone extension exercise that strengthens the lower back through isometric holds.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Resistance Band Lat Pulldown", "targetMuscles": ["Back"], "description": "A band-based pulldown movement that trains the lats through a vertical pulling pattern.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Standing Adductor Squeeze", "targetMuscles": ["Adductors"], "description": "An isometric exercise squeezing the inner thighs together to build adductor strength and stability.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Side Lunge", "targetMuscles": ["Adductors"], "description": "A lateral lunging movement that stretches and strengthens the inner thigh muscles.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Seated Adductor Machine Press", "targetMuscles": ["Adductors"], "description": "A machine-based isolation exercise pressing the legs inward to target the adductors.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Sumo Squat", "targetMuscles": ["Adductors"], "description": "A wide-stance squat variation that emphasizes the inner thigh muscles through hip abduction and extension.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Lying Inner Thigh Lift", "targetMuscles": ["Adductors"], "description": "A side-lying isolation exercise that lifts the bottom leg to target the adductors.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Dumbbell Bicep Curl", "targetMuscles": ["Biceps"], "description": "A classic elbow flexion exercise using dumbbells to isolate and build the biceps.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Hammer Curl", "targetMuscles": ["Biceps"], "description": "A neutral-grip curl variation that targets the biceps and brachialis together.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Resistance Band Curl", "targetMuscles": ["Biceps"], "description": "A band-based curling movement that provides constant tension through the biceps.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Concentration Curl", "targetMuscles": ["Biceps"], "description": "A seated isolation curl that focuses tension directly on the biceps with minimal momentum.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Chin Up", "targetMuscles": ["Biceps"], "description": "An underhand-grip pulling exercise that heavily recruits the biceps alongside the back.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Bodyweight Squat", "targetMuscles": ["Quadriceps"], "description": "A fundamental lower-body movement that builds quad strength through knee and hip flexion.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Walking Lunge", "targetMuscles": ["Quadriceps"], "description": "A dynamic lunge pattern that builds unilateral quad strength while moving forward.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Step Up", "targetMuscles": ["Quadriceps"], "description": "A single-leg exercise stepping onto a raised platform to build quad and glute strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Leg Extension", "targetMuscles": ["Quadriceps"], "description": "A machine-based isolation exercise extending the knee to directly target the quadriceps.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Wall Sit", "targetMuscles": ["Quadriceps"], "description": "An isometric hold against a wall that builds quad endurance and strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Romanian Deadlift", "targetMuscles": ["Hamstrings"], "description": "A hip-hinge movement that stretches and strengthens the hamstrings through controlled lowering.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Glute Ham Raise", "targetMuscles": ["Hamstrings"], "description": "A bodyweight exercise that flexes the knee against resistance to isolate the hamstrings.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Stability Ball Hamstring Curl", "targetMuscles": ["Hamstrings"], "description": "A supine exercise curling a stability ball toward the glutes to target the hamstrings.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Single-Leg Deadlift", "targetMuscles": ["Hamstrings"], "description": "A balance-focused hip hinge performed on one leg to build hamstring strength and stability.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Lying Leg Curl", "targetMuscles": ["Hamstrings"], "description": "A machine-based isolation exercise curling the legs to directly target the hamstrings.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Standing Hip Abduction", "targetMuscles": ["Abductors"], "description": "A standing exercise lifting the leg out to the side to target the outer hip muscles.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Side-Lying Leg Raise", "targetMuscles": ["Abductors"], "description": "A side-lying isolation move lifting the top leg to strengthen the hip abductors.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Banded Lateral Walk", "targetMuscles": ["Abductors"], "description": "A resistance band exercise stepping sideways to activate the hip abductors and glute medius.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Seated Hip Abduction Machine", "targetMuscles": ["Abductors"], "description": "A machine-based isolation exercise pressing the legs outward to target the abductors.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Fire Hydrant", "targetMuscles": ["Abductors"], "description": "A quadruped exercise lifting the leg out to the side to strengthen the hip abductors.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Dumbbell Shrug", "targetMuscles": ["Trapezius"], "description": "A simple shoulder elevation exercise using dumbbells to build the upper trapezius.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Barbell Shrug", "targetMuscles": ["Trapezius"], "description": "A loaded shrugging movement that builds strength and size in the traps.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Face Pull", "targetMuscles": ["Trapezius"], "description": "A pulling exercise targeting the mid and lower traps along with the rear delts.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Prone Y Raise", "targetMuscles": ["Trapezius"], "description": "A prone exercise raising the arms into a Y shape to target the lower trapezius.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Upright Row", "targetMuscles": ["Trapezius"], "description": "A vertical pulling movement raising a weight toward the chin to build the traps and shoulders.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Tricep Dip", "targetMuscles": ["Triceps"], "description": "A bodyweight pressing exercise using a bench or bars to build tricep strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Overhead Tricep Extension", "targetMuscles": ["Triceps"], "description": "An isolation exercise extending a weight overhead to target the long head of the triceps.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Tricep Kickback", "targetMuscles": ["Triceps"], "description": "A bent-over isolation exercise extending the arm back to target the triceps.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Close-Grip Push Up", "targetMuscles": ["Triceps"], "description": "A push-up variation with hands close together to emphasize tricep engagement.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Cable Tricep Pushdown", "targetMuscles": ["Triceps"], "description": "A machine-based isolation exercise pushing a cable downward to target the triceps.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Wrist Curl", "targetMuscles": ["Forearms"], "description": "A seated isolation exercise curling the wrists to build forearm flexor strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Reverse Wrist Curl", "targetMuscles": ["Forearms"], "description": "A seated isolation exercise extending the wrists to build forearm extensor strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Farmer's Carry", "targetMuscles": ["Forearms"], "description": "A loaded carrying exercise that builds grip and forearm endurance while walking.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Dead Hang", "targetMuscles": ["Forearms"], "description": "A simple hanging exercise from a bar that builds grip strength and forearm endurance.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Plate Pinch Hold", "targetMuscles": ["Forearms"], "description": "An isometric grip exercise pinching a weight plate between the fingers and thumb.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Standing Calf Raise", "targetMuscles": ["Calves"], "description": "A simple exercise raising onto the toes to build strength in the calf muscles.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Seated Calf Raise", "targetMuscles": ["Calves"], "description": "A seated isolation exercise targeting the soleus muscle of the lower calf.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Single-Leg Calf Raise", "targetMuscles": ["Calves"], "description": "A unilateral calf raise that builds strength and balance in one leg at a time.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Jump Rope", "targetMuscles": ["Calves"], "description": "A rhythmic cardio exercise that builds calf endurance and coordination through repeated hops.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Donkey Calf Raise", "targetMuscles": ["Calves"], "description": "A bent-over calf raise variation that increases the stretch and contraction of the calves.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Tibialis Raise", "targetMuscles": ["Shins"], "description": "An exercise lifting the toes toward the shin to strengthen the tibialis anterior.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Heel Walk", "targetMuscles": ["Shins"], "description": "A walking exercise on the heels with toes lifted to build shin strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Resistance Band Dorsiflexion", "targetMuscles": ["Shins"], "description": "A band-based exercise pulling the foot upward to target the muscles along the shin.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Seated Toe Raise", "targetMuscles": ["Shins"], "description": "A seated isolation exercise raising the toes to strengthen the tibialis anterior.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Wall Tibialis Raise", "targetMuscles": ["Shins"], "description": "A leaning exercise against a wall that isolates the shin muscles through repeated toe raises.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+          
+              { "name": "Hanging Knee Raise", "targetMuscles": ["Hip Flexors"], "description": "A hanging exercise raising the knees toward the chest to build hip flexor strength.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Standing Knee Drive", "targetMuscles": ["Hip Flexors"], "description": "A standing exercise driving the knee upward to strengthen the hip flexors.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Mountain Climber", "targetMuscles": ["Hip Flexors"], "description": "A dynamic plank-based exercise driving the knees forward to build hip flexor endurance.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Seated Leg Raise", "targetMuscles": ["Hip Flexors"], "description": "A seated isolation exercise lifting the legs to target the hip flexor muscles.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" },
+              { "name": "Lying Flutter Kick", "targetMuscles": ["Hip Flexors"], "description": "A supine exercise alternating small leg kicks to build hip flexor endurance.", "difficulty": "Beginner", "estimatedDuration": "10-15 min" }
+
+    ],
+  
+    "mealPlans": [
+
+              {
+                "name": "Algerian Kefta (Meatballs)",
+                "category": "Algerian",
+                "description": "Spiced ground beef or lamb meatballs seasoned with cumin, coriander, and parsley, often simmered in a tomato sauce.",
+                "ingredients": ["Ground beef", "Ground lamb", "Onion", "Garlic", "Cumin", "Coriander", "Parsley", "Tomato sauce", "Eggs", "Breadcrumbs"],
+                "calories": 320,
+                "protein": 24,
+                "carbs": 10,
+                "fat": 20
+              },
+              {
+                "name": "Arepa Pabellón",
+                "category": "Venezuela",
+                "description": "A cornmeal arepa stuffed with shredded beef, black beans, fried plantains, and grated cheese, inspired by the classic pabellón criollo.",
+                "ingredients": ["Cornmeal", "Shredded beef", "Black beans", "Plantain", "White cheese", "Onion", "Garlic", "Cumin"],
+                "calories": 480,
+                "protein": 22,
+                "carbs": 58,
+                "fat": 16
+              },
+              {
+                "name": "Arepa pelua",
+                "category": "Venezuela",
+                "description": "A Venezuelan arepa filled with shredded beef and yellow cheese, named 'pelua' for its hairy appearance from melted cheese strands.",
+                "ingredients": ["Cornmeal", "Shredded beef", "Yellow cheese", "Onion", "Tomato", "Garlic", "Bell pepper"],
+                "calories": 450,
+                "protein": 20,
+                "carbs": 52,
+                "fat": 17
+              },
+              {
+                "name": "Asado",
+                "category": "Argentina",
+                "description": "An Argentine barbecue of grilled beef cuts, sausages, and offal, slow-cooked over an open flame or wood fire.",
+                "ingredients": ["Beef short ribs", "Chorizo", "Morcilla", "Salt", "Chimichurri sauce"],
+                "calories": 550,
+                "protein": 38,
+                "carbs": 2,
+                "fat": 42
+              },
+              {
+                "name": "Aussie Burgers",
+                "category": "Australian",
+                "description": "A hearty Australian-style beef burger loaded with a fried egg, bacon, beetroot, and pineapple.",
+                "ingredients": ["Ground beef patty", "Burger bun", "Egg", "Bacon", "Beetroot", "Pineapple", "Lettuce", "Cheese", "Tomato sauce"],
+                "calories": 620,
+                "protein": 32,
+                "carbs": 45,
+                "fat": 34
+              },
+              {
+                "name": "Barbados Pepperpot",
+                "category": "Barbados",
+                "description": "A rich Caribbean stew made with mixed meats slow-cooked in cassareep, giving it a distinctive dark, sweet-savory flavor.",
+                "ingredients": ["Beef", "Oxtail", "Pork", "Cassareep", "Cinnamon", "Cloves", "Brown sugar", "Onion", "Garlic", "Scotch bonnet pepper"],
+                "calories": 410,
+                "protein": 30,
+                "carbs": 12,
+                "fat": 26
+              },
+              {
+                "name": "Beef and Broccoli Stir-Fry",
+                "category": "Chinese",
+                "description": "A quick Chinese stir-fry of tender beef slices and crisp broccoli in a savory garlic-soy sauce.",
+                "ingredients": ["Beef sirloin", "Broccoli", "Soy sauce", "Garlic", "Ginger", "Cornstarch", "Sesame oil", "Oyster sauce"],
+                "calories": 380,
+                "protein": 28,
+                "carbs": 18,
+                "fat": 22
+              },
+              {
+                "name": "Beef and Mustard Pie",
+                "category": "British",
+                "description": "A classic British pie filled with tender chunks of beef in a rich mustard-infused gravy, topped with flaky pastry.",
+                "ingredients": ["Beef chuck", "Puff pastry", "Dijon mustard", "Onion", "Beef stock", "Carrot", "Flour", "Butter"],
+                "calories": 540,
+                "protein": 26,
+                "carbs": 38,
+                "fat": 32
+              },
+              {
+                "name": "Beef and Oyster pie",
+                "category": "British",
+                "description": "A traditional British pie combining braised beef with oysters, encased in a golden pastry crust.",
+                "ingredients": ["Beef chuck", "Oysters", "Puff pastry", "Onion", "Beef stock", "Butter", "Flour", "Worcestershire sauce"],
+                "calories": 520,
+                "protein": 27,
+                "carbs": 36,
+                "fat": 29
+              },
+              {
+                "name": "Beef Asado",
+                "category": "Filipino",
+                "description": "A Filipino braised beef dish cooked in a sweet and savory tomato-based sauce with soy sauce and citrus.",
+                "ingredients": ["Beef chunks", "Soy sauce", "Tomato sauce", "Calamansi", "Garlic", "Onion", "Bay leaf", "Brown sugar"],
+                "calories": 400,
+                "protein": 29,
+                "carbs": 16,
+                "fat": 24
+              },
+              {
+                "name": "Beef Banh Mi Bowls with Sriracha Mayo, Carrot & Pickled Cucumber",
+                "category": "Vietnamese",
+                "description": "A deconstructed Vietnamese banh mi in bowl form, featuring seasoned beef, pickled vegetables, and spicy sriracha mayo over rice.",
+                "ingredients": ["Beef strips", "Rice", "Carrot", "Cucumber", "Rice vinegar", "Sriracha", "Mayonnaise", "Cilantro", "Fish sauce"],
+                "calories": 460,
+                "protein": 26,
+                "carbs": 48,
+                "fat": 18
+              },
+              {
+                "name": "Beef Bourguignon",
+                "category": "France",
+                "description": "A classic French braise of beef slow-cooked in red wine with mushrooms, pearl onions, and bacon lardons.",
+                "ingredients": ["Beef chuck", "Red wine", "Bacon lardons", "Pearl onions", "Mushrooms", "Carrot", "Garlic", "Thyme", "Flour"],
+                "calories": 480,
+                "protein": 32,
+                "carbs": 14,
+                "fat": 30
+              },
+              {
+                "name": "Beef Brisket Pot Roast",
+                "category": "United States",
+                "description": "A comforting American pot roast made by slow-braising beef brisket with root vegetables until fork-tender.",
+                "ingredients": ["Beef brisket", "Carrot", "Potato", "Onion", "Celery", "Beef stock", "Tomato paste", "Garlic"],
+                "calories": 510,
+                "protein": 34,
+                "carbs": 22,
+                "fat": 30
+              },
+              {
+                "name": "Beef Caldereta",
+                "category": "Filipino",
+                "description": "A hearty Filipino beef stew simmered in tomato sauce with liver spread, potatoes, and bell peppers.",
+                "ingredients": ["Beef chunks", "Tomato sauce", "Liver spread", "Potato", "Carrot", "Bell pepper", "Garlic", "Onion", "Cheese"],
+                "calories": 430,
+                "protein": 28,
+                "carbs": 20,
+                "fat": 26
+              },
+              {
+                "name": "Beef Dumpling Stew",
+                "category": "British",
+                "description": "A warming British stew of braised beef and vegetables topped with fluffy suet dumplings.",
+                "ingredients": ["Beef chuck", "Carrot", "Potato", "Onion", "Beef stock", "Suet", "Flour", "Herbs"],
+                "calories": 460,
+                "protein": 25,
+                "carbs": 34,
+                "fat": 24
+              },
+              {
+                "name": "Beef Empanadas",
+                "category": "Uruguayan",
+                "description": "Uruguayan-style hand pies filled with seasoned ground beef, olives, and hard-boiled egg, baked until golden.",
+                "ingredients": ["Ground beef", "Empanada dough", "Onion", "Green olives", "Hard-boiled egg", "Paprika", "Cumin"],
+                "calories": 350,
+                "protein": 16,
+                "carbs": 30,
+                "fat": 18
+              },
+              {
+                "name": "Beef Lo Mein",
+                "category": "Chinese",
+                "description": "A Chinese noodle dish tossed with tender beef strips, vegetables, and a savory soy-based sauce.",
+                "ingredients": ["Lo mein noodles", "Beef strips", "Cabbage", "Carrot", "Soy sauce", "Garlic", "Ginger", "Sesame oil"],
+                "calories": 490,
+                "protein": 24,
+                "carbs": 56,
+                "fat": 18
+              },
+              {
+                "name": "BEEF LOK LAK (Lok Lak Sach Ko)",
+                "category": "Cambodian",
+                "description": "A Cambodian dish of stir-fried marinated beef cubes served over rice or lettuce with a lime-pepper dipping sauce.",
+                "ingredients": ["Beef cubes", "Oyster sauce", "Soy sauce", "Garlic", "Black pepper", "Lime", "Lettuce", "Tomato", "Rice"],
+                "calories": 420,
+                "protein": 30,
+                "carbs": 24,
+                "fat": 22
+              },
+              {
+                "name": "Beef Mandi",
+                "category": "India",
+                "description": "A fragrant Middle Eastern-influenced rice dish with tender spiced beef, slow-cooked and served over basmati rice.",
+                "ingredients": ["Beef", "Basmati rice", "Cardamom", "Cinnamon", "Cloves", "Onion", "Yogurt", "Saffron"],
+                "calories": 550,
+                "protein": 32,
+                "carbs": 52,
+                "fat": 24
+              },
+              {
+                "name": "Beef Mechado",
+                "category": "Filipino",
+                "description": "A Filipino beef stew braised in a tomato-based sauce with soy sauce, bay leaves, and vegetables.",
+                "ingredients": ["Beef chunks", "Tomato sauce", "Soy sauce", "Potato", "Carrot", "Bell pepper", "Garlic", "Bay leaf"],
+                "calories": 410,
+                "protein": 27,
+                "carbs": 18,
+                "fat": 24
+              }
+           
+    ],
+  
+    "services": [
+        {
+            "name": "Personal Training",
+            "description": "One-on-one coaching with certified fitness trainers."
+          },
+          {
+            "name": "Nutrition Plans",
+            "description": "Personalized meal plans for weight loss, muscle gain, or maintenance."
+          },
+          {
+            "name": "Workout Programs",
+            "description": "Training programs for beginners, intermediate, and advanced members."
+          },
+          {
+            "name": "Group Classes",
+            "description": "Instructor-led fitness classes for different goals and fitness levels."
+          }
+    ],
+  
+    "assistantRules": {
+      "answerOnlyFromContext": true,
+      "ifUnknown": "I'm sorry, I couldn't find that information on our website.",
+      "tone": "Friendly, professional and concise."
+    }
+  }

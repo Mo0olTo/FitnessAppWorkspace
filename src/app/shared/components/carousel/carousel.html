@@ -28,13 +28,13 @@
 
       <ng-template #cardTpl let-item>
       <div class="flex justify-center items-center p-2">
-        <div class="card rounded-2xl relative w-[301px] md:w-[403px] h-[280px] md:h-[398px]">
+        <div class="card rounded-2xl relative w-[270px] md:w-[403px] h-[280px] md:h-[398px]">
           <div class="rounded-b-3xl">
             <img
               src="{{ item.image }}"
               [alt]="item.name"
-              class="w-[301px] md:w-[403px] h-[280px] md:h-[398px] object-cover bg-center rounded-2xl"
-              [class]="minimizeCard()?'w-[301px] md:w-[203px] h-[280px] md:h-[198px]': ''"
+              class="w-[270px] md:w-[403px] h-[280px] md:h-[398px] object-cover bg-center rounded-2xl"
+              [class]="minimizeCard()?'w-[270px] md:w-[203px] h-[280px] md:h-[198px]': ''"
             />
           </div>
           <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-bg)] rounded-b-2xl w-full p-2">
