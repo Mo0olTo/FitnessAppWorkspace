@@ -1,1 +1,189 @@
-<p>workout-details works!</p>
+<section class="flex flex-col justify-center items-center bg-[var(--color-section-bg)] container mx-auto ">
+    <!-- main section logo -->
+    <div class="w-full flex items-center justify-center">
+        <app-section-title
+        sectionTitleImage="/images/WOrkouts.webp"
+        [hideLogo]="true"
+        [centeredName]="true"
+        ></app-section-title>
+    </div>
+
+    <!-- Section  main Body -->
+     <div class="w-full flex flex-col justify-center items-center gap-8 my-7">
+        <!-- filter tabs  -->
+        <div class="w-full px-4 md:px-0">
+            <!-- <app-filter-tabs
+            [tabs]="muscleTabs()"
+            (tabChanged)="onCategoryChange($event)"
+            ></app-filter-tabs> --> 
+
+            <div title="Back To select muscle" >
+              <button class="text-[var(--color-main-text)] font-bold  w-full md:w-1/3  bg-[var(--color-primary)] 
+              flex items-center justify-center  py-1 rounded-2xl px-4 cursor-pointer " (click)="onActionClick()">BACK to Select Muscle</button>
+          </div>
+        </div>
+       
+        <!-- details Body -->
+         <div class="w-full flex flex-col-reverse lg:flex-row lg:justify-center lg:items-start gap-4 ">
+           
+           
+           <!-- list -->
+             <div class="w-full lg:w-1/3 p-3 rounded-3xl border-[2px] border-[#46434380]  flex flex-col justify-center items-center">
+                <!-- here will add filter tabs for levels <beginner , intermediate , advanced > -->
+                  
+              
+                <!-- here will loop on workoutes based on muscle category -->
+              <div class="w-full items-start">
+             
+                
+               @for (exercise of exercises(); track exercise._id) {
+                     <app-list-card
+                      [title]="exercise.prime_mover_muscle"
+                      [metaData]="exercise.exercise"
+                      [image]="'/images/workouts/chest.webp'"
+                      [videoUrl]="exercise.short_youtube_demonstration_link ?? ''"
+                      [active]="selectedExercise()?._id === exercise._id"
+                      (videoPreview)="onSelectExercise(exercise)"
+                      (playBtn)="onPlayButton()"
+                      
+                      >
+                     </app-list-card>
+
+                }
+              </div>
+             </div>
+              <!--workout video and details  -->
+             <div class="w-full lg:w-2/3 flex flex-col justify-center items-center gap-4 px-2 ">
+
+                @if (selectedExercise(); as ex) {
+                  <div class="w-full flex flex-col gap-3">
+                    <!-- <h2 class="font-bold text-2xl text-[var(--color-main-text)] text-center">
+                      {{ ex.exercise }}
+                    </h2> -->
+
+
+                    <!-- video Frame -->
+                    @if (getSafeUrl(ex, shouldAutoplay()); as url) {
+                      <div class="w-full aspect-video rounded-2xl overflow-hidden border-[2px] border-[#46434380] relative">
+                        <iframe
+                          [src]="url"
+                          class="w-full h-full"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen
+                        ></iframe> 
+                        @if(showVideoInfo()) {
+                          <div
+                              [class.animate-slide-up]="!isClosing()"
+                              [class.animate-slide-down]="isClosing()"
+                            
+                            class="absolute inset-0 z-10 cursor-pointer w-full
+                            bg-[linear-gradient(to_bottom,transparent_0%,transparent_5%,#121212_100%)] 
+                              flex flex-col justify-between items-center p-2 lg:p-6 rounded-2xl animate-slide-up">
+
+                          <!-- preview Details on the video -->
+                          <div class="w-full h-full flex flex-col justify-end items-center ">
+                            <div class=" w-full flex flex-col justify-between items-center md:mb-8  xl:mb-10  ">
+                              <!-- play button -->
+                              <div title="play Video" (click)="hideVideoInfo()" class="flex flex-col justify-center items-center ">
+                              <button (click)="onPlayButton()" class="cursor-pointer  overlay fitness-loader ">
+                               <span class="font-normal text-2xl text-[var(--color-main-text)]
+                                  rounded-full w-[35px] h-[35px]
+                                  z-40 "> ▶</span>
+                               </button>
+                              </div>
+
+                              <!-- Exercisename -->
+                              <div>
+                                <h3 class="text-white text-lg md:text-4xl font-bold ">
+                                  {{ selectedExercise()?.exercise }}
+                                </h3>
+                              </div>
+
+                             
+                      
+                              <p class="text-white text-lg md:text-2xl font-bold mt-0 lg:mt-2">
+                               <span class="text-[var(--color-primary)]">Target muscle</span> :{{ selectedExercise()?.prime_mover_muscle }}
+                              </p>
+
+                              <p class="text-white font-semibold text[20px] w-full justify-start mt-7 hidden md:block ">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae sequi, 
+                                voluptate esse unde quidem sit laboriosam illum omnis, ipsam molestiae sapiente alias accusantium quam suscipit.
+                              </p>
+                        
+                            
+                            </div> 
+
+                            <!-- bills -->
+
+                            <div class="w-full flex justify-between items-end ">
+                              <div class="flex items-center justify-center px-2 lg:px-3 py-1 rounded-3xl   border-[1px] border-[#D3D3D3]">
+
+                                <p class=" text-sm lg:text-lg font-bold text-white">15 MIN</p>
+                              </div>
+                              <div class="flex items-center justify-center px-2 lg:px-3 py-1 rounded-2xl   border-[1px] border-[#D3D3D3]">
+
+                                <p class=" text-sm lg:text-lg font-bold text-[var(--color-primary)]">142 CAL</p>
+                              </div>
+
+                            </div>
+                      
+                          </div>
+                          </div>
+                        }
+                      </div>
+                    } @else {
+
+                      <!-- caption if video not available  -->
+                      <div class="w-full aspect-video rounded-2xl border-[2px] border-[#46434380] flex flex-col justify-center items-center text-xl xl:text-3xl text-[var(--color-primary)]">
+                        <h1>Video available is not available</h1> 
+                        <p> Check another Exercise</p>
+                      </div>
+                    }
+
+                    <!-- exercise INFO  -->
+                    <div class="w-full flex flex-col lg:flex-row justify-center lg:justify-evenly items-start lg:items-center gap-3">
+                      <div class="flex justify-between items-center  text-white font-bold gap-4">
+                        <div class="flex justify-center items-center bg-[var(--color-primary)] w-[35px] h-[35px] 
+                        rounded-full border-[2px] border-white rotate-45 text-2xl">
+                          <i class=" pi pi-chevron-circle-up "></i>
+                        </div>
+                        <p class="text-lg"> <span class="text-[var(--color-primary)] uppercase">Muscle </span>-{{selectedExercise()?.target_muscle_group}}</p>
+                      </div>
+                      <div class="flex justify-between items-center  text-white font-bold gap-4">
+                        <div class="flex justify-center items-center bg-[var(--color-primary)] w-[35px] h-[35px] 
+                        rounded-full border-[2px] border-white rotate-45 text-2xl">
+                          <i class=" pi pi-chevron-circle-up "></i>
+                        </div>
+                        <p class="text-lg"> <span class="text-[var(--color-primary)] uppercase">Equipment </span>-{{selectedExercise()?.primary_equipment}}</p>
+                      </div>
+                      <div class="flex justify-between items-center  text-white font-bold gap-4">
+                        <div class="flex justify-center items-center bg-[var(--color-primary)] w-[35px] h-[35px] 
+                        rounded-full border-[2px] border-white rotate-45 text-2xl">
+                          <i class=" pi pi-chevron-circle-up "></i>
+                        </div>
+                        <p class="text-lg"> <span class="text-[var(--color-primary)] uppercase">Posture </span>-{{selectedExercise()?.posture}}</p>
+                      </div>
+                    </div>
+
+
+                    <!-- meals recommended -->
+                     <div class="w-full px-7 mt-7 lg:mt-12">
+                      <div class="flex justify-start items-center my-4">
+                        <h1 class="text-[var(--color-main-text)] text-xl lg:text-3xl font-bold">Recommended Meals</h1>
+                      </div>
+                      <!-- here will show the recommended meals -->
+                       <div class="">
+                        <app-recommended-meals></app-recommended-meals>
+                       </div>
+                     </div>
+                  </div>
+                } @else {
+                  <h1 class="text-center text-2xl xl:text-4xl font-bold w-full text-[var(--color-main-text)]">
+                    Select an exercise to preview
+                  </h1>
+                }
+             </div>
+         </div>
+     </div>
+</section>

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from '../core/guards/auth.guard';
 
 export const mainRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,7 +31,7 @@ export const mainRoutes: Routes = [
   {
     path: 'profile',
     title: 'Profile',
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     loadComponent: () => import('../features/auth/pages/profile/profile').then((m) => m.Profile),
   },
 ];
