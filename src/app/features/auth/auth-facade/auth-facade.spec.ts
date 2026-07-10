@@ -16,7 +16,12 @@ describe('AuthFacade', () => {
 
   beforeEach(() => {
     authLibMock = jasmine.createSpyObj('AuthLib', ['SignIn', 'GetLoggedUserData']);
-    cookieMock = jasmine.createSpyObj('CookieService', ['set']);
+    // The facade's constructor calls initializeSession() which reads the auth
+    // cookie. Default to no token so the constructor short-circuits and tests
+    // start from a clean, signed-out state.
+    cookieMock = jasmine.createSpyObj('CookieService', ['get', 'set', 'check']);
+    cookieMock.get.and.returnValue('');
+    cookieMock.check.and.returnValue(false);
     routerMock = jasmine.createSpyObj('Router', ['navigate']);
     messageMock = jasmine.createSpyObj('MessageService', ['add']);
 
