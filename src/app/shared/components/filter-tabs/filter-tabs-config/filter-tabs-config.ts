@@ -1,3 +1,4 @@
+import { Category } from "../../../models/meals-res";
 import { FilterTab } from "../models/filter-tabs.model";
 
 
@@ -13,14 +14,14 @@ export const FILTER_TABS = {
   ] as FilterTab[],
 
   classLevels: [
-    { id: 'beginner', label: 'Beginner' },
-    { id: 'intermediate', label: 'Intermediate' },
-    { id: 'advanced', label: 'Advanced' }
+    { id: '69d982ed85f6bfa972bf2216', label: 'Beginner' },
+    { id: '69d982ed85f6bfa972bf221c', label: 'Intermediate' },
+    { id: '69d982ed85f6bfa972bf2222', label: 'Advanced' }
   ] as FilterTab[],
 
   meals: [
-    { id: 'breakfast', label: 'Breakfast' },
-    { id: 'lunch', label: 'Lunch' },
-    { id: 'dinner', label: 'Dinner' }
-  ] as FilterTab[]
+    { strCategory: 'Beef',  },
+    { strCategory: 'Chicken',  },
+    { strCategory: 'Seafood',  }
+  ] as Category[]
 };

@@ -43,6 +43,7 @@ import { DividerModule } from 'primeng/divider';
 export class Profile implements OnInit {
   private readonly authFacade = inject(AuthFacade);
   private readonly fb = inject(FormBuilder);
+
   private readonly themefacede = inject(ThemeFacade);
   public readonly translateService = inject(MyTranslate);
 
@@ -70,14 +71,33 @@ export class Profile implements OnInit {
   readonly logoutVisible = signal<boolean>(false);
   readonly isSubmitting = signal<boolean>(false);
 
+
   changePasswordForm!: FormGroup;
   isModalOpen = signal(false);
   modalTitle = signal('');
   modalOptions = signal<string[]>([]);
 
-  toggle() {
-    this.themefacede.toggleTheme();
+  newPassword = signal('');
+  confirmPassword = signal('');
+
+  // Getters for Controls
+  get currentPasswordControl() {
+    return this.changePasswordForm.get('password');
   }
+  get newPasswordControl() {
+    return this.changePasswordForm.get('newPassword');
+  }
+  get confirmPasswordControl() {
+    return this.changePasswordForm.get('confirmPassword');
+  }
+
+  passwordsMismatch = computed(() => {
+    const newPass = this.newPassword();
+    const confirmPass = this.confirmPassword();
+
+    if (!confirmPass) return false;
+    return newPass !== confirmPass;
+  });
 
   readonly profileMetrics = [
     { label: 'profile.settingItems.goal', signal: this.goal, type: 'goal' as const },
@@ -151,6 +171,8 @@ export class Profile implements OnInit {
   }
 
   settingItems = computed(() => [
+
+  readonly settingItems = [
     {
       title: 'Change Password',
       icon: 'pi pi-refresh',
@@ -173,7 +195,7 @@ export class Profile implements OnInit {
     { title: 'Privacy Policy', icon: 'pi pi-shield' },
     { title: 'Help', icon: 'pi pi-question-circle' },
     { title: 'Logout', icon: 'pi pi-sign-out', action: () => this.openLogoutModel() },
-  ]);
+  ];
 
   ngOnInit(): void {
     this.authFacade.loadUserAfterLogin();
@@ -188,33 +210,12 @@ export class Profile implements OnInit {
           Validators.pattern(/^[A-Z](?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{5,}$/),
         ],
       ],
+      confirmPassword: ['', [Validators.required]],
     });
-  }
-  //  Capture the image from the input, view the preview immediately, and scroll to upload
-  onAvatarChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-
-      // عرض الصورة فوراً في الواجهة كـ Preview سريع
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.localPreview.set(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-
-      // إرسال الملف الحقيقي للـ Facade للرفع
-      this.updatePhoto(file);
-    }
-  }
-
-  updatePhoto(file: File) {
-    this.authFacade.updatePhoto(file);
   }
 
   openChangePasswordModal() {
     this.visible.set(true);
-    console.log('Password trigger');
   }
 
   toggleLanguage() {
@@ -242,25 +243,21 @@ export class Profile implements OnInit {
 
   closeDialog() {
     this.visible.set(false);
-    this.changePasswordForm.reset(); // ✅ تم التصحيح: استدعاء الدالة بالأقواس
-  }
-
-  get currentPasswordControl() {
-    return this.changePasswordForm.get('password');
-  }
-
-  get newPasswordControl() {
-    return this.changePasswordForm.get('newPassword');
+    this.changePasswordForm.reset();
+    this.newPassword.set('');
+    this.confirmPassword.set('');
   }
 
   onSubmit() {
-    if (this.changePasswordForm.invalid) {
+    if (this.changePasswordForm.invalid || this.passwordsMismatch()) {
       this.changePasswordForm.markAllAsTouched();
       return;
     }
 
     this.isSubmitting.set(true);
-    const payload: IChangePassReq = this.changePasswordForm.getRawValue();
+    const { confirmPassword, ...cleanPayload } = this.changePasswordForm.getRawValue();
+    const payload: IChangePassReq = cleanPayload;
+
     this.authFacade.changePassword(payload).subscribe({
       next: () => {
         this.closeDialog();

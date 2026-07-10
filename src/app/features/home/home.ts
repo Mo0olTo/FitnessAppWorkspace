@@ -4,9 +4,11 @@ import { Hero } from './components/Hero/hero/hero';
 import { WhyUs } from './components/why-us/why-us';
 import { AboutSection } from './components/about-section/about-section';
 import { Workouts } from "./components/workouts/workouts";
+import { HealthySection } from "./components/healthy-section/healthy-section";
+import { AiAssistant } from "../ai-assistant/ai-assistant";
 @Component({
   selector: 'app-home',
-  imports: [Hero, ServicesBar, AboutSection, WhyUs, Workouts],
+  imports: [Hero, ServicesBar, AboutSection, WhyUs, Workouts, HealthySection, AiAssistant],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

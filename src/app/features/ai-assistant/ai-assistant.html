@@ -1,1 +1,100 @@
-<p>ai-assistant works!</p>
+@if (open()) {
+  <section
+    class="ai-chat ai-chat--smart-coach rounded-3xl border border-[var(--color-primary)] w-[310px] h-[380px] md:w-[375px] md:h-[666px]"
+    aria-label="AI Assistant chat"
+  >
+    <header class="ai-chat__header flex flex-col gap-y-5">
+      <h2 class="ai-chat__title">Smart Coach</h2>
+      <button
+        type="button"
+        class="ai-chat__menu "
+        aria-label="Close chat"
+        (click)="close()"
+        data-testid="ai-close"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+    </header>
+
+  @if (error()) {
+    <div class="ai-chat__error" role="alert" data-testid="ai-error">
+      {{ error() }}
+    </div>
+  }
+
+  <div class="ai-chat__messages" data-testid="ai-messages">
+    @for (msg of messages(); track msg.id) {
+      <div
+        class="ai-chat__row"
+        [class.ai-chat__row--user]="msg.role === 'user'"
+        [class.ai-chat__row--assistant]="msg.role === 'assistant'"
+        [attr.data-role]="msg.role"
+      >
+        @if (msg.role === 'assistant') {
+          <img
+            class="ai-chat__avatar ai-chat__avatar--assistant"
+            src="/images/coach.png"
+            alt=""
+            aria-hidden="true"
+          />
+        }
+
+        <div
+          class="ai-chat__bubble"
+          [class.ai-chat__bubble--user]="msg.role === 'user'"
+          [class.ai-chat__bubble--assistant]="msg.role === 'assistant'"
+        >
+          @if (msg.pending) {
+            <span class="ai-chat__typing" aria-label="Assistant is typing">
+              <span>.</span><span>. </span><span> .</span>
+            </span>
+          } @else {
+            <span class="ai-chat__text">{{ msg.text }}</span>
+          }
+        </div>
+
+        @if (msg.role === 'user') {
+          <img
+            class="ai-chat__avatar ai-chat__avatar--user"
+            [src]="userPhoto()"
+            alt=""
+            aria-hidden="true"
+          />
+        }
+      </div>
+    }
+    <div #scrollAnchor class="ai-chat__scroll-anchor"></div>
+  </div>
+
+  <div class="ai-chat__form relative" role="group" aria-label="Send a message">
+    <span class="ai-chat__input-icon" aria-hidden="true">
+      <!-- pencil SVG -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <path d="M12 20h9" stroke-linecap="round" />
+        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <textarea
+      class="ai-chat__input "
+      type="text"
+      placeholder="Ask Me Any Things"
+      aria-label="Message"
+      [value]="draft()"
+      [disabled]="loading()"
+      (input)="onDraftInput($event)"
+      (keydown.enter)="onEnter($event)"
+      data-testid="ai-input"
+    ></textarea>
+    <button
+      class="ai-chat__send absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 bg-[var(--color-primary)] rounded-full flex justify-end w-[35px] h-[35px] cursor-pointer "
+      type="button"
+      [disabled]="!canSend()"
+      (click)="send()"
+      data-testid="ai-send"
+    >
+      <span class="flex flex-col justify-center items-center text-sm font-semibold "><i class="pi pi-send"></i></span>
+    </button>
+  </div>
+  </section>
+}

@@ -10,10 +10,10 @@
   </div>
 
   <div
-    class="absolute z-10 flex items-center gap-4 right-0 bottom-5 w-full"
-    [class]="centeredName() ? 'justify-center' : 'justify-sta rt'"
+    class="absolute z-10 flex items-center gap-4 right-0 bottom-5 w-full translate-y-7"
+    [class]="centeredName() ? 'justify-center' : 'justify-start'"
   >
-    <img [src]="logo()" alt="logo" width="34px" height="19px" class="" />
+    <img [src]="logo()" alt="logo" width="34px" height="19px" [class.hidden]="hideLogo() ? 'hidden':''" />
     <h1 class="text-[18px] font-[600] text-[var(--color-primary)] capitalize">
       {{ sectionName() }}
     </h1>

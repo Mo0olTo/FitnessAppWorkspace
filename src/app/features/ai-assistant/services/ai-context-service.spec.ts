@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Exercises } from './exercises';
+import { AiContextService } from './ai-context-service';
 
-describe('Exercises', () => {
-  let service: Exercises;
+describe('AiContextService', () => {
+  let service: AiContextService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Exercises);
+    service = TestBed.inject(AiContextService);
   });
 
   it('should be created', () => {

@@ -6,6 +6,10 @@ export const headersInterceptor: HttpInterceptorFn = (req, next) => {
   const cookie = inject(CookieService);
   const token = cookie.get('FitnessToken');
 
+  if (req.url.includes('themealdb.com')) {
+    return next(req);
+  }
+
   if (token) {
     req = req.clone({
       setHeaders: {
