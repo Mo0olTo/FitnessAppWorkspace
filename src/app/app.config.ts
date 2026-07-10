@@ -1,6 +1,5 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import {
-  APP_INITIALIZER,
   ApplicationConfig,
   inject,
   provideAppInitializer,
@@ -22,6 +21,7 @@ import { routes } from './app.routes';
 import { headersInterceptor } from './core/interceptors/headers/headers-interceptor';
 import { loadingInterceptor } from './core/interceptors/loading/loading-interceptor';
 import { MyTranslate } from './core/Services/Transilation/my-translate';
+import { translationInterceptor } from './core/interceptors/translation/translation-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,7 +41,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
 
-    provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loadingInterceptor])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([headersInterceptor, loadingInterceptor, translationInterceptor]),
+    ),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),

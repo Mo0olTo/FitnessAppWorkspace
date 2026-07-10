@@ -1,55 +1,43 @@
 <section class="container mx-auto">
   <div class="card">
-    @if (displayData().length) {
-      <p-carousel [value]="displayData()" [numVisible]="numVisible()"[numScroll]="numScroll()" [responsiveOptions]="responsiveOptions"
+    @if (carouselData().length) {
+      <p-carousel
+        [value]="carouselData()"
+        [numVisible]="3"
+        [numScroll]="3"
+        [responsiveOptions]="responsiveOptions"
       >
         <ng-template let-item #item>
-          @if (rows() > 1) {
-            <!-- item is an array here: one slide = a grid of cards -->
-            <div
-              class="grid gap-4"
-              [style.grid-template-columns]="'repeat(' + cardsPerRow() + ', minmax(0, 1fr))'"
-            >
-              @for (card of item; track card._id) {
-                <ng-container *ngTemplateOutlet="cardTpl; context: { $implicit: card }"></ng-container>
-              }
+          <div class="flex justify-center items-center">
+            <div class="card rounded-2xl relative w-[250] h-[250] lg:w-[350px] lg:h-[398px]">
+              <div class="rounded-b-3xl">
+                <img
+                  src="{{ item.image }}"
+                  [alt]="item.name"
+                  class="w-[403px] h-[398px] object-cover bg-center rounded-2xl"
+                />
+              </div>
+              <div
+                class="absolute bottom-0 left-0 right-0 bg-[var(--color-bg)] rounded-b-2xl w-full p-2"
+              >
+                <div class="card-content">
+                  <h3 class="card-title font-bold text-[22.2px] text-[var(--color-main-text)]">
+                    {{ item.name | translate }}
+                  </h3>
+                  <span class="card-action flex items-center gap-3 mt-2 cursor-pointer">
+                    <p class="font-medium text-[17.49px] text-[#FF4100]">Read more</p>
+                    <span
+                      class="flex items-center justify-center w-7 h-7 rounded-full bg-[#FF4100] p-2"
+                    >
+                      <i class="pi pi-arrow-up-right"></i>
+                    </span>
+                  </span>
+                </div>
+              </div>
             </div>
-          } @else {
-            <!-- item is a single card here -->
-            <div class="flex justify-center items-center">
-              <ng-container *ngTemplateOutlet="cardTpl; context: { $implicit: item }"></ng-container>
-            </div>
-          }
+          </div>
         </ng-template>
       </p-carousel>
     }
   </div>
 </section>
-
-      <ng-template #cardTpl let-item>
-      <div class="flex justify-center items-center p-2">
-        <div class="card rounded-2xl relative w-[270px] md:w-[403px] h-[280px] md:h-[398px]">
-          <div class="rounded-b-3xl">
-            <img
-              src="{{ item.image }}"
-              [alt]="item.name"
-              class="w-[270px] md:w-[403px] h-[280px] md:h-[398px] object-cover bg-center rounded-2xl"
-              [class]="minimizeCard()?'w-[270px] md:w-[203px] h-[280px] md:h-[198px]': ''"
-            />
-          </div>
-          <div class="absolute bottom-0 left-0 right-0 bg-[var(--color-bg)] rounded-b-2xl w-full p-2">
-            <div class="card-content">
-              <h3 class="card-title font-bold text-[22.2px] text-[var(--color-main-text)]">
-                {{ item.name }}
-              </h3>
-              <span  (click)="onCardClick(item._id)" class="card-action flex items-center gap-3 mt-2 cursor-pointer">
-                <p class="font-medium text-[17.49px] text-[#FF4100]">Explore more </p>
-                <span class="flex items-center justify-center w-7 h-7 rounded-full bg-[#FF4100] p-2">
-                  <i class="pi pi-arrow-up-right"></i>
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      </ng-template>

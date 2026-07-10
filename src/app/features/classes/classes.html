@@ -1,66 +1,42 @@
-<section class="bg-[var(--color-section-bg)] ">
+<section class="bg-[var(--color-section-bg)]">
+  <div
+    class="w-full flex flex-col justify-center items-center container mx-auto px-4 py-12 lg:py-16"
+  >
+    <!-- title -->
+    <div class="">
+      <app-section-title
+        sectionTitleImage="/images/WOrkouts.webp"
+        logo="/images/Vector.png"
+        [sectionName]="'classes.fitnessClass' | translate"
+        [centeredName]="true"
+      ></app-section-title>
+    </div>
+    <!-- secttion desc -->
+    <div class="">
+      <h1
+        class="text-center text-[24px] md:text-[34px] font-bold text-[var(--color-main-text)] uppercase tracking-wide"
+      >
+        {{ 'classes.title_Part1' | translate }}<br />
+        {{ 'classes.dynamic' | translate }}
+        <span class="text-[var(--color-primary)] text-wrap">
+          {{ 'classes.upcoming_Workouts' | translate }}
+        </span>
+      </h1>
+    </div>
 
-    @if (step()===1) {
-        <div class="w-full flex flex-col justify-center items-center  container mx-auto   px-4  py-12 lg:py-16">
+    <div class="space-x-3 py-5">
+      <app-filter-tabs
+        [tabs]="muscleTabs()"
+        (tabChanged)="onCategoryChange($event)"
+      ></app-filter-tabs>
+    </div>
 
-            <!-- title -->
-             <div class="">
-                <app-section-title
-                sectionTitleImage="/images/WOrkouts.webp"
-                logo="/images/Vector.png"
-                sectionName="fitness class"
-                [centeredName]="true"
-                ></app-section-title>
-             </div>
-             <!-- secttion desc -->
-             <div class="">
-                <h1 class=" text-center text-[24px] md:text-[34px] font-bold text-[var(--color-main-text)] uppercase tracking-wide ">
-                    Transform Your Body with Our <br> Dynamic
-                <span class="text-[var(--color-primary)] text-wrap">Upcoming Workouts</span> 
-                </h1>
-            </div>
-    
-             <div class="space-x-3 py-5 ">
-                <app-filter-tabs
-                  [tabs]="muscleTabs()"
-                  [selectedTabs]="selectedMuscleTab()"
-                  (tabChanged)="onCategoryChange($event)"
-                ></app-filter-tabs>
-            </div> 
-            
-            @defer (on viewport) {
-                <div class="w-full ">
-                    <app-carousel
-                    [carouselData]="muscleGroup()"
-                    (cardAction)="onMuscleCardClick($event)"
-                    [rows]="2"
-                    ></app-carousel>
-                </div>
-    
-    
-            }@placeholder {
-                <p></p>
-            }
-    
-    
-    
-            
-        </div> 
-    }@if (step()===2) { 
-
-
-        
-
-        <app-workout-details
-        (onAction)="backToStep1()"
-        [exercises]="exercises()"
-        ></app-workout-details>
+    @defer (on viewport) {
+      <div class="w-full">
+        <app-carousel [carouselData]="muscleGroup()"></app-carousel>
+      </div>
+    } @placeholder {
+      <p></p>
     }
-    
-    
-
-   
-   
-
- 
+  </div>
 </section>

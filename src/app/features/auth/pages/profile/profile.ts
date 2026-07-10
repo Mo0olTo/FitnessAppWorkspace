@@ -15,6 +15,8 @@ import { Toast } from 'primeng/toast';
 import { IChangePassReq } from 'auth-lib';
 import { ReusableInput } from '../../components/reusable-input/reusable-input';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ThemeFacade } from '../../../../core/Theme/theme.facade';
+import { MyTranslate } from '../../../../core/Services/Transilation/my-translate';
 
 @Component({
   selector: 'app-profile',
@@ -68,9 +70,9 @@ export class Profile implements OnInit {
   });
 
   readonly profileMetrics = [
-    { label: 'Your Goal', signal: this.goal },
-    { label: 'Level', signal: this.activityLevel },
-    { label: 'Weight', signal: this.weight },
+    { label: 'profile.settingItems.goal', signal: this.goal },
+    { label: 'profile.settingItems.level', signal: this.activityLevel },
+    { label: 'profile.settingItems.weight', signal: this.weight },
   ];
 
   readonly settingItems = [
@@ -82,7 +84,7 @@ export class Profile implements OnInit {
     {
       title: 'Select Language',
       icon: 'pi pi-globe',
-      subtitle: 'English',
+      subtitle: this.translateService.currentLang() === 'en' ? 'English' : 'العربية',
       action: () => this.toggleLanguage(),
     },
     {
@@ -118,10 +120,12 @@ export class Profile implements OnInit {
     this.visible.set(true);
   }
   toggleLanguage() {
-    console.log('Language trigger');
+    const current = this.translateService.currentLang();
+    const nextLang = current === 'en' ? 'ar' : 'en';
+    this.translateService.switchLang(nextLang);
   }
   toggleTheme() {
-    console.log('Theme trigger');
+    this.toggle();
   }
   openLogoutModel() {
     this.logoutVisible.set(true);

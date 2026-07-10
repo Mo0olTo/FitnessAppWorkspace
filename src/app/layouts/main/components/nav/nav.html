@@ -38,7 +38,6 @@
 
     <div routerLink="/profile" class="flex items-center gap-8">
       @if (_auth.authReady()) {
-
         @if (_auth.isLogged()) {
           <div
             class="w-12 h-12 rounded-full bg-[var(--color-primary)] cursor-pointer flex items-center justify-center text-white shadow-lg"
@@ -65,7 +64,6 @@
             />
           </div>
         }
-      
       }
 
       <button

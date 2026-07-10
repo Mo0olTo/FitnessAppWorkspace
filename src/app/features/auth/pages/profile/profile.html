@@ -1,16 +1,18 @@
 <p-toast></p-toast>
-<div class="relative min-h-screen dark:bg-[#232424]">
+<div class="relative pb-0 dark:bg-[#232424]">
   <div
     class="absolute inset-0 bg-cover bg-center opacity-5"
     style="background-image: url('/images/auth-bg.webp')"
   ></div>
 
-  <div class="container mx-auto pt-5 relative z-10">
-    <div class="info flex items-center justify-evenly flex-wrap gap-6">
+  <div class="container mx-auto pt-5 relative">
+    <div class="info flex items-center justify-evenly flex-wrap">
       @for (metrics of profileMetrics; track metrics.label) {
         <div class="p-2 text-[var(--color-main-text)]">
-          <h3 class="text-center text-4xl font-extrabold">{{ metrics.label }}</h3>
-          <p class="text-center text-xs opacity-60 mb-2">TAP TO CHANGE</p>
+          <h3 class="text-center text-4xl font-extrabold">{{ metrics.label | translate }}</h3>
+          <p class="text-center text-xs opacity-60 mb-2">
+            {{ 'profile.settingItems.tAPToChange' | translate }}
+          </p>
 
           <button
             class="flex justify-between items-center font-bold text-base bg-[#FF4100] w-[240px] py-2.5 px-4 rounded-3xl border border-[var(--color-borders)] hover:bg-[#e03a00] transition-colors"
@@ -25,17 +27,23 @@
     </div>
 
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-16 px-4 text-[var(--color-main-text)]"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-10 text-[var(--color-main-text)]"
     >
-      @for (item of settingItems; track $index) {
+      @for (item of settingItems(); track $index) {
         <div
-          (click)="item.action?.()"
-          class="flex flex-col items-center justify-center bg-white/[0.03] border border-white/10 rounded-2xl p-6 h-[170px] cursor-pointer transition-all duration-300 hover:bg-white/[0.07] hover:border-[#FF4100]/50 backdrop-blur-md"
+          (click)="item.action ? item.action() : null"
+          class="flex flex-col items-center justify-center bg-white/[0.03] border border-white/10 rounded-2xl p-6 h-[170px] transition-all duration-300 hover:bg-white/[0.07] hover:border-[#FF4100]/50 backdrop-blur-md"
+          [class.cursor-pointer]="item.action"
+          [class.cursor-default]="!item.action"
           [class.md:col-start-2]="
             item.title?.toLowerCase() === 'logout' || $index === settingItems.length - 1
           "
         >
-          <i [class]="item.icon" class="text-2xl text-[#FF4100] mb-4"></i>
+          <i
+            [class]="item.title === 'Mood' ? (isDark() ? 'pi pi-moon' : 'pi pi-sun') : item.icon"
+            class="text-2xl text-[#FF4100] mb-4"
+          >
+          </i>
 
           <span
             class="text-base font-semibold tracking-wide"
@@ -45,15 +53,22 @@
           </span>
 
           @if (item.subtitle) {
-            <span class="text-sm opacity-60 mt-1">({{ item.subtitle }})</span>
+            <span class="text-sm opacity-60 mt-1">
+              ({{ item.title === 'Mood' ? (isDark() ? 'Dark' : 'Light') : item.subtitle }})
+            </span>
           }
-
           @if (item.hasToggle) {
             <div class="mt-3 flex items-center">
               <div
-                class="w-10 h-5 bg-[#FF4100] rounded-full p-0.5 cursor-pointer flex items-center justify-end"
+                class="w-10 h-5 rounded-full p-0.5 cursor-pointer flex items-center transition-colors duration-300"
+                [class.bg-[#FF4100]]="isDark()"
+                [class.bg-gray-600]="!isDark()"
+                [class.justify-end]="isDark()"
+                [class.justify-start]="!isDark()"
               >
-                <div class="bg-white w-4 h-4 rounded-full shadow"></div>
+                <div
+                  class="bg-white w-4 h-4 rounded-full shadow transform transition-transform duration-300"
+                ></div>
               </div>
             </div>
           }
@@ -84,13 +99,13 @@
         <svg width="31" height="33">...</svg>
 
         <h3 class="text-center text-xl font-bold text-[var(--color-main-text)] -mt-2">
-          Change Password
+          {{ 'profile.changePassword.change' | translate }}
         </h3>
 
         <div class="inline-flex flex-col gap-2">
-          <label for="currentPassword" class="text-white/80 text-sm font-semibold"
-            >Current Password</label
-          >
+          <label for="currentPassword" class="text-white/80 text-sm font-semibold">
+            {{ 'profile.changePassword.current' | translate }}
+          </label>
           <app-reusable-input
             [value]="changePasswordForm.get('password')?.value || ''"
             (blur)="changePasswordForm.get('password')?.markAsTouched()"
@@ -99,10 +114,7 @@
               changePasswordForm.get('password')?.markAsDirty()
             "
             [type]="'password'"
-            [placeholder]="
-              'Current Password
-'
-            "
+            [placeholder]="'profile.changePassword.current' | translate"
           />
         </div>
         <div class="inline-flex flex-col gap-2">
@@ -112,7 +124,7 @@
             (valueChange)="newPasswordControl?.setValue($event); newPasswordControl?.markAsDirty()"
             (blur)="newPasswordControl?.markAsTouched()"
             [type]="'password'"
-            [placeholder]="'New Password'"
+            [placeholder]="'profile.changePassword.newPassword' | translate"
           />
         </div>
         <div class="inline-flex flex-col gap-2">
@@ -136,7 +148,7 @@
 
         <div class="flex items-center gap-4 mt-2">
           <p-button
-            label="Cancel"
+            [label]="'profile.changePassword.cancel' | translate"
             type="button"
             (click)="closeDialog()"
             [text]="true"
@@ -144,7 +156,7 @@
             class="w-full"
           />
           <p-button
-            label="Update"
+            [label]="'profile.changePassword.update' | translate"
             type="submit"
             [disabled]="changePasswordForm.invalid"
             styleClass="!p-3 w-full !bg-[#FF4100] !text-white !border-0 hover:!bg-[#e03a00] !rounded-xl font-bold shadow-lg shadow-[#FF4100]/20 disabled:opacity-50"
@@ -176,16 +188,16 @@
 
         <div class="flex flex-col gap-2">
           <h3 class="text-xl font-bold text-[var(--color-main-text)]">
-            {{ 'logout.out' | translate }}
+            {{ 'profile.logout.out' | translate }}
           </h3>
           <p class="text-white/60 text-sm leading-relaxed px-2">
-            {{ 'logout.sure' | translate }}
+            {{ 'profile.logout.sure' | translate }}
           </p>
         </div>
 
         <div class="flex items-center gap-4 mt-2 w-full">
           <p-button
-            label="Cancel"
+            [label]="'profile.logout.cancel' | translate"
             type="button"
             (click)="closeLogoutDialog()"
             [text]="true"
@@ -193,7 +205,7 @@
             class="w-full"
           />
           <p-button
-            label="Log Out"
+            [label]="'profile.logout.out' | translate"
             type="button"
             (click)="onLogout()"
             styleClass="!p-3 w-full !bg-[#FF4100] !text-white !border-0 hover:!bg-[#e03a00] !rounded-xl font-bold shadow-lg shadow-[#FF4100]/20"

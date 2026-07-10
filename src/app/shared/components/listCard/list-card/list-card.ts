@@ -12,28 +12,25 @@ export interface VideoPreviewPayload {
   styleUrl: './list-card.scss',
 })
 export class ListCard {
+  image = input<string>('');
+  alt = input<string>();
+  title = input<string>('');
+  metaData = input<string>('');
+  exercise = input<any>(null);
+  cardSelected = output<any>();
+  videoUrl = input<string>('');
+  active = input<boolean>(false);
+  videoPreview = output<VideoPreviewPayload>();
+  playBtn = output<any>();
+  showPlayButton = input(true);
 
-image=input<string>('')
-alt=input<string>()
-title=input<string>('')
-metaData=input<string>('')
-exercise=input<any>(null);
-cardSelected = output<any>();
-videoUrl = input<string>('');
-active = input<boolean>(false);
-videoPreview = output<VideoPreviewPayload>();
-playBtn=output<any>()
-showPlayButton = input(true);
+  onPreview(url: string): void {
+    this.videoPreview.emit({ url, exercise: this.exercise() });
+  }
 
-onPreview(url:string): void {
-  this.videoPreview.emit({ url, exercise: this.exercise() });
-} 
+  onPlayButton(action: any): void {
+    this.playBtn.emit(action);
+  }
 
-onPlayButton(action:any):void{
-  this.playBtn.emit(action)
-}
-
-
-// last thing i did i changed on preview and added video url to the list card
-
+  // last thing i did i changed on preview and added video url to the list card
 }

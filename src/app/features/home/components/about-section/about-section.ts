@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { SectionTitle } from '../../../../shared/components/section-title/section-title';
+import { TranslatePipe } from '@ngx-translate/core';
 
 interface Feature {
   title: string;
@@ -8,27 +9,27 @@ interface Feature {
 
 @Component({
   selector: 'app-about-section',
-  imports: [SectionTitle],
+  imports: [SectionTitle, TranslatePipe],
   templateUrl: './about-section.html',
   styleUrl: './about-section.scss',
 })
 export class AboutSection {
   features = signal<Feature[]>([
     {
-      title: 'Personal Trainer',
-      description: 'Achieve your fitness goals with the guidance of our certified trainers.',
+      title: 'about.features.personal_trainer_title',
+      description: 'about.features.personal_trainer_desc',
     },
     {
-      title: 'Cardio Programs',
-      description: 'From steady-state runs to interval sprints, our treadmill programs.',
+      title: 'about.features.cardio_programs_title',
+      description: 'about.features.cardio_programs_desc',
     },
     {
-      title: 'Quality Equipment',
-      description: 'Our gym is equipped with the latest cardio & strength machines.',
+      title: 'about.features.quality_equipment_title',
+      description: 'about.features.quality_equipment_desc',
     },
     {
-      title: 'Healthy Nutritions',
-      description: 'Fuel your fitness journey with customized meal plans for you.',
+      title: 'about.features.healthy_nutritions_title',
+      description: 'about.features.healthy_nutritions_desc',
     },
   ]);
 }

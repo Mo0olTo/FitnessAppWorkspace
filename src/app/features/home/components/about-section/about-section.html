@@ -2,11 +2,9 @@
   <div
     class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 w-full overflow-hidden!"
   >
-    <!-- Left: Image Collage -->
     <div
-      class="flex gap-3 w-full ms-12 lg:ms-0 lg:w-[48%] h-[420px] md:h-[520px] lg:h-[780px] overflow-hidden!"
+      class="flex gap-3 w-full ltr:ms-12 rtl:me-12 lg:ms-0 lg:me-0 lg:w-[48%] h-[420px] md:h-[520px] lg:h-[780px] overflow-hidden!"
     >
-      <!-- Large left image -->
       <div class="w-1/2 rounded-2xl overflow-hidden h-[80%]">
         <img
           src="/images/about-sec/one.webp"
@@ -15,16 +13,17 @@
         />
       </div>
 
-      <!-- Two stacked images on the right -->
       <div class="flex flex-col gap-3 w-1/2 h-full">
         <div class="rounded-2xl overflow-hidden w-[70%] h-[30%] translate-y-[20%]">
           <img
             src="/images/about-sec/three.webp"
             alt="fitness athlete"
             class="w-full h-full object-cover object-top xl:object-center rounded-2xl"
-          />5
+          />
         </div>
-        <div class="rounded-2xl translate-y-[10%] translate-x-[-30%] h-[60%]">
+        <div
+          class="rounded-2xl translate-y-[10%] ltr:translate-x-[-30%] rtl:translate-x-[30%] h-[60%]"
+        >
           <img
             src="/images/about-sec/two.webp"
             alt="fitness athlete"
@@ -34,72 +33,67 @@
       </div>
     </div>
 
-    <!-- Right: Content -->
-    <div class="flex flex-col items-start gap-6 w-full lg:w-[48%] h-[780px] justify-around">
-      <!-- Section Title -->
+    <div
+      class="flex flex-col items-start gap-6 w-full lg:w-[48%] h-[auto] lg:h-[780px] justify-around"
+    >
       <app-section-title
         logo="/images/icons/dumbbell.webp"
         sectionTitleImage="/images/about-sec/about-us-title.webp"
-        sectionName="about us"
+        [sectionName]="'about.subtitle' | translate"
       ></app-section-title>
 
-      <!-- Heading -->
       <div class="relative overflow-visible">
         <img
           src="/images/about-sec/about-us-title.webp"
           alt=""
           aria-hidden="true"
-          class="absolute left-0 top-1/2 -translate-y-1/2 w-full object-contain opacity-[0.20] pointer-events-none select-none"
+          class="absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 w-full object-contain opacity-[0.20] pointer-events-none select-none"
         />
         <h2
-          class="relative z-10 text-[24px] md:text-[40px] font-bold text-[var(--color-main-text)] uppercase tracking-wide leading-tight"
+          class="relative z-10 text-[24px] md:text-[40px] font-bold text-[var(--color-main-text)] uppercase tracking-wide leading-tight text-start"
         >
-          Empowering you to achieve
-          <span class="text-[var(--color-primary)]">your fitness</span> goals
+          {{ 'about.title_part1' | translate }}
+          <span class="text-[var(--color-primary)]">{{ 'about.title_highlight' | translate }}</span>
+          {{ 'about.title_part2' | translate }}
         </h2>
       </div>
 
-      <!-- Description -->
-      <p class="text-base font-normal text-[var(--color-main-text)] leading-relaxed">
-        We believe fitness is more than just a workout—it's a lifestyle. With top-of-the-line
-        facilities, certified trainers, and a supportive community, we're here to inspire and guide
-        you every step of the way.
+      <p class="text-base font-normal text-[var(--color-main-text)] leading-relaxed text-start">
+        {{ 'about.description' | translate }}
       </p>
 
-      <!-- Features 2x2 Grid -->
-      <div class="grid grid-cols-2 gap-x-6 gap-y-6 w-full">
+      <div class="grid grid-cols-2 gap-x-6 gap-y-6 w-full text-start">
         @for (feature of features(); track $index) {
           <div class="flex flex-col gap-2">
             <div class="flex items-center gap-2">
               <img
                 src="/images/icons/arrow-right.webp"
                 alt="feature icon"
-                class="w-5 h-5 object-contain"
+                class="w-5 h-5 object-contain rtl:rotate-180"
               />
               <h3 class="font-bold text-sm md:text-base text-[var(--color-main-text)]">
-                {{ feature.title }}
+                {{ feature.title | translate }}
               </h3>
             </div>
             <p class="text-sm text-[var(--color-main-text)] opacity-75 leading-relaxed">
-              {{ feature.description }}
+              {{ feature.description | translate }}
             </p>
           </div>
         }
       </div>
 
-      <!-- CTA Button -->
       <button
         type="button"
-        class="relative flex items-center justify-center bg-[var(--color-primary)] text-white font-semibold text-base rounded-full px-5 py-3 mt-2 hover:opacity-90 transition-opacity duration-200 cursor-pointer"
+        class="relative flex items-center justify-center bg-[var(--color-primary)] text-white font-semibold text-base rounded-full px-5 py-3 mt-2 hover:opacity-90 transition-opacity duration-200 cursor-pointer ltr:me-[28px] rtl:ms-[28px]"
       >
-        Get Started
+        {{ 'about.btn_get_started' | translate }}
         <span
-          class="absolute -right-[28px] flex items-center justify-center w-9 h-9 bg-(--color-primary) border-2 border-white rounded-full shrink-0"
+          class="absolute ltr:-right-[28px] rtl:-left-[28px] flex items-center justify-center w-9 h-9 bg-[var(--color-primary)] border-2 border-white rounded-full shrink-0"
         >
           <img
             src="/images/icons/arrow-light.webp"
-            alt="arrow right"
-            class="w-4 h-4 object-contain"
+            alt="arrow"
+            class="w-4 h-4 object-contain rtl:rotate-180"
           />
         </span>
       </button>

@@ -16,8 +16,10 @@
         class="font-bold text-[var(--color-main-text)] text-4xl lg:text-6xl uppercase leading-tight"
       >
         {{ 'home.hero.titleStart' | translate }}
-        <span class="block lg:inline text-[var(--color-primary)]"> stand almost </span>
-        anything
+        <span class="block lg:inline text-[var(--color-primary)]">
+          {{ 'home.hero.stand' | translate }}
+        </span>
+        {{ 'home.hero.anything' | translate }}
       </h1>
       <p
         class="relative text-[var(--color-main-text)] text-lg mt-5 pl-4 before:content-[''] before:absolute before:w-1 before:h-[120px] lg:before:h-[70px] before:bg-[var(--color-primary)] before:top-0 before:left-0"
@@ -29,15 +31,15 @@
       <div class="flex flex-col lg:flex-row gap-8 mt-8">
         <div class="text-[var(--color-main-text)]">
           <h2 class="font-bold text-2xl">1200+</h2>
-          <p class="text-lg">Active Members</p>
+          <p class="text-lg">{{ 'home.hero.activeMembers' | translate }}</p>
         </div>
         <div class="text-[var(--color-main-text)]">
           <h2 class="font-bold text-2xl">12+</h2>
-          <p class="text-lg">Certified Trainers</p>
+          <p class="text-lg">{{ 'home.hero.certifiedTrainers' | translate }}</p>
         </div>
         <div class="text-[var(--color-main-text)]">
           <h2 class="font-bold text-2xl">20+</h2>
-          <p class="text-lg">Years Experience</p>
+          <p class="text-lg">{{ 'home.hero.yearsExperience' | translate }}</p>
         </div>
       </div>
 
@@ -45,7 +47,7 @@
       <div class="flex gap-10 mt-7 mb-25">
         <app-custom-button
           class="text-sm lg:text-base w-[140px] lg:w-[153px]"
-          title="Get Started"
+          [title]="'home.hero.getStarted' | translate"
           customBg="--color-primary"
           color="white"
           icon="pi pi-arrow-up-right"
@@ -53,7 +55,7 @@
 
         <app-custom-button
           class="text-sm lg:text-base w-[190px]"
-          title="Explore More"
+          [title]="'home.hero.exploreMore' | translate"
           border="2px solid var(--color-primary)"
           colorBtn="--color-primary"
           icon="pi pi-arrow-up-right"

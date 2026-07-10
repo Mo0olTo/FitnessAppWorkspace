@@ -1,17 +1,18 @@
 import { Component, computed, input, Input, signal } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-services-bar',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './services-bar.html',
   styleUrl: './services-bar.scss',
 })
 export class ServicesBar {
   items = signal<string[]>([
-    'Outdoor & Online Trainers',
-    'Personal Training',
-    'Live Classes',
-    'Personal Trainers',
+    'services.outdoor',
+    'services.personal_training',
+    'services.live_classes',
+    'services.personal_trainers',
   ]);
 
   duplicatedItems = computed(() => {
