@@ -6,6 +6,32 @@
   ></div>
 
   <div class="container mx-auto pt-5 relative">
+    <div class="avatar-wrap flex items-center relative" style="width: fit-content">
+      <p-avatar
+        shape="circle"
+        size="xlarge"
+        styleClass="avatar-circle"
+        [image]="avatarUrl()"
+        [label]="!avatarUrl() ? userInitials() : undefined"
+      />
+
+      <button
+        pButton
+        type="button"
+        icon="pi pi-pencil"
+        class="avatar-edit-btn p-button-rounded p-button-sm !absolute !bottom-0 !right-0 z-10"
+        (click)="fileInput.click()"
+      ></button>
+
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        class="hidden"
+        (change)="onAvatarChange($event)"
+      />
+    </div>
+
     <div class="info flex items-center justify-evenly flex-wrap">
       @for (metrics of profileMetrics; track metrics.label) {
         <div class="p-2 text-[var(--color-main-text)]">
@@ -37,7 +63,7 @@
           [class.cursor-pointer]="item.action"
           [class.cursor-default]="!item.action"
           [class.md:col-start-2]="
-            item.title?.toLowerCase() === 'logout' || $index === settingItems.length - 1
+            item.title?.toLowerCase() === 'logout' || $index === settingItems().length - 1
           "
         >
           <i
@@ -79,7 +105,6 @@
   </div>
 </div>
 
-<!--  Change Password Model (dialog) -->
 <div class="card flex justify-center">
   <p-dialog
     [visible]="visible()"
@@ -169,7 +194,6 @@
   </p-dialog>
 </div>
 
-<!-- LogOut model (dialog) -->
 <div class="card flex justify-center">
   <p-dialog
     [visible]="logoutVisible()"
@@ -218,7 +242,6 @@
   </p-dialog>
 </div>
 
-<!-- options-modal -->
 @if (isModalOpen()) {
   <app-options-modal
     [title]="modalTitle()"

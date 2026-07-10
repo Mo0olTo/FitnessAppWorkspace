@@ -10,6 +10,7 @@ import {
   ISignUpReq,
   IEditReq,
   IEditRes,
+  IUploadPhotoReq,
 } from 'auth-lib';
 import { CookieService } from 'ngx-cookie-service';
 import { finalize, map, Observable, Subject, takeUntil, tap } from 'rxjs';
@@ -38,7 +39,6 @@ export class AuthFacade {
   activityLevel = signal<string>('');
   userPhoto = signal<string>('');
   weight = signal<number>(0);
-
   // forget-pass step management
   forgetPassStep = signal<Extract<FormType, 'forgetPass' | 'otp' | 'newPass'>>('forgetPass');
   private readonly resetEmail = signal<string>('');
@@ -362,5 +362,43 @@ login(data: ISignInReq): void {
       }),
       map(() => undefined as any),
     );
+  }
+
+  // update Photo
+  updatePhoto(file: File) {
+    this.loading.loading.set(true);
+    this.error.set(null);
+
+    const payload: IUploadPhotoReq = {
+      photo: file,
+    };
+
+    this.auth
+      .UploadPhoto(payload)
+      .pipe(
+        finalize(() => this.loading.loading.set(false)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: () => {
+          this.loadUserAfterLogin();
+
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Profile picture updated successfully',
+            life: 3000,
+          });
+        },
+        error: (err) => {
+          this.error.set(err?.error?.message || 'Failed to upload photo');
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Upload Failed',
+            detail: this.error()!,
+            life: 3000,
+          });
+        },
+      });
   }
 }
