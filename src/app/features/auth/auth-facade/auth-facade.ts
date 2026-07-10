@@ -8,6 +8,8 @@ import {
   IVerifyReq,
   ISignInReq,
   ISignUpReq,
+  IEditReq,
+  IEditRes,
 } from 'auth-lib';
 import { CookieService } from 'ngx-cookie-service';
 import { finalize, map, Observable, Subject, takeUntil, tap } from 'rxjs';
@@ -341,5 +343,24 @@ login(data: ISignInReq): void {
           });
         },
       });
+  }
+  // edit Profile
+  updateProfile(data: Partial<IEditReq>): Observable<IEditRes> {
+    this.loading.loading.set(true);
+    this.error.set(null);
+
+    return this.auth.EditProfile(data as IEditReq).pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.loading.set(false)),
+      tap(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Updated!',
+          detail: 'Profile updated successfully',
+          life: 3000,
+        });
+      }),
+      map(() => undefined as any),
+    );
   }
 }

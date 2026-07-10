@@ -5,17 +5,13 @@ import { finalize } from 'rxjs';
 import { LoadingService } from '../../../shared/services/loading/loadingService';
 
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
+  const loading = inject(LoadingService);
 
-
-  const loading=inject(LoadingService)
-
-        loading.startLoading()
+  loading.startLoading();
 
   return next(req).pipe(
-    
-    finalize(()=> {  
-      loading.stopLoading()
-    }
-  )
+    finalize(() => {
+      loading.stopLoading();
+    }),
   );
 };

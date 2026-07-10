@@ -25,8 +25,8 @@
 
       <div class="flex justify-center items-center w-full flex-col">
         <app-form-title
-          [title]="'tell us about yourself!'"
-          [subTitle]="'We Need To Know Your Gender'"
+          [title]="'register.heading' | translate"
+          [subTitle]="'register.subheading' | translate"
         />
       </div>
       <!-- Gender Selection Container -->
@@ -54,7 +54,7 @@
             />
           </svg>
 
-          <span class="text-xs font-bold mt-1">Male</span>
+          <span class="text-xs font-bold mt-1">{{ 'register.gender_male' | translate }}</span>
         </button>
 
         <!-- Female Option -->
@@ -80,7 +80,7 @@
             />
           </svg>
 
-          <span class="text-xs font-bold mt-1">Female</span>
+          <span class="text-xs font-bold mt-1">{{ 'register.gender_female' | translate }}</span>
         </button>
       </div>
 

@@ -15,6 +15,7 @@
           </p>
 
           <button
+            (click)="openModal(metrics.type)"
             class="flex justify-between items-center font-bold text-base bg-[#FF4100] w-[240px] py-2.5 px-4 rounded-3xl border border-[var(--color-borders)] hover:bg-[#e03a00] transition-colors"
           >
             {{ metrics.signal() }}
@@ -216,3 +217,13 @@
     </ng-template>
   </p-dialog>
 </div>
+
+<!-- options-modal -->
+@if (isModalOpen()) {
+  <app-options-modal
+    [title]="modalTitle()"
+    [options]="modalOptions()"
+    (onClose)="isModalOpen.set(false)"
+    (onSelect)="onOptionSelected($event, currentType())"
+  />
+}

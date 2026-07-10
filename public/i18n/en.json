@@ -8,6 +8,15 @@
     "email": "Email",
     "password": "Password"
   },
+  "register": {
+    "re": "Register",
+    "step_indicator": "1/6",
+    "heading": "TELL US ABOUT YOURSELF!",
+    "subheading": "We Need To Know Your Gender",
+    "gender_male": "Male",
+    "gender_female": "Female",
+    "button_next": "Next"
+  },
 
   "home": {
     "hero": {
@@ -77,7 +86,7 @@
     "settingItems": {
       "tAPToChange": "TAP TO CHANGE",
       "goal": "Your Goal",
-      "level": "Level",
+      "activityLevel": "Level",
       "weight": "Weight"
     },
     "changePassword": {
