@@ -14,7 +14,7 @@ export class Darkmode {
   private isBrowser = isPlatformBrowser(this.platformId);
 
    //Signal holds current theme
-  private theme = signal<Theme>('light');
+  private theme = signal<Theme>('dark');
 
   // expose readonly
   currentTheme = this.theme.asReadonly();
