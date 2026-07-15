@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --no-hmr --port 5173",
-    "build": "ng build",
+    "build": "ng build auth-lib && ng build FitnessAppWorlspace",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:FitnessApp": "node dist/FitnessApp/server/server.mjs"
