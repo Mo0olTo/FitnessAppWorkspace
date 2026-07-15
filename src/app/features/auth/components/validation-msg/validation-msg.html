@@ -1,0 +1,41 @@
+@if (touched() && errors()) {
+
+  <section class="mt-1 max-w-[320px] text-center">
+
+    @if (errors()?.['required']) {
+      <p-message severity="error">
+      <i class="pi pi-times-circle translate-0.5 mr-0.5"></i>  {{ label() }} is required
+      </p-message>
+    }
+
+    @if (errors()?.['minlength']) {
+      <p-message severity="error">
+        <i class="pi pi-times-circle translate-0.5 mr-0.5"></i>
+        {{ label() }} must be at least
+        {{ errors()?.['minlength']?.requiredLength }} characters
+      </p-message>
+    }
+
+    @if (errors()?.['email']) {
+      <p-message severity="error">
+        <i class="pi pi-times-circle translate-0.5 mr-0.5"></i>
+        Invalid email
+      </p-message>
+    }
+
+    @if (errors()?.['pattern']) {
+      <p-message severity="error">
+        <i class="pi pi-times-circle translate-0.5 mr-0.5"></i>
+        Password must contain uppercase and special character
+      </p-message>
+    }
+
+    @if (errors()?.['mismatch']) {
+      <p-message severity="error">
+        <i class="pi pi-times-circle translate-0.5 mr-0.5"></i>
+        Passwords do not match
+      </p-message>
+    }
+
+  </section>
+}

@@ -1,0 +1,30 @@
+{
+  "authForm": {
+    "forgetPassword": "Forget Password ?",
+    "dontHaveAccount": "Don't Have An Account Yet ?",
+    "register": "Register",
+    "login": "Login",
+    "or": "Or",
+    "email": "Email",
+    "password": "Password"
+  },
+
+  "home": {
+    "hero": {
+      "mindset_description": "It's your mind that needs convincing. Push past your limits, stay committed, and watch as your body transforms into a powerhouse of strength and resilience.",
+      "titleStart": "Your body can"
+    }
+  },
+
+  "navBar": {
+    "home": "Home",
+    "about": "About",
+    "classes": "Classes",
+    "healthy": "Healthy"
+  },
+
+  "logout": {
+    "out": "Log Out",
+    "sure": "Are you sure you want to log out?"
+  }
+}

@@ -1,0 +1,18 @@
+<section
+  class="flex flex-col items-center justify-center my-3 w-full"
+  [class]="reverse() ? 'flex-col-reverse' : 'flex-col'"
+>
+  <!-- title -->
+  <h1
+    class="text-[var(--color-main-text)] text-2xl lg:text-5xl font-extrabold leading-[140%] uppercase text-center"
+  >
+    {{ title() }}
+  </h1>
+
+  <!-- sub title -->
+  <p
+    class="text-[var(--color-main-text)] text-xl lg:text-2xl font-normal leading-[140%] capitalize text-center"
+  >
+    {{ subTitle() }}
+  </p>
+</section>

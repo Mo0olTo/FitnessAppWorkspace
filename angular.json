@@ -26,9 +26,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss", "node_modules/primeicons/primeicons.css"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -54,7 +52,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -85,12 +89,43 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": ["src/styles.scss"]
+          }
+        }
+      }
+    },
+    "auth-lib": {
+      "projectType": "library",
+      "root": "projects/auth-lib",
+      "sourceRoot": "projects/auth-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/auth-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/auth-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/auth-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
             ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "51edd4d8-4c74-4b94-9a9e-ffb419ffa776"
   }
 }

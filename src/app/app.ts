@@ -1,12 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { ToastModule } from 'primeng/toast';
 import { RouterOutlet } from '@angular/router';
+import { ThemeFacade } from './core/Theme/theme.facade';
+import { Loading } from "./shared/components/loading/loading";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ToastModule, Loading],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('FitnessApp');
+  private readonly themefacede = inject(ThemeFacade);
+  isDark = signal(true);
+
+  toggle() {
+    this.isDark.update((v) => !v);
+    this.themefacede.toggleTheme();
+  }
 }

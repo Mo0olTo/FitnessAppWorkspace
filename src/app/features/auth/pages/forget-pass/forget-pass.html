@@ -1,0 +1,26 @@
+<div class="flex justify-center items-center w-full flex-col gap-8">
+
+  <app-auth-form
+    [formType]="currentStep()"
+
+    [forgetEmail]="forgetEmail()"
+    (forgetEmailChange)="forgetEmail.set($event)"
+
+    [otpValue]="otpValue()"
+    (otpValueChange)="otpValue.set($event)"
+
+    [newPass]="newPass()"
+    (newPassChange)="newPass.set($event)"
+
+    [rePass]="rePass()"
+    (rePassChange)="rePass.set($event)"
+
+    (fieldBlur)="onFieldBlur($event)"
+
+    [errors]="errors()"
+    [touched]="touched()"
+
+    (submit)="onSubmit()"
+  />
+
+</div>

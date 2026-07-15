@@ -1,0 +1,49 @@
+@if (step() === 1) {
+<section class="">
+
+     <div class="w-full flex flex-col justify-center items-center  container mx-auto   px-4  py-12 lg:py-16">
+
+            <!-- title -->
+            <div class="py-8">
+                <app-section-title
+                sectionTitleImage="/images/meals/Healthy.webp"
+                logo="/images/Vector.png"
+                sectionName="healthy nutritions"
+                [centeredName]="true"
+                 ></app-section-title>
+               </div>
+
+             <!-- secttion desc -->
+             <div class="">
+                <h1 class=" text-center text-[24px] md:text-[34px] font-bold text-[var(--color-main-text)] uppercase tracking-wide ">
+                    Fuel your fitness journey with  <br> customized
+                    <span class="text-[var(--color-primary)] text-wrap">meal plans</span>  for you
+                </h1>
+            </div>
+
+            <div class="space-x-3 py-5 ">
+                <app-filter-tabs
+                [tabs]="mealCategoryTabs()"
+                [selectedTabs]="selectedCategoryTab()"
+                (tabChanged)="onCategoryTabChange($event)"
+              ></app-filter-tabs>
+            </div>
+            </div>
+
+            <!-- swiper -->
+    <div class="w-full z-[70] mb-12">
+          <app-carousel
+          [carouselData]="mealsCarousel()"
+          (cardAction)="onMealCardClick($event)"
+          [rows]="2"
+          ></app-carousel>
+        </div>
+</section>
+} @else {
+    <app-meal-details
+        [meal]="mealDetails()[0] ?? null"
+        [mealList]="mealsCarousel()"
+        (onAction)="backToMeals()"
+        (mealSelected)="onMealFromList($event)"
+    ></app-meal-details>
+}
