@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve -o --no-hmr --port 5173",
     "build": "ng build ",
-    "build-Lib": "ng build auth-lib && ng build FitnessAppWorkspace",
+    "build-Lib": "ng build auth-lib && ng build FitnessApp",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:FitnessApp": "node dist/FitnessApp/server/server.mjs"
