@@ -32,6 +32,6 @@ export class Nav {
     this._routes.navigate(['auth/login']);
   }
   goToRegister() {
-    this._routes.navigate(['/register']);
+    this._routes.navigate(['auth/register']);
   }
 }
