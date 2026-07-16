@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --no-hmr --port 5173",
-    "build": "ng build",
+    "build": "ng build ",
+    "build-Lib": "ng build auth-lib && ng build FitnessApp",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:FitnessApp": "node dist/FitnessApp/server/server.mjs"
@@ -23,6 +24,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^21.2.9",
     "@angular/common": "^21.2.9",
     "@angular/compiler": "^21.2.9",
     "@angular/core": "^21.2.9",
