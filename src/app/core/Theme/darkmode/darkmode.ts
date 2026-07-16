@@ -17,6 +17,7 @@ export class Darkmode {
   private theme = signal<Theme>('dark');
 
   // expose readonly
+  
   currentTheme = this.theme.asReadonly();
 
   constructor() {
